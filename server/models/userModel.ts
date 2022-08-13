@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
+import AlgoSectionArray from "./sortingSectionReading.js";
+import StructureSectionArray from "./structureSectionReading.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -22,6 +24,16 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password Required "],
       minlength: [6, "Minimum password length is 6"],
+    },
+    gameStats: {
+      points: { type: Number, required: true },
+      responseTime: { type: Number, required: true },
+      streak: { type: Number, required: true },
+      numCorrect: { type: Number, required: true },
+      numWrong: { type: Number, required: true },
+      gamesPlayed: { type: Number, required: true },
+      algoReading: [{}],
+      dataReading: [{}],
     },
   },
   {
@@ -46,7 +58,19 @@ userSchema.methods.signup = async function (email: string, password: string, use
 
   const hash = await bcrypt.hash(password, salt);
 
-  const user = await User.create({ email, password: hash, username });
+  const user = await User.create({
+    email,
+    password: hash,
+    username,
+    points: 0,
+    responseTime: 0,
+    streak: 0,
+    numCorrect: 0,
+    numWrong: 0,
+    gamesPlayed: 0,
+    algoReading: AlgoSectionArray,
+    dataReading: StructureSectionArray,
+  });
 
   return user;
 };
