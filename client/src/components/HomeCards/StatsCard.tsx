@@ -61,12 +61,24 @@ const StatsCard = () => {
               <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell align="center">Points</TableCell>
-                    <TableCell align="center">Games Played</TableCell>
-                    <TableCell align="center">Highest Streak</TableCell>
-                    <TableCell align="center">Total Correct</TableCell>
-                    <TableCell align="center">Total Wrong</TableCell>
-                    <TableCell align="center">Response Time</TableCell>
+                    <TableCell align="center">
+                      <strong>Points</strong>
+                    </TableCell>
+                    <TableCell align="center">
+                      <strong>Games Played</strong>
+                    </TableCell>
+                    <TableCell align="center">
+                      <strong>Highest Streak</strong>
+                    </TableCell>
+                    <TableCell align="center">
+                      <strong>Total Correct</strong>
+                    </TableCell>
+                    <TableCell align="center">
+                      <strong>Total Wrong</strong>
+                    </TableCell>
+                    <TableCell align="center">
+                      <strong>Response Time (ms)</strong>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
