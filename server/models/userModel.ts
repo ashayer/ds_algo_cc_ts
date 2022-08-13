@@ -62,14 +62,16 @@ userSchema.methods.signup = async function (email: string, password: string, use
     email,
     password: hash,
     username,
-    points: 0,
-    responseTime: 0,
-    streak: 0,
-    numCorrect: 0,
-    numWrong: 0,
-    gamesPlayed: 0,
-    algoReading: AlgoSectionArray,
-    dataReading: StructureSectionArray,
+    gameStats: {
+      points: 0,
+      responseTime: 0,
+      streak: 0,
+      numCorrect: 0,
+      numWrong: 0,
+      gamesPlayed: 0,
+      algoReading: AlgoSectionArray,
+      dataReading: StructureSectionArray,
+    },
   });
 
   return user;
