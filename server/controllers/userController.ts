@@ -22,7 +22,7 @@ export const updateAlgoReading = async (req: express.Request, res: express.Respo
     const user = await User.findByIdAndUpdate(id, {
       algoReading,
     });
-    res.status(200).json(user?.algoReading);
+    res.status(200).json(algoReading);
   } catch (error) {
     res.status(400).json(error);
   }
@@ -36,7 +36,16 @@ export const updateStructureReading = async (req: express.Request, res: express.
     const user = await User.findByIdAndUpdate(id, {
       structureReading,
     });
-    res.status(200).json(user?.structureReading);
+    res.status(200).json(structureReading);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+export const getUsersGameStats = async (req: express.Request, res: express.Response) => {
+  try {
+    const users = await User.find().select("gameStats -_id");
+    res.status(200).json(users);
   } catch (error) {
     res.status(400).json(error);
   }

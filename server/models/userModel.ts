@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
-import AlgoSectionArray from "./sortingSectionReading.js";
+import AlgoSectionArray from "./algoSectionReading.js";
 import StructureSectionArray from "./structureSectionReading.js";
 
 const userSchema = new mongoose.Schema(

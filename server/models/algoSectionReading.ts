@@ -1,4 +1,4 @@
-const StructureSectionArray = [
+const AlgoSectionArray = [
   {
     sectionID: 1,
     sectionName: "Insertion Sort",
@@ -69,4 +69,4 @@ const StructureSectionArray = [
   },
 ];
 
-export default StructureSectionArray;
+export default AlgoSectionArray;

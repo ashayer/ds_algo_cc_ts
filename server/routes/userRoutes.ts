@@ -3,11 +3,13 @@ import {
   updateGameStats,
   updateAlgoReading,
   updateStructureReading,
+  getUsersGameStats,
 } from "../controllers/userController.js";
 
-const authRouter = express.Router();
+const userRouter = express.Router();
 
-authRouter.patch("/updateGameStats/:id", updateGameStats);
-authRouter.patch("/updateAlgoReading/:id", updateAlgoReading);
-authRouter.patch("/updateStructureReading/:id", updateStructureReading);
-export default authRouter;
+userRouter.patch("/updateGameStats/:id", updateGameStats);
+userRouter.patch("/updateAlgoReading/:id", updateAlgoReading);
+userRouter.patch("/updateStructureReading/:id", updateStructureReading);
+userRouter.get("/getUsersGameStats", getUsersGameStats);
+export default userRouter;
