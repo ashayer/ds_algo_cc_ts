@@ -3,6 +3,7 @@ const styles = {
     alignItems: "center",
     direction: "column",
     minHeight: "30vh",
+    justifyContent: "space-around",
   },
 };
 

@@ -22,7 +22,7 @@ const StatsCard = () => {
   return (
     <>
       <Typography variant="h3" fontWeight="bold">
-        Stats
+        STATS
       </Typography>
       <Divider />
       <Grid container sx={{ ...styles.homeCardContainer }}>
@@ -56,7 +56,7 @@ const StatsCard = () => {
           </TableContainer>
         </GridCardItem>
         <GridCardItem alignSelf="end">
-          <Button fullWidth variant="contained" onClick={() => navigate("/leaderboard")}>
+          <Button variant="outlined" onClick={() => navigate("/leaderboard")}>
             <Typography variant="h3">LeaderBoard</Typography>
           </Button>
         </GridCardItem>

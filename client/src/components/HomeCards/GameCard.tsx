@@ -23,7 +23,7 @@ const GameCard = () => {
   return (
     <>
       <Typography variant="h3" fontWeight="bold">
-        Game
+        GAME
       </Typography>
       <Divider />
       <Grid container sx={{ ...styles.homeCardContainer }}>
@@ -46,7 +46,7 @@ const GameCard = () => {
           </FormControl>
         </GridCardItem>
         <GridCardItem alignSelf="end">
-          <Button fullWidth variant="outlined" color="success" onClick={() => navigate("/game")}>
+          <Button variant="outlined" color="success" onClick={() => navigate("/game")}>
             <Typography variant="h3">Play</Typography>
           </Button>
         </GridCardItem>
