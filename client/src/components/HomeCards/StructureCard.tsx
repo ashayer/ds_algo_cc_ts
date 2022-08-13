@@ -1,47 +1,35 @@
-import React from "react";
-import { Typography, Grid, Button, Paper } from "@mui/material";
+import { Typography, Grid, Button, Divider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import styles from "./HomeCardsStyles";
+import GridCardItem from "./GameCardItem";
 const StatsCard = () => {
   const navigate = useNavigate();
 
   return (
     <>
-      <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
-        Data Structures
+      <Typography variant="h3" fontWeight="bold">
+        DATA STRUCTURES
       </Typography>
-      <Grid
-        container
-        sx={{
-          direction: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          minHeight: "30vh",
-        }}
-      >
-        <Grid item xs={12}>
+      <Divider />
+      <Grid container sx={{ ...styles.homeCardContainer }}>
+        <GridCardItem>
           {/* <Typography>{`${calculateCompletedReadingForData()}% Read`}</Typography> */}
-        </Grid>
-        <Grid item xs={6} md={6} sx={{ alignSelf: "end" }}>
+        </GridCardItem>
+        <GridCardItem width="45%" alignSelf="end">
           <Button
             fullWidth
-            variant="contained"
-            sx={{ borderRadius: "0px", border: "5px solid white" }}
-            onClick={() => navigate("/datastructs")}
+            variant="outlined"
+            color="info"
+            onClick={() => navigate("/structurereading")}
           >
             <Typography variant="h3">Read</Typography>
           </Button>
-        </Grid>
-        <Grid item xs={6} md={6} sx={{ alignSelf: "end" }}>
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{ borderRadius: "0px", border: "5px solid white" }}
-            onClick={() => navigate("/datasandbox")}
-          >
+        </GridCardItem>
+        <GridCardItem width="45%" alignSelf="end">
+          <Button fullWidth variant="contained" onClick={() => navigate("/structuresandbox")}>
             <Typography variant="h3">Sandbox</Typography>
           </Button>
-        </Grid>
+        </GridCardItem>
       </Grid>
     </>
   );

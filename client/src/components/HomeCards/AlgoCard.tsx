@@ -1,5 +1,4 @@
-import React from "react";
-import { Typography, Grid, Button, Paper, Divider } from "@mui/material";
+import { Typography, Grid, Button, Divider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styles from "./HomeCardsStyles";
 import GridCardItem from "./GameCardItem";
@@ -17,12 +16,17 @@ const StatsCard = () => {
           {/* <Typography>{`${calculateCompletedReadingForAlgo()}% Read`}</Typography> */}
         </GridCardItem>
         <GridCardItem width="45%" alignSelf="end">
-          <Button fullWidth variant="contained" onClick={() => navigate("/algos")}>
+          <Button
+            fullWidth
+            variant="outlined"
+            color="info"
+            onClick={() => navigate("/algoreading")}
+          >
             <Typography variant="h3">Read</Typography>
           </Button>
         </GridCardItem>
         <GridCardItem width="45%" alignSelf="end">
-          <Button fullWidth variant="contained" onClick={() => navigate("/sortsandbox")}>
+          <Button fullWidth variant="contained" onClick={() => navigate("/algosandbox")}>
             <Typography variant="h3">Sandbox</Typography>
           </Button>
         </GridCardItem>
