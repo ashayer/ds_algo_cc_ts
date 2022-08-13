@@ -37,12 +37,6 @@ const Navbar = () => {
               ...styles.navBarIsUserBox,
             }}
           >
-            <IconButton sx={{ color: "black" }} onClick={() => navigate("/search")}>
-              <SearchIcon fontSize="large" />
-            </IconButton>
-            <IconButton sx={{ color: "black" }} onClick={() => navigate(`/user/${username}`)}>
-              <AccountBoxIcon fontSize="large" />
-            </IconButton>
           </Grid>
           <Grid item>
             <Button variant="contained" onClick={() => logoutUser()}>

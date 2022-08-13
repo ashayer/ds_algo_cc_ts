@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Grid, Box, Slide, Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../stores/authStore";
 import GameCard from "../../components/HomeCards/GameCard";
@@ -30,32 +30,28 @@ const Home = () => {
   }, [navigate, user]);
 
   return (
-    <Slide in>
-      <Grid item container xs={10} sx={{ marginLeft: "auto", marginRight: "auto" }}>
-        <Grid container spacing={7} sx={{ marginTop: 1, textAlign: "center" }}>
-          <Grid item xs={12} lg={6}>
-            <Paper elevation={4}>
-              <GameCard />
-            </Paper>
-          </Grid>
-          <Grid item xs={12} lg={6}>
-            <Paper elevation={4}>
-              <StatsCard />
-            </Paper>
-          </Grid>
-          <Grid item xs={12} lg={6}>
-            <Paper elevation={4}>
-              <AlgoCard />
-            </Paper>
-          </Grid>
-          <Grid item xs={12} lg={6}>
-            <Paper elevation={4}>
-              <DataCard />
-            </Paper>
-          </Grid>
-        </Grid>
+    <Grid item container xs={11} sx={{ mt: 1, textAlign: "center", marginInline: "auto" }}>
+      <Grid item xs={12} lg={6} sx={{ pt: 5, pr: 5, pl: 5 }}>
+        <Paper elevation={4}>
+          <GameCard />
+        </Paper>
       </Grid>
-    </Slide>
+      <Grid item xs={12} lg={6} sx={{ pt: 5, pr: 5, pl: 5 }}>
+        <Paper elevation={4}>
+          <StatsCard />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} lg={6} sx={{ pt: 5, pr: 5, pl: 5 }}>
+        <Paper elevation={4}>
+          <AlgoCard />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} lg={6} sx={{ pt: 5, pr: 5, pl: 5 }}>
+        <Paper elevation={4}>
+          <DataCard />
+        </Paper>
+      </Grid>
+    </Grid>
   );
 };
 
