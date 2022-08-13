@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import authRouter from "./routes/authRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 import express, { Request, Response, ErrorRequestHandler } from "express";
 import cookieParser from "cookie-parser";
 import { connectDB } from "./config/db.js";
@@ -22,6 +23,7 @@ app.use(cookieParser());
 //parses data with querystring library
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/user", authRouter);
+app.use("/api/user", userRouter);
 
 //if in development use public index otherwise use build
 if (process.env.DEV === "true") {
