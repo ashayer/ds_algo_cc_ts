@@ -6,11 +6,18 @@ import {
   FormControl,
   InputLabel,
   Select,
-  Box,
   MenuItem,
+  Divider,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { SelectChangeEvent } from "@mui/material/Select";
+import styles from "./HomeCardsStyles";
+
+const GridCardItem = (props: any) => (
+  <Grid item sx={{ width: "100%", alignSelf: props.alignSelf }}>
+    {props.children}
+  </Grid>
+);
 
 const GameCard = () => {
   const navigate = useNavigate();
@@ -20,43 +27,34 @@ const GameCard = () => {
   };
   return (
     <>
-      <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
+      <Typography variant="h3" fontWeight="bold">
         Game
       </Typography>
-      <Grid
-        container
-        sx={{
-          direction: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          minHeight: "30vh",
-        }}
-      >
-        <Grid item xs={12}>
+      <Divider />
+      <Grid container sx={{ ...styles.homeCardContainer }}>
+        <GridCardItem>
           <Typography variant="h5">Game Options</Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
-            <FormControl sx={{ width: "200px" }}>
-              <InputLabel id="game-length-select">Questions</InputLabel>
-              <Select
-                labelId="game-length-select"
-                value={gameLength}
-                label="Questions"
-                onChange={handleLengthChange}
-              >
-                <MenuItem value="0">Endless</MenuItem>
-                <MenuItem value="20">20</MenuItem>
-                <MenuItem value="40">40</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-        </Grid>
-        <Grid item xs={12} sx={{ alignSelf: "end", m: 1 }}>
-          <Button fullWidth variant="contained" onClick={() => navigate("/game")}>
+        </GridCardItem>
+        <GridCardItem>
+          <FormControl sx={{ width: "50%" }}>
+            <InputLabel id="game-length-select">Number of Questions</InputLabel>
+            <Select
+              labelId="game-length-select"
+              value={gameLength}
+              label="Number of Questions"
+              onChange={handleLengthChange}
+            >
+              <MenuItem value="0">Endless</MenuItem>
+              <MenuItem value="20">20</MenuItem>
+              <MenuItem value="40">40</MenuItem>
+            </Select>
+          </FormControl>
+        </GridCardItem>
+        <GridCardItem alignSelf="end">
+          <Button fullWidth variant="outlined" color="success" onClick={() => navigate("/game")}>
             <Typography variant="h3">Play</Typography>
           </Button>
-        </Grid>
+        </GridCardItem>
       </Grid>
     </>
   );
