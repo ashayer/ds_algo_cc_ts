@@ -1,12 +1,12 @@
 import React from "react";
-import { Typography, Grid, Button } from "@mui/material";
+import { Typography, Grid, Button, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const StatsCard = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <Paper elevation={4}>
       <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
         Sorting Algorithms
       </Typography>
@@ -22,28 +22,18 @@ const StatsCard = () => {
         <Grid item xs={12}>
           {/* <Typography>{`${calculateCompletedReadingForAlgo()}% Read`}</Typography> */}
         </Grid>
-        <Grid item xs={6} md={6} sx={{ alignSelf: "end" }}>
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{ borderRadius: "0px", border: "5px solid white" }}
-            onClick={() => navigate("/algos")}
-          >
+        <Grid item xs={5} sx={{ alignSelf: "end" }}>
+          <Button fullWidth variant="contained" onClick={() => navigate("/algos")}>
             <Typography variant="h3">Read</Typography>
           </Button>
         </Grid>
-        <Grid item xs={6} md={6} sx={{ alignSelf: "end" }}>
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{ borderRadius: "0px", border: "5px solid white" }}
-            onClick={() => navigate("/sortsandbox")}
-          >
+        <Grid item xs={5} sx={{ alignSelf: "end" }}>
+          <Button fullWidth variant="contained" onClick={() => navigate("/sortsandbox")}>
             <Typography variant="h3">Sandbox</Typography>
           </Button>
         </Grid>
       </Grid>
-    </>
+    </Paper>
   );
 };
 

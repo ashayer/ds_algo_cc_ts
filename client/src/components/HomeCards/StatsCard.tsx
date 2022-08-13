@@ -10,6 +10,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Paper,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +18,7 @@ const StatsCard = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <Paper elevation={4}>
       <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
         Stats
       </Typography>
@@ -60,17 +61,12 @@ const StatsCard = () => {
           </TableContainer>
         </Grid>
         <Grid item xs={12} sx={{ alignSelf: "end" }}>
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{ borderRadius: "0px", border: "5px solid white" }}
-            onClick={() => navigate("/leaderboard")}
-          >
+          <Button fullWidth variant="contained" onClick={() => navigate("/leaderboard")}>
             <Typography variant="h3">LeaderBoard</Typography>
           </Button>
         </Grid>
       </Grid>
-    </>
+    </Paper>
   );
 };
 

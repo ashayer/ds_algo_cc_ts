@@ -1,12 +1,12 @@
 import React from "react";
-import { Typography, Grid, Button } from "@mui/material";
+import { Typography, Grid, Button, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const StatsCard = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <Paper elevation={4}>
       <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
         Data Structures
       </Typography>
@@ -43,7 +43,7 @@ const StatsCard = () => {
           </Button>
         </Grid>
       </Grid>
-    </>
+    </Paper>
   );
 };
 

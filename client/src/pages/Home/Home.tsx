@@ -6,6 +6,7 @@ import GameCard from "../../components/HomeCards/GameCard";
 import StatsCard from "../../components/HomeCards/StatsCard";
 import AlgoCard from "../../components/HomeCards/AlgoCard";
 import DataCard from "../../components/HomeCards/DataCard";
+import { styled } from "@mui/system";
 
 // const calculateCompletedReading = () => {
 //   const localUser = JSON.parse(sessionStorage.getItem("user"));
@@ -22,6 +23,22 @@ import DataCard from "../../components/HomeCards/DataCard";
 //   return (completed / 8) * 100;
 // };
 
+const HomeGridItem = ({ child }: { child: JSX.Element }) => (
+  <Grid item xs={12} lg={6} sx={{ pt: 5, pr: 5, pl: 5 }}>
+    {child}
+  </Grid>
+);
+
+const HomeGridContainer = ({ children }: { children: JSX.Element[] }) => {
+  return (
+    <Grid item container xs={11} sx={{ mt: 1, textAlign: "center", marginInline: "auto" }}>
+      {children.map((child: JSX.Element, index) => (
+        <HomeGridItem child={child} key={index} />
+      ))}
+    </Grid>
+  );
+};
+
 const Home = () => {
   const user = useAuthStore((state) => state.isUser);
   const navigate = useNavigate();
@@ -31,26 +48,12 @@ const Home = () => {
 
   return (
     <Grid item container xs={11} sx={{ mt: 1, textAlign: "center", marginInline: "auto" }}>
-      <Grid item xs={12} lg={6} sx={{ pt: 5, pr: 5, pl: 5 }}>
-        <Paper elevation={4}>
-          <GameCard />
-        </Paper>
-      </Grid>
-      <Grid item xs={12} lg={6} sx={{ pt: 5, pr: 5, pl: 5 }}>
-        <Paper elevation={4}>
-          <StatsCard />
-        </Paper>
-      </Grid>
-      <Grid item xs={12} lg={6} sx={{ pt: 5, pr: 5, pl: 5 }}>
-        <Paper elevation={4}>
-          <AlgoCard />
-        </Paper>
-      </Grid>
-      <Grid item xs={12} lg={6} sx={{ pt: 5, pr: 5, pl: 5 }}>
-        <Paper elevation={4}>
-          <DataCard />
-        </Paper>
-      </Grid>
+      <HomeGridContainer>
+        <GameCard />
+        <StatsCard />
+        <AlgoCard />
+        <DataCard />
+      </HomeGridContainer>
     </Grid>
   );
 };
