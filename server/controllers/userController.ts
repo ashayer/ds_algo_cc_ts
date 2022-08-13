@@ -1,9 +1,18 @@
 import express from "express";
 import User from "../models/userModel.js";
 
+interface GameStats {
+  points: number;
+  gamesPlayed: number;
+  numCorrect: number;
+  numWrong: number;
+  responseTime: number;
+  streak: number;
+}
+
 export const updateGameStats = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
-  const { gameStats } = req.body;
+  const { gameStats }: { gameStats: GameStats } = req.body;
 
   try {
     const user = await User.findByIdAndUpdate(id, {
@@ -42,10 +51,40 @@ export const updateStructureReading = async (req: express.Request, res: express.
   }
 };
 
+// export const getUsersGameStats = async (req: express.Request, res: express.Response) => {
+//   try {
+//     const users = await User.find().select("username gameStats -_id");
+//     res.status(200).json(users);
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// };
+
+function createUserData(gameStats: GameStats, username: string) {
+  const { points, gamesPlayed, numCorrect, numWrong, responseTime, streak } = gameStats;
+  return {
+    points,
+    gamesPlayed,
+    numCorrect,
+    numWrong,
+    responseTime,
+    streak,
+    username,
+  };
+}
+
+/*
+  create an array of objects that combine username and gameStats into one object
+  to allow leaderboard sorting
+*/
 export const getUsersGameStats = async (req: express.Request, res: express.Response) => {
   try {
     const users = await User.find().select("username gameStats -_id");
-    res.status(200).json(users);
+    const userRows = [];
+    for (let i = 0; i < users.length; i += 1) {
+      userRows.push(createUserData(users[i]?.gameStats as GameStats, users[i].username));
+    }
+    res.status(200).json(userRows);
   } catch (error) {
     res.status(400).json(error);
   }

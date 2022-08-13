@@ -5,6 +5,7 @@ import Signup from "./pages/Signup/Signup";
 import "@fontsource/manrope";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
+import Leaderboard from "./pages/Leaderboard/Leaderboard";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+
         {/* <Route path="/home" element={<Home />} />
         <Route path="*" element={<Error />} /> */}
       </Routes>
