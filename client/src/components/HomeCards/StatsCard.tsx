@@ -10,31 +10,26 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
+  Divider,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import styles from "./HomeCardsStyles";
+import GridCardItem from "./GameCardItem";
 
 const StatsCard = () => {
   const navigate = useNavigate();
 
   return (
     <>
-      <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
+      <Typography variant="h3" fontWeight="bold">
         Stats
       </Typography>
-      <Grid
-        container
-        sx={{
-          direction: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          minHeight: "30vh",
-        }}
-      >
-        <Grid item xs={12}>
+      <Divider />
+      <Grid container sx={{ ...styles.homeCardContainer }}>
+        <GridCardItem>
           {/* <Typography variant="h5">{`${localUser.name}`}</Typography> */}
-        </Grid>
-        <Grid item xs={12}>
+        </GridCardItem>
+        <GridCardItem>
           <TableContainer>
             <Table size="small">
               <TableHead>
@@ -59,44 +54,15 @@ const StatsCard = () => {
               </TableBody>
             </Table>
           </TableContainer>
-        </Grid>
-        <Grid item xs={12} sx={{ alignSelf: "end" }}>
+        </GridCardItem>
+        <GridCardItem alignSelf="end">
           <Button fullWidth variant="contained" onClick={() => navigate("/leaderboard")}>
             <Typography variant="h3">LeaderBoard</Typography>
           </Button>
-        </Grid>
+        </GridCardItem>
       </Grid>
     </>
   );
 };
 
 export default StatsCard;
-
-// <table>
-// <tbody>
-//   <tr>
-//     <td>Points</td>
-//     <td>{`${localUser.points}`}</td>
-//   </tr>
-//   <tr>
-//     <td>Games Played</td>
-//     <td>{`${localUser.gamesPlayed}`}</td>
-//   </tr>
-//   <tr>
-//     <td>Highest Streak</td>
-//     <td>{`${localUser.streak}`}</td>
-//   </tr>
-//   <tr>
-//     <td>Total Correct</td>
-//     <td>{`${localUser.numCorrect}`}</td>
-//   </tr>
-//   <tr>
-//     <td>Total Wrong</td>
-//     <td>{`${localUser.numWrong}`}</td>
-//   </tr>
-//   <tr>
-//     <td>Response Time</td>
-//     <td>{`${localUser.responseTime}`}</td>
-//   </tr>
-// </tbody>
-// </table>

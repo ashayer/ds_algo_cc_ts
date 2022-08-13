@@ -12,12 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { SelectChangeEvent } from "@mui/material/Select";
 import styles from "./HomeCardsStyles";
-
-const GridCardItem = (props: any) => (
-  <Grid item sx={{ width: "100%", alignSelf: props.alignSelf }}>
-    {props.children}
-  </Grid>
-);
+import GridCardItem from "./GameCardItem";
 
 const GameCard = () => {
   const navigate = useNavigate();
