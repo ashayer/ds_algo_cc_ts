@@ -32,9 +32,9 @@ const userSchema = new mongoose.Schema(
       numCorrect: { type: Number, required: true },
       numWrong: { type: Number, required: true },
       gamesPlayed: { type: Number, required: true },
-      algoReading: [{}],
-      dataReading: [{}],
     },
+    algoReading: [{}],
+    structureReading: [{}],
   },
   {
     collection: "users_algo",
@@ -69,9 +69,9 @@ userSchema.methods.signup = async function (email: string, password: string, use
       numCorrect: 0,
       numWrong: 0,
       gamesPlayed: 0,
-      algoReading: AlgoSectionArray,
-      dataReading: StructureSectionArray,
     },
+    algoReading: AlgoSectionArray,
+    structureReading: StructureSectionArray,
   });
 
   return user;

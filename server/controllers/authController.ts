@@ -24,7 +24,13 @@ export const loginUser = async (req: express.Request, res: express.Response) => 
     const token = createToken(user._id);
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 
-    res.status(200).json({ id: user._id, username: user.username, gameStats: user.gameStats });
+    res.status(200).json({
+      id: user._id,
+      username: user.username,
+      gameStats: user.gameStats,
+      algoReading: user.algoReading,
+      structureReading: user.structureReading,
+    });
   } catch (err) {
     const typedError = err as AuthError;
     const errors = handleError(typedError);
@@ -38,7 +44,13 @@ export const signupUser = async (req: express.Request, res: express.Response) =>
     const user = await User.schema.methods.signup(email, password, username);
     const token = createToken(user._id);
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(201).json({ id: user.id, username, gameStats: user.gameStats });
+    res.status(201).json({
+      id: user.id,
+      username,
+      gameStats: user.gameStats,
+      algoReading: user.algoReading,
+      structureReading: user.structureReading,
+    });
   } catch (err) {
     const typedError = err as AuthError;
     const errors = handleError(typedError);
