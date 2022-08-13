@@ -154,7 +154,7 @@ const Leaderboard = () => {
     setPage(0);
   };
 
-  const { data, isSuccess, isLoading, isError } = useQuery(["user-stats"], getUserStats, {
+  const { data, isSuccess, isLoading, isError } = useQuery(["user-leaderboard"], getUserStats, {
     keepPreviousData: true,
   });
 
