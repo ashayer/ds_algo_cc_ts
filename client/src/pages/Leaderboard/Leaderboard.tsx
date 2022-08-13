@@ -74,7 +74,7 @@ const headCells = [
     id: "responseTime",
     numeric: true,
     disablePadding: false,
-    label: "Response Time",
+    label: "Response Time (ms)",
   },
 ];
 

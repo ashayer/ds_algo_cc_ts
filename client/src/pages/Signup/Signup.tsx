@@ -5,6 +5,8 @@ import { Box, Button, Container, TextField, Zoom, Paper, Grid, Typography } from
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useStore from "../../stores/authStore";
+import useUserStore from "../../stores/userStore";
+
 const validationSchema = yup.object({
   email: yup.string().email("Enter a valid email").required("Email is required"),
   password: yup
@@ -41,6 +43,8 @@ const Signup = () => {
 
   const setUser = useStore((state) => state.setIsUser);
 
+  const setGameStats = useUserStore((state) => state.setGameStats);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -56,6 +60,7 @@ const Signup = () => {
         if (response.status === 201) {
           navigate("/home");
           setUser(true, response.data.username, response.data.id);
+          setGameStats(response.data.gameStats);
         } else {
           setEmailError(response.data.errors.email);
           setPasswordError(response.data.errors.password);

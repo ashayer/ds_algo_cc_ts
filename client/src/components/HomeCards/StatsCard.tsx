@@ -15,10 +15,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import styles from "./HomeCardsStyles";
 import GridCardItem from "./GameCardItem";
+import useUserStore from "../../stores/userStore";
+import useAuthStore from "../../stores/authStore";
 
 const StatsCard = () => {
   const navigate = useNavigate();
-
+  const username = useAuthStore((state) => state.username);
+  const gameStats = useUserStore((state) => state.gameStats);
+  console.log(gameStats);
   return (
     <>
       <Typography variant="h3" fontWeight="bold">
@@ -27,7 +31,7 @@ const StatsCard = () => {
       <Divider />
       <Grid container sx={{ ...styles.homeCardContainer }}>
         <GridCardItem>
-          {/* <Typography variant="h5">{`${localUser.name}`}</Typography> */}
+          <Typography variant="h5">{`${username}`}</Typography>
         </GridCardItem>
         <GridCardItem>
           <TableContainer>
@@ -44,12 +48,12 @@ const StatsCard = () => {
               </TableHead>
               <TableBody>
                 <TableRow>
-                  {/* <TableCell align="center">{`${localUser.points}`}</TableCell>
-                  <TableCell align="center">{`${localUser.gamesPlayed}`}</TableCell>
-                  <TableCell align="center">{`${localUser.streak}`}</TableCell>
-                  <TableCell align="center">{`${localUser.numCorrect}`}</TableCell>
-                  <TableCell align="center">{`${localUser.numWrong}`}</TableCell>
-                  <TableCell align="center">{`${localUser.responseTime}`}</TableCell> */}
+                  <TableCell align="center">{`${gameStats.points}`}</TableCell>
+                  <TableCell align="center">{`${gameStats.gamesPlayed}`}</TableCell>
+                  <TableCell align="center">{`${gameStats.streak}`}</TableCell>
+                  <TableCell align="center">{`${gameStats.numCorrect}`}</TableCell>
+                  <TableCell align="center">{`${gameStats.numWrong}`}</TableCell>
+                  <TableCell align="center">{`${gameStats.responseTime}`}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
