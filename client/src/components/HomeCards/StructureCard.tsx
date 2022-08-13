@@ -6,7 +6,7 @@ const StatsCard = () => {
   const navigate = useNavigate();
 
   return (
-    <Paper elevation={4}>
+    <>
       <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
         Data Structures
       </Typography>
@@ -43,7 +43,7 @@ const StatsCard = () => {
           </Button>
         </Grid>
       </Grid>
-    </Paper>
+    </>
   );
 };
 

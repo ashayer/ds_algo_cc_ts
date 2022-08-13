@@ -1,12 +1,11 @@
 import { useEffect } from "react";
-import { Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../stores/authStore";
 import GameCard from "../../components/HomeCards/GameCard";
 import StatsCard from "../../components/HomeCards/StatsCard";
 import AlgoCard from "../../components/HomeCards/AlgoCard";
-import DataCard from "../../components/HomeCards/DataCard";
-import { styled } from "@mui/system";
+import DataCard from "../../components/HomeCards/StructureCard";
 
 // const calculateCompletedReading = () => {
 //   const localUser = JSON.parse(sessionStorage.getItem("user"));
@@ -47,14 +46,12 @@ const Home = () => {
   }, [navigate, user]);
 
   return (
-    <Grid item container xs={11} sx={{ mt: 1, textAlign: "center", marginInline: "auto" }}>
-      <HomeGridContainer>
-        <GameCard />
-        <StatsCard />
-        <AlgoCard />
-        <DataCard />
-      </HomeGridContainer>
-    </Grid>
+    <HomeGridContainer>
+      <GameCard />
+      <StatsCard />
+      <AlgoCard />
+      <DataCard />
+    </HomeGridContainer>
   );
 };
 

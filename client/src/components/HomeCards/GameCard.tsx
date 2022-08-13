@@ -8,7 +8,6 @@ import {
   Select,
   Box,
   MenuItem,
-  Paper,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { SelectChangeEvent } from "@mui/material/Select";
@@ -20,7 +19,7 @@ const GameCard = () => {
     setGameLength(e.target.value);
   };
   return (
-    <Paper elevation={4}>
+    <>
       <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
         Game
       </Typography>
@@ -53,13 +52,13 @@ const GameCard = () => {
             </FormControl>
           </Box>
         </Grid>
-        <Grid item xs={12} sx={{ alignSelf: "end" }}>
+        <Grid item xs={12} sx={{ alignSelf: "end", m: 1 }}>
           <Button fullWidth variant="contained" onClick={() => navigate("/game")}>
             <Typography variant="h3">Play</Typography>
           </Button>
         </Grid>
       </Grid>
-    </Paper>
+    </>
   );
 };
 
