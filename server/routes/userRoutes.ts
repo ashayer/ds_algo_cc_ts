@@ -7,7 +7,7 @@ import {
 
 const authRouter = express.Router();
 
-authRouter.post("/updateGameStats/:id", updateGameStats);
-authRouter.post("/updateAlgoReading/:id", updateAlgoReading);
-authRouter.post("/updateStructureReading/:id", updateStructureReading);
+authRouter.patch("/updateGameStats/:id", updateGameStats);
+authRouter.patch("/updateAlgoReading/:id", updateAlgoReading);
+authRouter.patch("/updateStructureReading/:id", updateStructureReading);
 export default authRouter;
