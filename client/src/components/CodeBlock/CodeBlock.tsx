@@ -1,7 +1,13 @@
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-const CodeBlock = ({ hoveredLine, code, startingLineNumber }) => {
+interface CodeBlockProps {
+  hoveredLine: number[];
+  code: string;
+  startingLineNumber: number;
+}
+
+const CodeBlock = ({ hoveredLine, code, startingLineNumber }: CodeBlockProps) => {
   return (
     <SyntaxHighlighter
       language="cpp"
@@ -15,7 +21,7 @@ const CodeBlock = ({ hoveredLine, code, startingLineNumber }) => {
       wrapLines
       startingLineNumber={startingLineNumber}
       lineProps={(lineNumber) => {
-        const style = { display: "block" };
+        const style: any = { display: "block" };
         if (hoveredLine?.includes(lineNumber)) {
           style.backgroundColor = "#ffc58f";
           // style.fontSize = "x-large";
