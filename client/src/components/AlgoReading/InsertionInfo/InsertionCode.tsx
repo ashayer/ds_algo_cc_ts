@@ -6,7 +6,7 @@ import HighlightLineText from "../../HighlightLineText/HighlightLineText";
 import { insertionString } from "../../../assets/AlgoStrings";
 
 const InsertionCode = () => {
-  const [hoveredLine, setHoveredLine] = useState([]);
+  const [hoveredLine, setHoveredLine] = useState<number[]>([]);
 
   return (
     <Grid container>
