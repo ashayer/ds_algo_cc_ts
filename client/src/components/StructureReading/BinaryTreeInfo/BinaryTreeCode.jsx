@@ -1,8 +1,7 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from "react";
+import { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
-import CodeBlock from "../../CodeBlock";
-import HighlightLine from "../../HighlightLine";
+import CodeBlock from "../../CodeBlock/CodeBlock";
+import HighlightLine from "../../HighlightLineText/HighlightLineText";
 
 const BinaryTree1 = ({ hoveredLine }) => {
   const binaryTree = `class Node {

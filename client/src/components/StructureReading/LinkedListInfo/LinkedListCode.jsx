@@ -1,9 +1,7 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from "react";
+import { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
-// import TextPopover from "../TextPopUps/TextPopover";
-import CodeBlock from "../../CodeBlock";
-import HighlightLine from "../../HighlightLine";
+import CodeBlock from "../../CodeBlock/CodeBlock";
+import HighlightLine from "../../HighlightLineText/HighlightLineText";
 
 const SinglyLinkedListClass = ({ hoveredLine }) => {
   const nodeSl = `//Singly-Linked-List
