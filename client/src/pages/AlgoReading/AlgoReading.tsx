@@ -7,13 +7,6 @@ import SortingAlgorithmAccordion from "../../components/AlgoReading/Accordion/So
 import { useQuery, useMutation } from "@tanstack/react-query";
 import useAuthStore from "../../stores/authStore";
 
-const updateAlgoReading = async (id: string, sectionArray: AlgoReadingSection[]) => {
-  const response = await axios.patch(`/api/user/updateAlgoReading/${id}`, {
-    algoReading: sectionArray,
-  });
-  return response.data;
-};
-
 const getUserAlgoReading = async (id: string) => {
   const response = await axios.get(`/api/user/getAlgoReading/${id}`);
   return response.data;
@@ -30,17 +23,6 @@ const AlgoReading = () => {
     () => getUserAlgoReading(id),
     { onSuccess: setSectionArray },
   );
-
-  const {
-    mutate,
-    isLoading: mutateLoading,
-    isError: mutateError,
-    isSuccess: mutateSuccess,
-  } = useMutation<
-    AlgoReadingSection[], // return type
-    Error,
-    AlgoReadingSection[] // params type
-  >(() => updateAlgoReading(id, sectionArray));
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -64,7 +46,6 @@ const AlgoReading = () => {
             sectionNum={sectionNum}
             sectionArray={sectionArray}
             setSectionArray={setSectionArray}
-            mutate={mutate}
             currentSubSection={currentSubSection}
             setCurrentSubSection={setCurrentSubSection}
           />

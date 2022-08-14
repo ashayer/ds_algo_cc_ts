@@ -16,32 +16,61 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import GeneralAccordionSection from "./GeneralAccordionSection";
 import CodeAccordionSection from "./CodeAccordionSection";
 import QuizModal from "../../ReadingsGeneral/QuizModal";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import useAuthStore from "../../../stores/authStore";
 
+const updateAlgoReading = async (id: string, sectionArray: AlgoReadingSection[]) => {
+  const response = await axios.patch(`/api/user/updateAlgoReading/${id}`, {
+    algoReading: sectionArray,
+  });
+  return response.data;
+};
 let userAnswers = [false, false, false, false];
 let checkboxQuestion = [false, false, false, false];
+
+interface SortingAlgorithmAccordionProps {
+  sectionNum: number;
+  sectionArray: AlgoReadingSection[];
+  setSectionArray: (sectionArray: AlgoReadingSection[]) => void;
+  currentSubSection: string;
+  setCurrentSubSection: (name: string) => void;
+}
 
 const SortingAlgorithmAccordion = ({
   sectionNum,
   sectionArray,
   setSectionArray,
-  mutate,
   currentSubSection,
   setCurrentSubSection,
-}) => {
+}: SortingAlgorithmAccordionProps) => {
   const [open, setOpen] = useState(false);
   const subsectionIndexRef = useRef(0);
+  const id = useAuthStore((state) => state.id);
+
   const handleOpen = () => {
     userAnswers = [false, false, false, false];
     checkboxQuestion = [false, false, false, false];
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
-  function handleAccordClick(name) {
+  function handleAccordClick(name: string) {
     if (currentSubSection === name) setCurrentSubSection("");
     if (currentSubSection !== name) setCurrentSubSection(name);
   }
 
-  const completedAccordion = async (index) => {
+  const {
+    mutate,
+    isLoading: mutateLoading,
+    isError: mutateError,
+    isSuccess: mutateSuccess,
+  } = useMutation<
+    AlgoReadingSection[], // return type
+    Error,
+    AlgoReadingSection[] // params type
+  >(() => updateAlgoReading(id, sectionArray));
+
+  const completedAccordion = async (index: number) => {
     sectionArray[sectionNum].subsections[index].completed = true;
     const newSectionArrays = sectionArray.slice();
     setSectionArray(newSectionArrays);
@@ -73,6 +102,11 @@ const SortingAlgorithmAccordion = ({
     completedAccordion(subsectionIndexRef.current);
   };
 
+  const handleCollapse = (index: number, subsection: any) => {
+    if (index === 0 || sectionArray[sectionNum].subsections[index - 1].completed) {
+      handleAccordClick(subsection.name);
+    }
+  };
   return (
     <>
       <Modal open={open}>
@@ -146,11 +180,7 @@ const SortingAlgorithmAccordion = ({
             >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
-                onClick={
-                  index === 0 || sectionArray[sectionNum].subsections[index - 1].completed
-                    ? () => handleAccordClick(subsection.name)
-                    : null
-                }
+                onClick={() => handleCollapse(index, subsection)}
                 sx={{ borderBottom: "1px solid black" }}
               >
                 <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
@@ -181,7 +211,7 @@ const SortingAlgorithmAccordion = ({
                 </Button>
               ) : (
                 <Button
-                  onClick={() => handleAccordClick(index)}
+                  onClick={() => handleClose()}
                   variant="contained"
                   color="error"
                   sx={{ borderRadius: "0px", float: "right" }}
