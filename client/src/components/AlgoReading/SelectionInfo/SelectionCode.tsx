@@ -1,26 +1,12 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from "react";
+import { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
 import CodeBlock from "../../CodeBlock/CodeBlock";
 import HighlightLineText from "../../HighlightLineText/HighlightLineText";
 import TextPopover from "../TextPopUps/TextPopover";
-
-const SelectionSort = ({ hoveredLine }) => {
-  const codeString = `void SelectionSort(vector<int>& arr) {
-  for(int i = 0; i < arr.size(); i++) {
-    int min = i;
-    for(int j = i + 1; j < arr.size(); j++) {
-      if(arr[j] < arr[min]) {
-        min = j;
-      }
-    swap(arr[min], arr[i]);
-  }
-}`;
-  return <CodeBlock hoveredLine={hoveredLine} code={codeString} />;
-};
+import { selectionString } from "../../../assets/AlgoStrings";
 
 const SelectionCode = () => {
-  const [hoveredLine, setHoveredLine] = useState([]);
+  const [hoveredLine, setHoveredLine] = useState<number[]>([]);
 
   return (
     <Grid container>
@@ -32,7 +18,7 @@ const SelectionCode = () => {
               justifyContent: "center",
             }}
           >
-            <SelectionSort hoveredLine={hoveredLine} />
+            <CodeBlock hoveredLine={hoveredLine} code={selectionString} startingLineNumber={0} />
           </Box>
         </Grid>
         <Grid item lg={8} md={12} sm={12} xs={12} sx={{ p: 4 }}>
