@@ -5,6 +5,8 @@ import {
   updateStructureReading,
   getUsersGameStats,
   getUserStats,
+  getUserAlgoReading,
+  getUserStructureReading,
 } from "../controllers/userController.js";
 
 const userRouter = express.Router();
@@ -14,4 +16,7 @@ userRouter.patch("/updateAlgoReading/:id", updateAlgoReading);
 userRouter.patch("/updateStructureReading/:id", updateStructureReading);
 userRouter.get("/getUsersGameStats", getUsersGameStats);
 userRouter.get("/getUserStats/:id", getUserStats);
+userRouter.get("/getAlgoReading/:id", getUserAlgoReading);
+userRouter.get("/getStructureReading/:id", getUserStructureReading);
+
 export default userRouter;

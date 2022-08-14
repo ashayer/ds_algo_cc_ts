@@ -51,6 +51,28 @@ export const updateStructureReading = async (req: express.Request, res: express.
   }
 };
 
+export const getUserAlgoReading = async (req: express.Request, res: express.Response) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findById(id);
+    res.status(200).json(user?.algoReading);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+export const getUserStructureReading = async (req: express.Request, res: express.Response) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findById(id);
+    res.status(200).json(user?.structureReading);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
 export const getUserStats = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
   try {
