@@ -1,4 +1,9 @@
-const HighlightLineText = ({ lineNum, setHoveredLine }) => {
+interface HighlightLineTextProps {
+  lineNum: number[];
+  setHoveredLine: (line: number[]) => void;
+}
+
+const HighlightLineText = ({ lineNum, setHoveredLine }: HighlightLineTextProps) => {
   return (
     <span
       style={{ color: "#ff7b00" }}

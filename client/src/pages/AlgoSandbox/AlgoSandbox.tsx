@@ -20,7 +20,7 @@ const AlgoSandbox = () => {
   const [codeHighlight, setCodeHighlight] = useState<number[][]>([]);
   const [varLabelArray, setVarLabelArray] = useState<SortLabelHistoryElement[][]>([]);
   const [step, setStep] = useState(0);
-  const [pseudoCodeString, setPseudoCodeString] = useState<string>(codeString.quickString);
+  const [pseudoCodeString, setPseudoCodeString] = useState<string>(codeString.partitionString);
   const [sortHistorySubArray, setSortHistorySubArray] = useState<SortHistoryElement[][]>([]);
   const [varLabelSubArray, setVarLabelSubArray] = useState<SortLabelHistoryElement[][]>([]);
   const createRandomArray = () => {
@@ -99,7 +99,7 @@ const AlgoSandbox = () => {
     } else if (algorithmChoice === "2") {
       setPseudoCodeString(codeString.mergeString);
     } else {
-      setPseudoCodeString(codeString.quickString);
+      setPseudoCodeString(codeString.partitionString);
     }
   };
 
