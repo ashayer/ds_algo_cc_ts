@@ -42,15 +42,18 @@ const getCodeArray = (sectionNum) => {
   }
 };
 
-const getQuestionArray = ({ subsectionIndex, sectionNum }) => {
-  if (subsectionIndex === 0) {
-    return getGeneralArray(sectionNum);
+const getQuestionArray = ({ subsectionIndex, sectionNum, isAlgo }) => {
+  if (isAlgo) {
+    if (subsectionIndex === 0) {
+      return getGeneralArray(sectionNum);
+    }
+    return getCodeArray(sectionNum);
+  } else {
   }
-  return getCodeArray(sectionNum);
 };
 
-const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum }) => {
-  const questionArray = getQuestionArray({ subsectionIndex, sectionNum });
+const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum, isAlgo }) => {
+  const questionArray = getQuestionArray({ subsectionIndex, sectionNum, isAlgo });
   const answerQuestion = (e) => {
     userAnswers[e.target.name] = questionArray[e.target.name].options[e.target.value].correct;
   };

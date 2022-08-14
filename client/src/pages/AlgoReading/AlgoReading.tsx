@@ -3,7 +3,7 @@ import { Box, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import axios from "axios";
-import SortingAlgorithmAccordion from "../../components/AlgoReading/Accordion/SortingAlgorithmAccordion";
+import SortingAlgorithmAccordion from "../../components/AlgoReading/SortingAccordion/SortingAlgorithmAccordion";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import useAuthStore from "../../stores/authStore";
 

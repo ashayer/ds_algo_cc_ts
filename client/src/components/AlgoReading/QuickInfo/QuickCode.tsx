@@ -5,7 +5,7 @@ import CodeBlock from "../../CodeBlock/CodeBlock";
 import HighlightLineText from "../../HighlightLineText/HighlightLineText";
 import { partitionString, quickSortString } from "../../../assets/AlgoStrings";
 const QuickCode = () => {
-  const [hoveredLine, setHoveredLine] = useState([]);
+  const [hoveredLine, setHoveredLine] = useState<number[]>([]);
 
   return (
     <Grid container>

@@ -13,8 +13,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import GeneralAccordionSection from "./GeneralAccordionSection";
-import CodeAccordionSection from "./CodeAccordionSection";
+import GeneralAccordionSection from "../../ReadingsGeneral/GeneralAccordionSection";
+import CodeAccordionSection from "../../ReadingsGeneral/CodeAccordionSection";
 import QuizModal from "../../ReadingsGeneral/QuizModal";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
@@ -87,19 +87,18 @@ const SortingAlgorithmAccordion = ({
   };
 
   const checkAnswers = () => {
-    // let totalCorrect = 0;
-    // userAnswers.map((answer) => {
-    //   if (answer) {
-    //     totalCorrect += 1;
-    //   }
-    //   return totalCorrect;
-    // });
-    // if (totalCorrect / 4 !== 1) {
-    // } else {
-    //   completedAccordion(subsectionIndexRef.current);
-    // }
-    //! remove when done
-    completedAccordion(subsectionIndexRef.current);
+    let totalCorrect = 0;
+    userAnswers.map((answer) => {
+      if (answer) {
+        totalCorrect += 1;
+      }
+      return totalCorrect;
+    });
+    if (totalCorrect / 4 !== 1) {
+      alert("Need 100% correct");
+    } else {
+      completedAccordion(subsectionIndexRef.current);
+    }
   };
 
   const handleCollapse = (index: number, subsection: any) => {
@@ -152,6 +151,7 @@ const SortingAlgorithmAccordion = ({
             checkboxQuestion={checkboxQuestion}
             subsectionIndex={subsectionIndexRef.current}
             sectionNum={sectionNum}
+            isAlgo={true}
           />
 
           <Button onClick={() => checkAnswers()} variant="contained">
@@ -194,9 +194,9 @@ const SortingAlgorithmAccordion = ({
               </AccordionSummary>
               <AccordionDetails>
                 {index === 0 ? (
-                  <GeneralAccordionSection sectionNum={sectionNum} />
+                  <GeneralAccordionSection sectionNum={sectionNum} isAlgo={true} />
                 ) : index === 1 ? (
-                  <CodeAccordionSection sectionNum={sectionNum} />
+                  <CodeAccordionSection sectionNum={sectionNum} isAlgo={true} />
                 ) : null}
               </AccordionDetails>
               {!subsection.completed ? (

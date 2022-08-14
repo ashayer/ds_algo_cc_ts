@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from "react";
 import { Grid, Typography, Box } from "@mui/material/";
-import ComplexityTable from "../ComplexityTable";
+import ComplexityTable from "../ComplexityTableAlgo";
 import TextPopover from "../TextPopUps/TextPopover";
 
 const SelectionGeneral = () => {
