@@ -1,4 +1,10 @@
-const createLabelObject = (pivotIndex, pivot, left, right, i) => {
+const createLabelObject = (
+  pivotIndex: number,
+  pivot: number,
+  left: number,
+  right: number,
+  i: number,
+) => {
   return [
     { index: left, label: "left" },
     { index: right, label: "right" },
@@ -8,20 +14,27 @@ const createLabelObject = (pivotIndex, pivot, left, right, i) => {
   ];
 };
 
-const sortArrayQuick = (arrayElements) => {
-  const tempArray = [];
-  const tempCodeArray = [];
-  const varLabelArray = [];
+const sortArrayQuick = (arrayElements: SortHistoryElement[]) => {
+  const historyArray: SortHistoryElement[][] = [];
+  const codeLinesHistory: number[][] = [];
+  const varLabelArray: SortLabelHistoryElement[][] = [];
 
   const arr = JSON.parse(JSON.stringify(arrayElements));
 
-  function pushToArrays(pivot, pivotIndex, left, right, i, highlight) {
+  function pushToArrays(
+    pivot: number,
+    pivotIndex: number,
+    left: number,
+    right: number,
+    i: number,
+    highlight: number[],
+  ) {
     varLabelArray.push(createLabelObject(pivot, pivotIndex, left, right, i));
-    tempCodeArray.push(highlight);
-    tempArray.push(JSON.parse(JSON.stringify(arr)));
+    codeLinesHistory.push(highlight);
+    historyArray.push(JSON.parse(JSON.stringify(arr)));
   }
 
-  function partition(array, start, end) {
+  function partition(array: SortHistoryElement[], start: number, end: number) {
     const pivot = arr[start].value;
     let pivotIndex = start;
     for (let a = start; a <= end; a += 1) {
@@ -54,7 +67,7 @@ const sortArrayQuick = (arrayElements) => {
 
     return pivotIndex;
   }
-  function quickSort(array, start, end) {
+  function quickSort(array: SortHistoryElement[], start: number, end: number) {
     if (start < end) {
       const index = partition(array, start, end);
       quickSort(array, start, index - 1);
@@ -69,7 +82,7 @@ const sortArrayQuick = (arrayElements) => {
   }
   pushToArrays(0, arr.length - 1, 0, arr.length - 1, 0, [1]);
 
-  return [tempArray, tempCodeArray, varLabelArray];
+  return { historyArray, codeLinesHistory, varLabelArray };
 };
 
 export default sortArrayQuick;
