@@ -1,17 +1,7 @@
 import React from "react";
 import { Grid, Typography, Box } from "@mui/material";
 
-interface ArrayBarsProps {
-  sortHistoryArray: SortHistoryElement[][];
-  step: number;
-  varLabelArray: SortLabelHistoryElement[][];
-  arrayMax: number;
-}
 
-interface StepLabelsProps {
-  varLabelArray: SortLabelHistoryElement[];
-  idx: number;
-}
 
 const StepLabels = ({ varLabelArray, idx }: StepLabelsProps) => {
   const indexArray = varLabelArray?.filter((o) => o.index === idx);

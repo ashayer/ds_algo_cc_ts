@@ -14,9 +14,9 @@ const createSubLabelObject = (i, j) => {
 };
 
 const sortArrayMerge = (arrayElements) => {
-  const tempArray = [];
-  const tempSubArray = [];
-  const tempCodeArray = [];
+  const historyArray = [];
+  const subArrayHistory = [];
+  const codeLinesHistory = [];
   const varLabelArray = [];
   const varSubLabelArray = [];
 
@@ -25,9 +25,9 @@ const sortArrayMerge = (arrayElements) => {
   function pushToArrays(k, left, right, i, j, subArray, highlight) {
     varLabelArray.push(createLabelObject(k, left, right));
     varSubLabelArray.push(createSubLabelObject(i, j));
-    tempCodeArray.push(highlight);
-    tempArray.push(JSON.parse(JSON.stringify(arr)));
-    tempSubArray.push(subArray.slice(left, right + 1));
+    codeLinesHistory.push(highlight);
+    historyArray.push(JSON.parse(JSON.stringify(arr)));
+    subArrayHistory.push(subArray.slice(left, right + 1));
   }
 
   function merge(array, left, middle, right) {
@@ -91,7 +91,7 @@ const sortArrayMerge = (arrayElements) => {
   }
   pushToArrays(arr.length - 1, 0, arr.length - 1, 0, 0, [], [1]);
 
-  return [tempArray, tempCodeArray, varLabelArray, varSubLabelArray, tempSubArray];
+  return { historyArray, codeLinesHistory, varLabelArray, varSubLabelArray, subArrayHistory };
 };
 
 export default sortArrayMerge;

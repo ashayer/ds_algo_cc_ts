@@ -16,6 +16,29 @@ declare global {
     index: number;
     label: string;
   }
+
+  interface ArrayBarsProps {
+    sortHistoryArray: SortHistoryElement[][];
+    step: number;
+    varLabelArray: SortLabelHistoryElement[][];
+    arrayMax: number;
+  }
+
+  interface StepLabelsProps {
+    varLabelArray: SortLabelHistoryElement[];
+    idx: number;
+  }
+  interface SubArrayBarsProps {
+    sortHistorySubArray: SortHistoryElement[][];
+    step: number;
+    varLabelSubArray: SortLabelHistoryElement[][];
+    arrayMax: number;
+  }
+
+  interface StepLabelsSubProps {
+    varLabelSubArray: SortLabelHistoryElement[];
+    idx: number;
+  }
 }
 
 export {};
