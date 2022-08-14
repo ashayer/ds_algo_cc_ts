@@ -1,4 +1,3 @@
-import React from "react";
 import { Grid, Typography, Box } from "@mui/material/";
 import ComplexityTable from "../ComplexityTable";
 import TextPopover from "../TextPopUps/TextPopover";

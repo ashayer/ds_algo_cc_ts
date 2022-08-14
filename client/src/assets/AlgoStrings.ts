@@ -43,6 +43,15 @@ void merge(vector<int>& arr, int left, int middle, int right) {
   }
 }`;
 
+export const mergeSortString = `void mergeSort(vector<int>& arr, int left, int right) {
+  if(left < right) {
+    int middle = left + (right - left) / 2;
+    mergeSort(arr, left, middle);
+    mergeSort(arr, middle + 1, right);
+    merge(arr, left, middle, right);
+  }
+}`;
+
 export const quickString = `
 int partition(vector<int>& arr, int left, int right){
   int pivotValue = arr[left]; 

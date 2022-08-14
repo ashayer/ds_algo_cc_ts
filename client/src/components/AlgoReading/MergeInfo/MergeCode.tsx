@@ -1,50 +1,12 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from "react";
+import { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
 import TextPopover from "../TextPopUps/TextPopover";
 import CodeBlock from "../../CodeBlock/CodeBlock";
 import HighlightLineText from "../../HighlightLineText/HighlightLineText";
-
-const mergeString = `void merge(vector<int>& arr, int left, int middle, int right) {
-  int i = left;
-  int j = middle + 1;
-  vector<int> temp = arr;
-
-  for(int k = left; k <= right; k++) {
-      if(i > middle){
-          arr[k] = temp[j++];
-      }
-      else if(j > right){
-          arr[k] = temp[i++];
-      }
-      else if(temp[j] < temp[i]){
-          arr[k] = temp[j++];
-      }
-      else { // temp[j] > temp[i]
-          arr[k] = temp[i++];
-      }
-  }
-}`;
-
-const Merge = ({ hoveredLine }) => {
-  return <CodeBlock hoveredLine={hoveredLine} code={mergeString} />;
-};
-
-const mergeSortString = `void mergeSort(vector<int>& arr, int left, int right) {
-    if(left < right) {
-      int middle = left + (right - left) / 2;
-      mergeSort(arr, left, middle);
-      mergeSort(arr, middle + 1, right);
-      merge(arr, left, middle, right);
-    }
-  }`;
-
-const MergeSort = ({ hoveredLine }) => {
-  return <CodeBlock hoveredLine={hoveredLine} code={mergeSortString} startingLineNumber={21} />;
-};
+import { mergeString, mergeSortString } from "../../../assets/AlgoStrings";
 
 const MergeCode = () => {
-  const [hoveredLine, setHoveredLine] = useState([]);
+  const [hoveredLine, setHoveredLine] = useState<number[]>([]);
 
   return (
     <Grid container>
@@ -56,7 +18,7 @@ const MergeCode = () => {
               justifyContent: "center",
             }}
           >
-            <MergeSort hoveredLine={hoveredLine} />
+            <CodeBlock hoveredLine={hoveredLine} code={mergeSortString} startingLineNumber={21} />
           </Box>
         </Grid>
         <Grid item lg={8} md={12} sm={12} xs={12} sx={{ p: 4 }}>
@@ -87,7 +49,7 @@ const MergeCode = () => {
               justifyContent: "center",
             }}
           >
-            <Merge hoveredLine={hoveredLine} />
+            <CodeBlock hoveredLine={hoveredLine} code={mergeString} startingLineNumber={0} />
           </Box>
         </Grid>
         <Grid item lg={7} xs={12} sx={{ p: 4 }}>
