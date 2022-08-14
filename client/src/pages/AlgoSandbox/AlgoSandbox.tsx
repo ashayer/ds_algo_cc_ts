@@ -114,7 +114,6 @@ const AlgoSandbox = () => {
       <Grid container>
         <Grid item lg={8} md={6} xs={12}>
           <ArrayBars
-            algorithm={algorithm}
             sortHistoryArray={sortHistoryArray}
             step={step}
             varLabelArray={varLabelArray}

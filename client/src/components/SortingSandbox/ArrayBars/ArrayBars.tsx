@@ -2,24 +2,31 @@ import React from "react";
 import { Grid, Typography, Box } from "@mui/material";
 
 interface ArrayBarsProps {
-  algorithm: number;
   sortHistoryArray: SortHistoryElement[][];
   step: number;
   varLabelArray: SortLabelHistoryElement[][];
   arrayMax: number;
 }
 
-const StepLabels = ({ varLabelArray, idx }) => {
+interface StepLabelsProps {
+  varLabelArray: SortLabelHistoryElement[];
+  idx: number;
+}
+
+const StepLabels = ({ varLabelArray, idx }: StepLabelsProps) => {
   const indexArray = varLabelArray?.filter((o) => o.index === idx);
-  return indexArray.map((object, index) => (
-    <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
-      {object.label}
-    </Typography>
-  ));
+  return (
+    <>
+      {indexArray.map((object, index) => (
+        <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
+          {object.label}
+        </Typography>
+      ))}
+    </>
+  );
 };
 
 const ArrayBars = ({
-  algorithm,
   sortHistoryArray,
   step,
   varLabelArray,
@@ -45,10 +52,9 @@ const ArrayBars = ({
           }}
         >
           {varLabelArray.length > 0 && <StepLabels varLabelArray={varLabelArray[step]} idx={idx} />}
-
           <Box
             sx={{
-              height: `${(element.value * `${algorithm === 3 ? 65 : 80}`) / arrayMax}%`,
+              height: `${(element.value * 65) / arrayMax}%`,
               backgroundColor: element.color,
               position: "absolute",
               bottom: "0",

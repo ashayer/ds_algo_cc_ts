@@ -76,7 +76,7 @@ const SortOptions = ({
           onChangeCommitted={(e, value) => {
             handleSizeSliderChange(e, value);
           }}
-          valueLabelDisplay="on"
+          valueLabelDisplay="auto"
           step={1}
           min={5}
           max={10}
