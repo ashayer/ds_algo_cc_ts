@@ -1,38 +1,18 @@
-import React, { useState } from "react";
-import { Box, Button, Grid } from "@mui/material";
+import { useState } from "react";
+import { Box, Button, Container, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import axios from "axios";
 import SortingAlgorithmAccordion from "../../components/AlgoReading/Accordion/SortingAlgorithmAccordion";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import useAuthStore from "../../stores/authStore";
 
-// const updateLocalUser = async (array) => {
-//   try {
-//     const response = await axios.patch(`${API_URL}updateAlgo/${localUser._id}`, {
-//       algoReading: array,
-//     });
-//     localUser.algoReading = array;
-//     sessionStorage.setItem("user", JSON.stringify(localUser));
-//     return response;
-//   } catch (error) {
-//     console.error(error);
-//     return null;
-//   }
-// };
-
-interface AlgoReadingSubSection {
-  completed: boolean;
-  name: string;
-  subsectionId: number;
-}
-
-interface AlgoReadingSection {
-  completed: boolean;
-  sectionID: number;
-  sectionName: string;
-  subsections: AlgoReadingSubSection[];
-}
+const updateAlgoReading = async (id: string, sectionArray: AlgoReadingSection[]) => {
+  const response = await axios.patch(`/api/user/updateAlgoReading/${id}`, {
+    algoReading: sectionArray,
+  });
+  return response.data;
+};
 
 const getUserAlgoReading = async (id: string) => {
   const response = await axios.get(`/api/user/getAlgoReading/${id}`);
@@ -42,23 +22,37 @@ const getUserAlgoReading = async (id: string) => {
 const AlgoReading = () => {
   const [sectionNum, setSectionNum] = useState<number>(0);
   const id = useAuthStore((state) => state.id);
+  const [sectionArray, setSectionArray] = useState<AlgoReadingSection[]>([]);
+  const [currentSubSection, setCurrentSubSection] = useState("");
+
+  const { data, isLoading, isSuccess, isError } = useQuery<AlgoReadingSection[], Error>(
+    ["get-algo-reading"],
+    () => getUserAlgoReading(id),
+    { onSuccess: setSectionArray },
+  );
 
   const {
-    data: sectionArray,
-    isLoading,
-    isSuccess,
-    isError,
-  } = useQuery<AlgoReadingSection[], Error>(["user-algo=reading"], () => getUserAlgoReading(id));
+    mutate,
+    isLoading: mutateLoading,
+    isError: mutateError,
+    isSuccess: mutateSuccess,
+  } = useMutation<
+    AlgoReadingSection[], // return type
+    Error,
+    AlgoReadingSection[] // params type
+  >(() => updateAlgoReading(id, sectionArray));
 
   if (isLoading) return <div>Loading...</div>;
 
   if (isError) return <div>Error</div>;
 
   const nextSection = () => {
+    setCurrentSubSection("");
     if (sectionNum < sectionArray.length - 1) setSectionNum(sectionNum + 1);
   };
 
   const prevSection = () => {
+    setCurrentSubSection("");
     if (sectionNum > 0) setSectionNum(sectionNum - 1);
   };
 
@@ -69,7 +63,10 @@ const AlgoReading = () => {
           <SortingAlgorithmAccordion
             sectionNum={sectionNum}
             sectionArray={sectionArray}
-            isLoading={isLoading}
+            setSectionArray={setSectionArray}
+            mutate={mutate}
+            currentSubSection={currentSubSection}
+            setCurrentSubSection={setCurrentSubSection}
           />
           <Grid
             container

@@ -39,6 +39,19 @@ declare global {
     varLabelSubArray: SortLabelHistoryElement[];
     idx: number;
   }
+
+  interface AlgoReadingSubSection {
+    completed: boolean;
+    name: string;
+    subsectionId: number;
+  }
+
+  interface AlgoReadingSection {
+    completed: boolean;
+    sectionID: number;
+    sectionName: string;
+    subsections: AlgoReadingSubSection[];
+  }
 }
 
 export {};

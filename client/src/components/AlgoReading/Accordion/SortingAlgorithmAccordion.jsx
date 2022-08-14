@@ -8,7 +8,6 @@ import {
   AccordionDetails,
   AccordionSummary,
   Accordion,
-  CircularProgress,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -21,8 +20,14 @@ import QuizModal from "../../ReadingsGeneral/QuizModal";
 let userAnswers = [false, false, false, false];
 let checkboxQuestion = [false, false, false, false];
 
-const SortingAlgorithmAccordion = ({ sectionNum, sectionArray, isLoading }) => {
-  const [currentSubSection, setCurrentSubSection] = useState("");
+const SortingAlgorithmAccordion = ({
+  sectionNum,
+  sectionArray,
+  setSectionArray,
+  mutate,
+  currentSubSection,
+  setCurrentSubSection,
+}) => {
   const [open, setOpen] = useState(false);
   const subsectionIndexRef = useRef(0);
   const handleOpen = () => {
@@ -39,33 +44,33 @@ const SortingAlgorithmAccordion = ({ sectionNum, sectionArray, isLoading }) => {
   const completedAccordion = async (index) => {
     sectionArray[sectionNum].subsections[index].completed = true;
     const newSectionArrays = sectionArray.slice();
-    // setSectionArray(newSectionArrays);
+    setSectionArray(newSectionArrays);
     setCurrentSubSection(sectionArray[sectionNum].subsections[index].name);
     if (index === sectionArray[sectionNum].subsections.length - 1) {
       sectionArray[sectionNum].completed = true;
       const temp = sectionArray.slice();
-      // setSectionArray(temp);
+      setSectionArray(temp);
+      mutate(temp);
     }
-    // eslint-disable-next-line no-promise-executor-return
-    await new Promise((r) => setTimeout(r, 1500));
-    // updateLocalUser(sectionArray);
     handleAccordClick(sectionArray[sectionNum].subsections[index].name);
     handleClose();
+    mutate(newSectionArrays);
   };
 
   const checkAnswers = () => {
-    let totalCorrect = 0;
-    userAnswers.map((answer) => {
-      if (answer) {
-        totalCorrect += 1;
-      }
-      return totalCorrect;
-    });
-    //! change to 1
-    if (totalCorrect / 4 !== 1) {
-    } else {
-      completedAccordion(subsectionIndexRef.current);
-    }
+    // let totalCorrect = 0;
+    // userAnswers.map((answer) => {
+    //   if (answer) {
+    //     totalCorrect += 1;
+    //   }
+    //   return totalCorrect;
+    // });
+    // if (totalCorrect / 4 !== 1) {
+    // } else {
+    //   completedAccordion(subsectionIndexRef.current);
+    // }
+    //! remove when done
+    completedAccordion(subsectionIndexRef.current);
   };
 
   return (
@@ -115,13 +120,9 @@ const SortingAlgorithmAccordion = ({ sectionNum, sectionArray, isLoading }) => {
             sectionNum={sectionNum}
           />
 
-          {isLoading ? (
-            <CircularProgress />
-          ) : (
-            <Button onClick={() => checkAnswers()} variant="contained">
-              Submit
-            </Button>
-          )}
+          <Button onClick={() => checkAnswers()} variant="contained">
+            Submit
+          </Button>
         </Box>
       </Modal>
 
