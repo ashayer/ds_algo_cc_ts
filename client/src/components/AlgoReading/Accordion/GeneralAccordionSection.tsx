@@ -4,7 +4,7 @@ import SelectionGeneral from "../SelectionInfo/SelectionGeneral";
 import MergeGeneral from "../MergeInfo/MergeGeneral";
 import QuickGeneral from "../QuickInfo/QuickGeneral";
 
-const GeneralAccordionSection = ({ sectionNum }) => {
+const GeneralAccordionSection = ({ sectionNum }: { sectionNum: number }) => {
   return sectionNum === 0 ? (
     <InsertionGeneral />
   ) : sectionNum === 1 ? (

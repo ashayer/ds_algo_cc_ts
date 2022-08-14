@@ -211,7 +211,7 @@ const SortingAlgorithmAccordion = ({
                 </Button>
               ) : (
                 <Button
-                  onClick={() => handleClose()}
+                  onClick={() => handleAccordClick(subsection.name)}
                   variant="contained"
                   color="error"
                   sx={{ borderRadius: "0px", float: "right" }}

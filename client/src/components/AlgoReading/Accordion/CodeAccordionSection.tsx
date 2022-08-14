@@ -4,7 +4,7 @@ import SelectionCode from "../SelectionInfo/SelectionCode";
 import MergeCode from "../MergeInfo/MergeCode";
 import QuickCode from "../QuickInfo/QuickCode";
 
-const CodeAccordionSection = ({ sectionNum }) => {
+const CodeAccordionSection = ({ sectionNum }: { sectionNum: number }) => {
   return sectionNum === 0 ? (
     <InsertionCode />
   ) : sectionNum === 1 ? (
