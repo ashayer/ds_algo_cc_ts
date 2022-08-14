@@ -1,4 +1,4 @@
-const createLabelObject = (k, left, right) => {
+const createLabelObject = (k: number, left: number, right: number) => {
   return [
     { index: left, label: "left" },
     { index: right, label: "right" },
@@ -6,23 +6,31 @@ const createLabelObject = (k, left, right) => {
   ];
 };
 
-const createSubLabelObject = (i, j) => {
+const createSubLabelObject = (i: number, j: number) => {
   return [
     { index: i, label: "i" },
     { index: j, label: "j" },
   ];
 };
 
-const sortArrayMerge = (arrayElements) => {
-  const historyArray = [];
-  const subArrayHistory = [];
-  const codeLinesHistory = [];
-  const varLabelArray = [];
-  const varSubLabelArray = [];
+const sortArrayMerge = (arrayElements: SortHistoryElement[]) => {
+  const historyArray: SortHistoryElement[][] = [];
+  const subArrayHistory: SortHistoryElement[][] = [];
+  const codeLinesHistory: number[][] = [];
+  const varLabelArray: SortLabelHistoryElement[][] = [];
+  const varSubLabelArray: SortLabelHistoryElement[][] = [];
 
   const arr = JSON.parse(JSON.stringify(arrayElements));
 
-  function pushToArrays(k, left, right, i, j, subArray, highlight) {
+  function pushToArrays(
+    k: number,
+    left: number,
+    right: number,
+    i: number,
+    j: number,
+    subArray: SortHistoryElement[],
+    highlight: number[],
+  ) {
     varLabelArray.push(createLabelObject(k, left, right));
     varSubLabelArray.push(createSubLabelObject(i, j));
     codeLinesHistory.push(highlight);
@@ -30,7 +38,7 @@ const sortArrayMerge = (arrayElements) => {
     subArrayHistory.push(subArray.slice(left, right + 1));
   }
 
-  function merge(array, left, middle, right) {
+  function merge(array: SortHistoryElement[], left: number, middle: number, right: number) {
     let i = left;
     let j = middle + 1;
     const subArray = JSON.parse(JSON.stringify(arr));
@@ -70,7 +78,7 @@ const sortArrayMerge = (arrayElements) => {
     pushToArrays(left, left, right, i, j, subArray, [1]);
   }
 
-  function mergeSort(array, left, right) {
+  function mergeSort(array: SortHistoryElement[], left: number, right: number) {
     if (left < right) {
       const middle = left + Math.floor((right - left) / 2);
       mergeSort(array, left, middle);
