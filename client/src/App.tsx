@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
 import AlgoSandbox from "./pages/AlgoSandbox/AlgoSandbox";
+import AlgoReading from "./pages/AlgoReading/AlgoReading";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/algosandbox" element={<AlgoSandbox />} />
+        <Route path="/algoreading" element={<AlgoReading />} />
 
         {/* <Route path="/home" element={<Home />} />
         <Route path="*" element={<Error />} /> */}
