@@ -21,13 +21,26 @@ import useAuthStore from "../../stores/authStore";
 //   }
 // };
 
+interface AlgoReadingSubSection {
+  completed: boolean;
+  name: string;
+  subsectionId: number;
+}
+
+interface AlgoReadingSection {
+  completed: boolean;
+  sectionID: number;
+  sectionName: string;
+  subsections: AlgoReadingSubSection[];
+}
+
 const getUserAlgoReading = async (id: string) => {
   const response = await axios.get(`/api/user/getAlgoReading/${id}`);
   return response.data;
 };
 
 const AlgoReading = () => {
-  const [sectionNum, setSectionNum] = useState(0);
+  const [sectionNum, setSectionNum] = useState<number>(0);
   const id = useAuthStore((state) => state.id);
 
   const {
@@ -35,7 +48,11 @@ const AlgoReading = () => {
     isLoading,
     isSuccess,
     isError,
-  } = useQuery(["user-stats"], () => getUserAlgoReading(id));
+  } = useQuery<AlgoReadingSection[], Error>(["user-algo=reading"], () => getUserAlgoReading(id));
+
+  if (isLoading) return <div>Loading...</div>;
+
+  if (isError) return <div>Error</div>;
 
   const nextSection = () => {
     if (sectionNum < sectionArray.length - 1) setSectionNum(sectionNum + 1);
@@ -44,14 +61,6 @@ const AlgoReading = () => {
   const prevSection = () => {
     if (sectionNum > 0) setSectionNum(sectionNum - 1);
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error</div>;
-  }
 
   return (
     <Box>

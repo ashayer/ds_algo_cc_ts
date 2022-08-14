@@ -21,14 +21,7 @@ import QuizModal from "../../ReadingsGeneral/QuizModal";
 let userAnswers = [false, false, false, false];
 let checkboxQuestion = [false, false, false, false];
 
-const SortingAlgorithmAccordion = ({
-  sectionNum,
-  sectionArray,
-  setSectionArray,
-  updateLocalUser,
-  isLoading,
-  setIsLoading,
-}) => {
+const SortingAlgorithmAccordion = ({ sectionNum, sectionArray, isLoading }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
   const [open, setOpen] = useState(false);
   const subsectionIndexRef = useRef(0);
@@ -44,20 +37,18 @@ const SortingAlgorithmAccordion = ({
   }
 
   const completedAccordion = async (index) => {
-    setIsLoading(true);
     sectionArray[sectionNum].subsections[index].completed = true;
     const newSectionArrays = sectionArray.slice();
-    setSectionArray(newSectionArrays);
+    // setSectionArray(newSectionArrays);
     setCurrentSubSection(sectionArray[sectionNum].subsections[index].name);
     if (index === sectionArray[sectionNum].subsections.length - 1) {
       sectionArray[sectionNum].completed = true;
       const temp = sectionArray.slice();
-      setSectionArray(temp);
+      // setSectionArray(temp);
     }
     // eslint-disable-next-line no-promise-executor-return
     await new Promise((r) => setTimeout(r, 1500));
-    setIsLoading(false);
-    updateLocalUser(sectionArray);
+    // updateLocalUser(sectionArray);
     handleAccordClick(sectionArray[sectionNum].subsections[index].name);
     handleClose();
   };
@@ -89,7 +80,7 @@ const SortingAlgorithmAccordion = ({
             overflow: "auto",
             backgroundColor: "white",
             height: "90vh",
-            width: "90vw",
+            width: "75vw",
             outline: "none",
             display: "flex",
             flexDirection: "column",
