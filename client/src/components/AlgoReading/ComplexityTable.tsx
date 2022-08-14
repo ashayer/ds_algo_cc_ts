@@ -9,7 +9,12 @@ import {
   TableBody,
 } from "@mui/material/";
 
-const ComplexityTable = ({ timeComplexityArray, space }) => {
+interface ComplexityTableProps {
+  timeComplexityArray: string[];
+  space: string;
+}
+
+const ComplexityTable = ({ timeComplexityArray, space }: ComplexityTableProps) => {
   return (
     <>
       <Typography variant="h5" sx={{ borderBottom: "1px solid black" }}>
