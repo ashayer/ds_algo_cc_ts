@@ -1,6 +1,6 @@
 import { Grid, Typography, Box } from "@mui/material/";
-import ComplexityTable from "../ComplexityTableAlgo";
-import TextPopover from "../TextPopUps/TextPopover";
+import ComplexityTableAlgo from "../ComplexityTableAlgo";
+import TextPopover from "../TextPopUpsAlgo/AlgoTextPopover";
 
 const InsertionGeneral = () => {
   return (
@@ -28,7 +28,10 @@ const InsertionGeneral = () => {
         <Box>&nbsp;</Box>
       </Grid>
       <Grid item xs={12} lg={4} sx={{ p: 4, textAlign: "center" }}>
-        <ComplexityTable timeComplexityArray={["O(n)", "O(n\u00B2)", "O(n\u00B2)"]} space="O(1)" />
+        <ComplexityTableAlgo
+          timeComplexityArray={["O(n)", "O(n\u00B2)", "O(n\u00B2)"]}
+          space="O(1)"
+        />
       </Grid>
       <Grid item xs={12} lg={8} sx={{ p: 4 }}>
         <Typography variant="h6" gutterBottom>

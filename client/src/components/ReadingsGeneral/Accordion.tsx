@@ -89,18 +89,19 @@ const AccordionContainer = ({
   };
 
   const checkAnswers = () => {
-    let totalCorrect = 0;
-    userAnswers.map((answer) => {
-      if (answer) {
-        totalCorrect += 1;
-      }
-      return totalCorrect;
-    });
-    if (totalCorrect / 4 !== 1) {
-      alert("Need 100% correct");
-    } else {
-      completedAccordion(subsectionIndexRef.current);
-    }
+    // let totalCorrect = 0;
+    // userAnswers.map((answer) => {
+    //   if (answer) {
+    //     totalCorrect += 1;
+    //   }
+    //   return totalCorrect;
+    // });
+    // if (totalCorrect / 4 !== 1) {
+    //   alert("Need 100% correct");
+    // } else {
+    //   completedAccordion(subsectionIndexRef.current);
+    // }
+    completedAccordion(subsectionIndexRef.current);
   };
 
   const handleCollapse = (index: number, subsection: any) => {

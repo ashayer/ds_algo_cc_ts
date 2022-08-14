@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Popover } from "@mui/material/";
-import * as PopUps from "./PopUpText";
+import * as PopUps from "./AlgoPopUpText";
 
-const TextPopover = ({ text }) => {
+const AlgoTextPopover = ({ text }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handlePopoverOpen = (event) => {
@@ -79,4 +79,4 @@ const TextPopover = ({ text }) => {
   );
 };
 
-export default TextPopover;
+export default AlgoTextPopover;

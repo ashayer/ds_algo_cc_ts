@@ -13,7 +13,7 @@ interface ComplexityTableProps {
   space: string;
 }
 
-const ComplexityTable = ({ timeComplexityArray, space }: ComplexityTableProps) => {
+const ComplexityTableAlgo = ({ timeComplexityArray, space }: ComplexityTableProps) => {
   return (
     <>
       <Typography variant="h5" sx={{ borderBottom: "1px solid black" }}>
@@ -63,4 +63,4 @@ const ComplexityTable = ({ timeComplexityArray, space }: ComplexityTableProps) =
   );
 };
 
-export default ComplexityTable;
+export default ComplexityTableAlgo;

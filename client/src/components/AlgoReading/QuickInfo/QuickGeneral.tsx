@@ -1,9 +1,6 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-import React from "react";
 import { Grid, Typography, Box } from "@mui/material/";
-import ComplexityTable from "../ComplexityTableAlgo";
-
-import TextPopover from "../TextPopUps/TextPopover";
+import ComplexityTableAlgo from "../ComplexityTableAlgo";
+import TextPopover from "../TextPopUpsAlgo/AlgoTextPopover";
 
 const QuickGeneral = () => {
   return (
@@ -35,7 +32,7 @@ const QuickGeneral = () => {
         <Box>&nbsp;</Box>
       </Grid>
       <Grid item xs={12} lg={4} sx={{ p: 4, textAlign: "center" }}>
-        <ComplexityTable
+        <ComplexityTableAlgo
           timeComplexityArray={["O(nlogn)", "O(nlogn)", "O(n\u00B2)"]}
           space="O(logn)"
         />

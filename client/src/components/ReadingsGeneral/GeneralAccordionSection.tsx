@@ -24,7 +24,7 @@ const GeneralAccordionSection = ({
       ) : sectionNum === 3 ? (
         <QuickGeneral />
       ) : null}
-      {/* {!isAlgo && sectionNum === 0 ? (
+      {!isAlgo && sectionNum === 0 ? (
         <BinaryTreeGeneral />
       ) : sectionNum === 1 ? (
         <LinkedListGeneral />
@@ -32,7 +32,7 @@ const GeneralAccordionSection = ({
         <QueueGeneral />
       ) : sectionNum === 3 ? (
         <StackGeneral />
-      ) : null} */}
+      ) : null}
     </>
   );
 };

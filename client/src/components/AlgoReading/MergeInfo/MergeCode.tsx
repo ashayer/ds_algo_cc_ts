@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
-import TextPopover from "../TextPopUps/TextPopover";
+import TextPopover from "../TextPopUpsAlgo/AlgoTextPopover";
 import CodeBlock from "../../CodeBlock/CodeBlock";
 import HighlightLineText from "../../HighlightLineText/HighlightLineText";
 import { mergeString, mergeSortString } from "../../../assets/AlgoStrings";

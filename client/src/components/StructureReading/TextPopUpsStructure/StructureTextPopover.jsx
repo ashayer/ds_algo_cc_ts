@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Popover } from "@mui/material/";
-import * as PopUps from "./PopUpText";
+import * as PopUps from "./StructurePopUpText";
 
 const TextPopover = ({ text }) => {
   const [anchorEl, setAnchorEl] = useState(null);

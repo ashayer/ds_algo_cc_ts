@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
-import TextPopover from "../TextPopUps/TextPopover";
+import TextPopover from "../TextPopUpsStructure/StructureTextPopover";
 import CodeBlock from "../../CodeBlock/CodeBlock";
 import HighlightLine from "../../HighlightLineText/HighlightLineText";
 
