@@ -6,6 +6,7 @@ import "@fontsource/manrope";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
+import AlgoSandbox from "./pages/AlgoSandbox/AlgoSandbox";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/algosandbox" element={<AlgoSandbox />} />
 
         {/* <Route path="/home" element={<Home />} />
         <Route path="*" element={<Error />} /> */}
