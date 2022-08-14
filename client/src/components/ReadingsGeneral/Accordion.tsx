@@ -20,9 +20,15 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import useAuthStore from "../../stores/authStore";
 
-const updateAlgoReading = async (id: string, sectionArray: ReadingSection[]) => {
-  const response = await axios.patch(`/api/user/updateAlgoReading/${id}`, {
-    algoReading: sectionArray,
+const updateReading = async (id: string, isAlgo: boolean, sectionArray: ReadingSection[]) => {
+  if (isAlgo) {
+    const response = await axios.patch(`/api/user/updateAlgoReading/${id}`, {
+      algoReading: sectionArray,
+    });
+    return response.data;
+  }
+  const response = await axios.patch(`/api/user/updateStructureReading/${id}`, {
+    structureReading: sectionArray,
   });
   return response.data;
 };
@@ -70,7 +76,7 @@ const AccordionContainer = ({
     ReadingSection[], // return type
     Error,
     ReadingSection[] // params type
-  >(() => updateAlgoReading(id, sectionArray));
+  >(() => updateReading(id, isAlgo, sectionArray));
 
   const completedAccordion = async (index: number) => {
     sectionArray[sectionNum].subsections[index].completed = true;
