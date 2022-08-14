@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Grid,
   Typography,
@@ -10,7 +10,7 @@ import {
   Divider,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { SelectChangeEvent } from "@mui/material/Select";
+import { SelectChangeEvent } from "@mui/material";
 import styles from "./HomeCardsStyles";
 import GridCardItem from "./GameCardItem";
 

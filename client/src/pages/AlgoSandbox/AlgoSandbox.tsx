@@ -9,9 +9,10 @@ import SortOptions from "../../components/SortingSandbox/SortingAppBar/SortOptio
 import ArrayBars from "../../components/SortingSandbox/ArrayBars/ArrayBars";
 import * as codeString from "../../assets/AlgoStrings";
 import CodeBlock from "../../components/CodeBlock/CodeBlock";
+import { SelectChangeEvent } from "@mui/material/Select";
 
 const AlgoSandbox = () => {
-  const [algorithm, setAlgorithm] = useState<number>(3);
+  const [algorithm, setAlgorithm] = useState<string>("3");
   const arraySize = useRef<number>(10);
   const [arrayElements, setArrayElements] = useState<SortHistoryElement[]>([]);
   const [arrayMax, setArrayMax] = useState<number>(0);
@@ -45,17 +46,17 @@ const AlgoSandbox = () => {
   };
 
   const sortArrayWithCurrentAlgorithm = () => {
-    if (algorithm === 0) {
+    if (algorithm === "0") {
       const { historyArray, codeLinesHistory, varLabelArray } = sortArrayInsertion(arrayElements);
       setSortHistoryArray(historyArray);
       setVarLabelArray(varLabelArray);
       setCodeHighlight(codeLinesHistory);
-    } else if (algorithm === 1) {
+    } else if (algorithm === "1") {
       const { historyArray, codeLinesHistory, varLabelArray } = sortArraySelection(arrayElements);
       setSortHistoryArray(historyArray);
       setVarLabelArray(varLabelArray);
       setCodeHighlight(codeLinesHistory);
-    } else if (algorithm === 2) {
+    } else if (algorithm === "2") {
       const { historyArray, codeLinesHistory, varLabelArray, varSubLabelArray, subArrayHistory } =
         sortArrayMerge(arrayElements);
       setSortHistoryArray(historyArray);
@@ -87,28 +88,29 @@ const AlgoSandbox = () => {
     createRandomArray();
   }, []);
 
-  const handleAlgoChange = (e: any) => {
+  const handleAlgoChange = (e: SelectChangeEvent) => {
     createRandomArray();
-    setAlgorithm(e.target.value);
-    if (e.target.value === 0) {
+    const algorithmChoice = e.target.value;
+    setAlgorithm(algorithmChoice);
+    if (algorithmChoice === "0") {
       setPseudoCodeString(codeString.insertionString);
-    } else if (e.target.value === 1) {
+    } else if (algorithmChoice === "1") {
       setPseudoCodeString(codeString.selectionString);
-    } else if (e.target.value === 2) {
+    } else if (algorithmChoice === "2") {
       setPseudoCodeString(codeString.mergeString);
     } else {
       setPseudoCodeString(codeString.quickString);
     }
   };
 
-  const handleSizeSliderChange = (e: any, value: any) => {
+  const handleSizeSliderChange = (value: number) => {
     if (!(arraySize.current === value)) {
       arraySize.current = value;
       createRandomArray();
     }
   };
 
-  const handleHistorySliderChange = (e: any, value: any) => {
+  const handleHistorySliderChange = (value: number) => {
     if (!(step === value)) {
       setStep(value);
     }
@@ -153,7 +155,7 @@ const AlgoSandbox = () => {
             startingLineNumber={0}
           />
         </Grid>
-        {algorithm === 2 && !(sortHistoryArray.length === 1) && (
+        {algorithm === "2" && !(sortHistoryArray.length === 1) && (
           <Grid item lg={8} md={6} xs={12}>
             <SubArrayBars
               sortHistorySubArray={sortHistorySubArray}
