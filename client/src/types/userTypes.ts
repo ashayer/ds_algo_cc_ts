@@ -7,6 +7,15 @@ declare global {
     responseTime: number;
     streak: number;
   }
+  interface SortHistoryElement {
+    value: number;
+    color: string;
+  }
+
+  interface SortLabelHistoryElement {
+    index: number;
+    label: string;
+  }
 }
 
 export {};
