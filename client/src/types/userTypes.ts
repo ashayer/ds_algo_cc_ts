@@ -40,17 +40,17 @@ declare global {
     idx: number;
   }
 
-  interface AlgoReadingSubSection {
+  interface ReadingSubSection {
     completed: boolean;
     name: string;
     subsectionId: number;
   }
 
-  interface AlgoReadingSection {
+  interface ReadingSection {
     completed: boolean;
     sectionID: number;
     sectionName: string;
-    subsections: AlgoReadingSubSection[];
+    subsections: ReadingSubSection[];
   }
 }
 

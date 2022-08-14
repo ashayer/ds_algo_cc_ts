@@ -10,15 +10,28 @@ const GeneralAccordionSection = ({
   sectionNum: number;
   isAlgo: boolean;
 }) => {
-  return sectionNum === 0 ? (
-    <InsertionGeneral />
-  ) : sectionNum === 1 ? (
-    <SelectionGeneral />
-  ) : sectionNum === 2 ? (
-    <MergeGeneral />
-  ) : sectionNum === 3 ? (
-    <QuickGeneral />
-  ) : null;
+  return (
+    <>
+      {isAlgo && sectionNum === 0 ? (
+        <InsertionGeneral />
+      ) : sectionNum === 1 ? (
+        <SelectionGeneral />
+      ) : sectionNum === 2 ? (
+        <MergeGeneral />
+      ) : sectionNum === 3 ? (
+        <QuickGeneral />
+      ) : null}
+      {!isAlgo && sectionNum === 0 ? (
+        <InsertionGeneral />
+      ) : sectionNum === 1 ? (
+        <SelectionGeneral />
+      ) : sectionNum === 2 ? (
+        <MergeGeneral />
+      ) : sectionNum === 3 ? (
+        <QuickGeneral />
+      ) : null}
+    </>
+  );
 };
 
 export default GeneralAccordionSection;

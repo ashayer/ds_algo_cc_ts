@@ -13,14 +13,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import GeneralAccordionSection from "../../ReadingsGeneral/GeneralAccordionSection";
-import CodeAccordionSection from "../../ReadingsGeneral/CodeAccordionSection";
-import QuizModal from "../../ReadingsGeneral/QuizModal";
+import GeneralAccordionSection from "./GeneralAccordionSection";
+import CodeAccordionSection from "./CodeAccordionSection";
+import QuizModal from "./QuizModal";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-import useAuthStore from "../../../stores/authStore";
+import useAuthStore from "../../stores/authStore";
 
-const updateAlgoReading = async (id: string, sectionArray: AlgoReadingSection[]) => {
+const updateAlgoReading = async (id: string, sectionArray: ReadingSection[]) => {
   const response = await axios.patch(`/api/user/updateAlgoReading/${id}`, {
     algoReading: sectionArray,
   });
@@ -31,18 +31,20 @@ let checkboxQuestion = [false, false, false, false];
 
 interface SortingAlgorithmAccordionProps {
   sectionNum: number;
-  sectionArray: AlgoReadingSection[];
-  setSectionArray: (sectionArray: AlgoReadingSection[]) => void;
+  sectionArray: ReadingSection[];
+  setSectionArray: (sectionArray: ReadingSection[]) => void;
   currentSubSection: string;
   setCurrentSubSection: (name: string) => void;
+  isAlgo: boolean;
 }
 
-const SortingAlgorithmAccordion = ({
+const AccordionContainer = ({
   sectionNum,
   sectionArray,
   setSectionArray,
   currentSubSection,
   setCurrentSubSection,
+  isAlgo,
 }: SortingAlgorithmAccordionProps) => {
   const [open, setOpen] = useState(false);
   const subsectionIndexRef = useRef(0);
@@ -65,9 +67,9 @@ const SortingAlgorithmAccordion = ({
     isError: mutateError,
     isSuccess: mutateSuccess,
   } = useMutation<
-    AlgoReadingSection[], // return type
+    ReadingSection[], // return type
     Error,
-    AlgoReadingSection[] // params type
+    ReadingSection[] // params type
   >(() => updateAlgoReading(id, sectionArray));
 
   const completedAccordion = async (index: number) => {
@@ -151,7 +153,7 @@ const SortingAlgorithmAccordion = ({
             checkboxQuestion={checkboxQuestion}
             subsectionIndex={subsectionIndexRef.current}
             sectionNum={sectionNum}
-            isAlgo={true}
+            isAlgo={isAlgo}
           />
 
           <Button onClick={() => checkAnswers()} variant="contained">
@@ -194,9 +196,9 @@ const SortingAlgorithmAccordion = ({
               </AccordionSummary>
               <AccordionDetails>
                 {index === 0 ? (
-                  <GeneralAccordionSection sectionNum={sectionNum} isAlgo={true} />
+                  <GeneralAccordionSection sectionNum={sectionNum} isAlgo={isAlgo} />
                 ) : index === 1 ? (
-                  <CodeAccordionSection sectionNum={sectionNum} isAlgo={true} />
+                  <CodeAccordionSection sectionNum={sectionNum} isAlgo={isAlgo} />
                 ) : null}
               </AccordionDetails>
               {!subsection.completed ? (
@@ -227,4 +229,4 @@ const SortingAlgorithmAccordion = ({
   );
 };
 
-export default SortingAlgorithmAccordion;
+export default AccordionContainer;

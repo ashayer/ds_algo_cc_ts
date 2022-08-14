@@ -10,18 +10,19 @@ import {
   Radio,
 } from "@mui/material";
 
-import * as quiz from "../../utils/ReadingQuizzes/algoQuizArrays";
+import * as quizAlgo from "../../utils/ReadingQuizzes/algoQuizArrays";
+import * as quizStructure from "../../utils/ReadingQuizzes/structureQuizArrays";
 
 const getGeneralQuestionsAlgo = (sectionNum) => {
   switch (sectionNum) {
     case 0:
-      return quiz.insertionGeneralQuiz;
+      return quizAlgo.insertionGeneralQuiz;
     case 1:
-      return quiz.selectionGeneralQuiz;
+      return quizAlgo.selectionGeneralQuiz;
     case 2:
-      return quiz.mergeGeneralQuiz;
+      return quizAlgo.mergeGeneralQuiz;
     case 3:
-      return quiz.quickGeneralQuiz;
+      return quizAlgo.quickGeneralQuiz;
     default:
       return null;
   }
@@ -30,19 +31,47 @@ const getGeneralQuestionsAlgo = (sectionNum) => {
 const getCodeQuestionsAlgo = (sectionNum) => {
   switch (sectionNum) {
     case 0:
-      return quiz.insertionCodeQuiz;
+      return quizAlgo.insertionCodeQuiz;
     case 1:
-      return quiz.selectionCodeQuiz;
+      return quizAlgo.selectionCodeQuiz;
     case 2:
-      return quiz.mergeCodeQuiz;
+      return quizAlgo.mergeCodeQuiz;
     case 3:
-      return quiz.quickCodeQuiz;
+      return quizAlgo.quickCodeQuiz;
     default:
       return null;
   }
 };
 
+const getGeneralQuestionsStructure = (sectionNum) => {
+  switch (sectionNum) {
+    case 0:
+      return quizStructure.queueGeneralQuiz;
+    case 1:
+      return quizStructure.stackGeneralQuiz;
+    case 2:
+      return quizStructure.linkedListGeneralQuiz;
+    case 3:
+      return quizStructure.binaryTreeGeneralQuiz;
+    default:
+      return null;
+  }
+};
 
+const getCodeQuestionsStructure = (sectionNum) => {
+  switch (sectionNum) {
+    case 0:
+      return quizStructure.queueCodeQuiz;
+    case 1:
+      return quizStructure.stackCodeQuiz;
+    case 2:
+      return quizStructure.linkedListCodeQuiz;
+    case 3:
+      return quizStructure.binaryTreeCodeQuiz;
+    default:
+      return null;
+  }
+};
 
 const getQuestionArray = ({ subsectionIndex, sectionNum, isAlgo }) => {
   if (isAlgo) {
@@ -51,6 +80,10 @@ const getQuestionArray = ({ subsectionIndex, sectionNum, isAlgo }) => {
     }
     return getCodeQuestionsAlgo(sectionNum);
   } else {
+    if (subsectionIndex === 0) {
+      return getGeneralQuestionsStructure(sectionNum);
+    }
+    return getCodeQuestionsStructure(sectionNum);
   }
 };
 

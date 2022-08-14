@@ -8,6 +8,7 @@ import Home from "./pages/Home/Home";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
 import AlgoSandbox from "./pages/AlgoSandbox/AlgoSandbox";
 import AlgoReading from "./pages/AlgoReading/AlgoReading";
+import StructureReading from "./pages/StructureReading/StructureReading";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/algosandbox" element={<AlgoSandbox />} />
         <Route path="/algoreading" element={<AlgoReading />} />
+        <Route path="/structurereading" element={<StructureReading />} />
 
         {/* <Route path="/home" element={<Home />} />
         <Route path="*" element={<Error />} /> */}

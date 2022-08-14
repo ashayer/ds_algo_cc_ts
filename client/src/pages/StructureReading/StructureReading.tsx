@@ -3,24 +3,24 @@ import { Box, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import axios from "axios";
-import SortingAlgorithmAccordion from "../../components/ReadingsGeneral/Accordion";
+import DataStructureAccordion from "../../components/ReadingsGeneral/Accordion";
 import { useQuery } from "@tanstack/react-query";
 import useAuthStore from "../../stores/authStore";
 
-const getUserAlgoReading = async (id: string) => {
-  const response = await axios.get(`/api/user/getAlgoReading/${id}`);
+const getUserStructureReading = async (id: string) => {
+  const response = await axios.get(`/api/user/getStructureReading/${id}`);
   return response.data;
 };
 
-const AlgoReading = () => {
+const StructureReading = () => {
   const [sectionNum, setSectionNum] = useState<number>(0);
   const id = useAuthStore((state) => state.id);
   const [sectionArray, setSectionArray] = useState<ReadingSection[]>([]);
   const [currentSubSection, setCurrentSubSection] = useState("");
 
   const { data, isLoading, isSuccess, isError } = useQuery<ReadingSection[], Error>(
-    ["get-algo-reading"],
-    () => getUserAlgoReading(id),
+    ["get-structure-reading"],
+    () => getUserStructureReading(id),
     { onSuccess: setSectionArray },
   );
 
@@ -42,13 +42,13 @@ const AlgoReading = () => {
     <Box>
       {isSuccess && !isLoading && sectionArray.length > 0 && (
         <>
-          <SortingAlgorithmAccordion
+          <DataStructureAccordion
             sectionNum={sectionNum}
             sectionArray={sectionArray}
             setSectionArray={setSectionArray}
             currentSubSection={currentSubSection}
             setCurrentSubSection={setCurrentSubSection}
-            isAlgo={true}
+            isAlgo={false}
           />
           <Grid
             container
@@ -92,4 +92,4 @@ const AlgoReading = () => {
   );
 };
 
-export default AlgoReading;
+export default StructureReading;
