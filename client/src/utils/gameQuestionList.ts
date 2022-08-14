@@ -1,0 +1,60 @@
+const gameQuestionList: GameQuestionListElement[] = [
+  {
+    qTimer: 10,
+    qTopic: "INSERTION",
+    qType: "STATE-AFTER-SWAPS",
+    contentType: "ARRAY-BARS",
+    answerType: "ARRAY-BARS",
+    hasAnswerOptions: true,
+  },
+  {
+    qTimer: 10,
+    qTopic: "INSERTION",
+    qType: "TIME-COMPLEXITY-DIRECT",
+    contentType: "TEXT",
+    answerType: "TEXT",
+    hasAnswerOptions: true,
+  },
+  {
+    qTimer: 10,
+    qTopic: "INSERTION",
+    qType: "SPACE-COMPLEXITY",
+    contentType: "TEXT",
+    answerType: "TEXT",
+    hasAnswerOptions: true,
+  },
+  {
+    qTimer: 10,
+    qTopic: "INSERTION",
+    qType: "CHOOSE-PSEUDOCODE",
+    contentType: "CODE",
+    answerType: "TEXT",
+    hasAnswerOptions: true,
+  },
+  {
+    qTimer: 10,
+    qTopic: "INSERTION",
+    qType: "TIME-COMPLEXITY-FROM-ARRAY",
+    contentType: "CODE",
+    answerType: "TEXT",
+    hasAnswerOptions: true,
+  },
+  {
+    qTimer: 10,
+    qTopic: "INSERTION",
+    qType: "DRAG-CODE",
+    contentType: "CODE",
+    answerType: "CHECK-ANSWER",
+    hasAnswerOptions: false,
+  },
+  {
+    qTimer: 10,
+    qTopic: "INSERTION",
+    qType: "DRAG-ARRAY-BARS",
+    contentType: "DRAGGABLE-ARRAY-BARS",
+    answerType: "CHECK-ANSWER",
+    hasAnswerOptions: false,
+  },
+];
+
+export default gameQuestionList;

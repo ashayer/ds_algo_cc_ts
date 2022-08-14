@@ -52,6 +52,15 @@ declare global {
     sectionName: string;
     subsections: ReadingSubSection[];
   }
+
+  interface GameQuestionListElement {
+    qTimer: number;
+    qTopic: string;
+    qType: string;
+    contentType: string;
+    answerType: string;
+    hasAnswerOptions: boolean;
+  }
 }
 
 export {};
