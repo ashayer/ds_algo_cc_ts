@@ -9,7 +9,8 @@ void InsertionSort(vector<int>& arr) {
     }
 }`;
 
-export const selectionString = `void SelectionSort(vector<int>& arr) {
+export const selectionString = `
+void SelectionSort(vector<int>& arr) {
     for(int i = 0; i < arr.size(); i++) {
       int min = i;
       for(int j = i + 1; j < arr.size(); j++) {
@@ -20,7 +21,8 @@ export const selectionString = `void SelectionSort(vector<int>& arr) {
     }
 }`;
 
-export const mergeString = `void merge(vector<int>& arr, int left, int middle, int right) {
+export const mergeString = `
+void merge(vector<int>& arr, int left, int middle, int right) {
   int i = left;
   int j = middle + 1;
   vector<int> temp = arr;
@@ -41,7 +43,8 @@ export const mergeString = `void merge(vector<int>& arr, int left, int middle, i
   }
 }`;
 
-export const quickString = `int partition(vector<int>& arr, int left, int right){
+export const quickString = `
+int partition(vector<int>& arr, int left, int right){
   int pivotValue = arr[left]; 
   int pivotIndex = left;
   for(int i = left + 1; i<=right;i++){

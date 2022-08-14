@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { Grid } from "@mui/material";
 import sortArrayInsertion from "../../utils/SortHistoryGenerators/insertionGen";
-// import sortArraySelection from "./AlgoGenerators/selectionGen";
-// import sortArrayMerge from "./AlgoGenerators/mergeGen";
-// import sortArrayQuick from "./AlgoGenerators/quickGen";
+import sortArraySelection from "../../utils/SortHistoryGenerators/selectionGen";
+// import sortArrayMerge from "../../utils/SortHistoryGenerators/mergeGen";
+// import sortArrayQuick from "../../utils/SortHistoryGenerators/quickGen";
 // import CodeBlock from "../Reading/CodeBlock";
 // import SubArrayBars from "./SubArrayBars";
 import SortOptions from "../../components/SortingSandbox/SortingAppBar/SortOptions";
@@ -12,15 +12,15 @@ import * as codeString from "../../assets/AlgoStrings";
 import CodeBlock from "../../components/CodeBlock/CodeBlock";
 
 const AlgoSandbox = () => {
-  const [algorithm, setAlgorithm] = useState<number>(0);
+  const [algorithm, setAlgorithm] = useState<number>(1);
   const arraySize = useRef<number>(10);
   const [arrayElements, setArrayElements] = useState<SortHistoryElement[]>([]);
-  const [arrayMax, setArrayMax] = useState<number>(1);
+  const [arrayMax, setArrayMax] = useState<number>(0);
   const [sortHistoryArray, setSortHistoryArray] = useState<SortHistoryElement[][]>([]);
   const [codeHighlight, setCodeHighlight] = useState<number[][]>([]);
   const [varLabelArray, setVarLabelArray] = useState<SortLabelHistoryElement[][]>([]);
   const [step, setStep] = useState(0);
-  const [pseudoCodeString, setPseudoCodeString] = useState<string>(codeString.insertionString);
+  const [pseudoCodeString, setPseudoCodeString] = useState<string>(codeString.selectionString);
 
   const createRandomArray = () => {
     setStep(0);
@@ -50,6 +50,11 @@ const AlgoSandbox = () => {
       setSortHistoryArray(historyArray);
       setVarLabelArray(varLabelArray);
       setCodeHighlight(codeLinesHistory);
+    } else if (algorithm === 1) {
+      const { historyArray, codeLinesHistory, varLabelArray } = sortArraySelection(arrayElements);
+      setSortHistoryArray(historyArray);
+      setVarLabelArray(varLabelArray);
+      setCodeHighlight(codeLinesHistory);
     }
   };
 
@@ -70,14 +75,14 @@ const AlgoSandbox = () => {
   }, []);
 
   const handleAlgoChange = (e: any) => {
-    // createRandomArray();
-    // setAlgorithm(e.target.value);
-    // setVarLabelArray([]);
-    // if (e.target.value === 0) {
-    //   setPseudoCodeString(codeString.insertionString);
-    // } else if (e.target.value === 1) {
-    //   setPseudoCodeString(codeString.selectionString);
-    // } else if (e.target.value === 2) {
+    createRandomArray();
+    setAlgorithm(e.target.value);
+    if (e.target.value === 0) {
+      setPseudoCodeString(codeString.insertionString);
+    } else if (e.target.value === 1) {
+      setPseudoCodeString(codeString.selectionString);
+    }
+    //else if (e.target.value === 2) {
     //   setPseudoCodeString(codeString.mergeString);
     // } else {
     //   setPseudoCodeString(codeString.quickString);
