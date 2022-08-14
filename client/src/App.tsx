@@ -10,6 +10,7 @@ import AlgoSandbox from "./pages/AlgoSandbox/AlgoSandbox";
 import AlgoReading from "./pages/AlgoReading/AlgoReading";
 import StructureReading from "./pages/StructureReading/StructureReading";
 import StructureSandbox from "./pages/StructureSandbox/StructureSandbox";
+import Game from "./pages/Game/Game";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/algoreading" element={<AlgoReading />} />
         <Route path="/structurereading" element={<StructureReading />} />
         <Route path="/structuresandbox" element={<StructureSandbox />} />
+        <Route path="/game" element={<Game />} />
 
         {/* <Route path="/home" element={<Home />} />
         <Route path="*" element={<Error />} /> */}
