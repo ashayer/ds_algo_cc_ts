@@ -52,7 +52,7 @@ export const mergeSortString = `void mergeSort(vector<int>& arr, int left, int r
   }
 }`;
 
-export const quickString = `
+export const partitionString = `
 int partition(vector<int>& arr, int left, int right){
   int pivotValue = arr[left]; 
   int pivotIndex = left;
@@ -64,4 +64,12 @@ int partition(vector<int>& arr, int left, int right){
   }
   swap(arr[left], arr[pivotIndex]);
   return pivotIndex;
+}`;
+
+export const quickSortString = `void quickSort(vector<int>& arr, int left, int right) {
+  if(left < right) {
+    int pivot = partition(arr, left, right);
+    quickSort(arr, left, pivot - 1);
+    quickSort(arr, pivot + 1, right);
+  }
 }`;

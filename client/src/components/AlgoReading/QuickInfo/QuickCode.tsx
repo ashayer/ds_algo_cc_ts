@@ -1,38 +1,9 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from "react";
+import { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
 import TextPopover from "../TextPopUps/TextPopover";
 import CodeBlock from "../../CodeBlock/CodeBlock";
 import HighlightLineText from "../../HighlightLineText/HighlightLineText";
-
-const partitionString = `int partition(vector<int>& arr, int left, int right){
-  int pivotValue = arr[left]; 
-  int pivotIndex = left;
-  for(int i = left + 1; i<=right;i++){
-      if(arr[i] < pivotValue){
-          swap(arr[i], arr[++pivotIndex]);
-      }
-  }
-  swap(arr[left], arr[pivotIndex]);
-  return pivotIndex;
-}`;
-
-const Partition = ({ hoveredLine }) => {
-  return <CodeBlock hoveredLine={hoveredLine} code={partitionString} />;
-};
-
-const quickSortString = `void quickSort(vector<int>& arr, int left, int right) {
-  if(left < right) {
-    int pivot = partition(arr, left, right);
-    quickSort(arr, left, pivot - 1);
-    quickSort(arr, pivot + 1, right);
-  }
-}`;
-
-const QuickSort = ({ hoveredLine }) => {
-  return <CodeBlock hoveredLine={hoveredLine} code={quickSortString} startingLineNumber={12} />;
-};
-
+import { partitionString, quickSortString } from "../../../assets/AlgoStrings";
 const QuickCode = () => {
   const [hoveredLine, setHoveredLine] = useState([]);
 
@@ -46,7 +17,7 @@ const QuickCode = () => {
               justifyContent: "center",
             }}
           >
-            <QuickSort hoveredLine={hoveredLine} />
+            <CodeBlock hoveredLine={hoveredLine} code={quickSortString} startingLineNumber={12} />
           </Box>
         </Grid>
         <Grid item lg={8} md={12} sm={12} xs={12} sx={{ p: 4 }}>
@@ -58,8 +29,8 @@ const QuickCode = () => {
           </Typography>
           <Typography variant="h6">
             Instead of a middle index, we calculate a pivot{" "}
-            <HighlightLineText lineNum={[14]} setHoveredLine={setHoveredLine} /> which functions as the
-            center for the next two sub-lists to be created. This pivot index is found using the
+            <HighlightLineText lineNum={[14]} setHoveredLine={setHoveredLine} /> which functions as
+            the center for the next two sub-lists to be created. This pivot index is found using the
             second partition function.
           </Typography>
         </Grid>
@@ -70,7 +41,7 @@ const QuickCode = () => {
               justifyContent: "center",
             }}
           >
-            <Partition hoveredLine={hoveredLine} />
+            <CodeBlock hoveredLine={hoveredLine} code={partitionString} startingLineNumber={0} />;
           </Box>
         </Grid>
         <Grid item lg={8} md={12} sm={12} xs={12} sx={{ p: 4 }}>
@@ -83,8 +54,8 @@ const QuickCode = () => {
             When then loop from the left to the right index of the current array. At each iteration
             we check if the value at index i is less than the pivotValue which is the leftmost
             element. If it is less than the pivotValue we swap that element at i with the element at
-            pivotIndex + 1 <HighlightLineText lineNum={[6]} setHoveredLine={setHoveredLine} />. It is
-            important to increment the pivotIndex, before swapping.
+            pivotIndex + 1 <HighlightLineText lineNum={[6]} setHoveredLine={setHoveredLine} />. It
+            is important to increment the pivotIndex, before swapping.
           </Typography>
           <Typography variant="h6" gutterBottom>
             At the end of that loop we swap the element at the left index with the element at the
