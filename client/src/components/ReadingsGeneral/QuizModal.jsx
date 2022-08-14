@@ -12,7 +12,7 @@ import {
 
 import * as quiz from "../../utils/ReadingQuizzes/algoQuizArrays";
 
-const getGeneralArray = (sectionNum) => {
+const getGeneralQuestionsAlgo = (sectionNum) => {
   switch (sectionNum) {
     case 0:
       return quiz.insertionGeneralQuiz;
@@ -27,7 +27,7 @@ const getGeneralArray = (sectionNum) => {
   }
 };
 
-const getCodeArray = (sectionNum) => {
+const getCodeQuestionsAlgo = (sectionNum) => {
   switch (sectionNum) {
     case 0:
       return quiz.insertionCodeQuiz;
@@ -42,12 +42,14 @@ const getCodeArray = (sectionNum) => {
   }
 };
 
+
+
 const getQuestionArray = ({ subsectionIndex, sectionNum, isAlgo }) => {
   if (isAlgo) {
     if (subsectionIndex === 0) {
-      return getGeneralArray(sectionNum);
+      return getGeneralQuestionsAlgo(sectionNum);
     }
-    return getCodeArray(sectionNum);
+    return getCodeQuestionsAlgo(sectionNum);
   } else {
   }
 };
