@@ -8,7 +8,21 @@ import {
   MenuItem,
   Slider,
   Typography,
+  SelectChangeEvent,
 } from "@mui/material";
+
+interface SortOptionsProps {
+  algorithm: string;
+  handleAlgoChange: (e: SelectChangeEvent) => void;
+  createRandomArray: () => void;
+  handleSizeSliderChange: (value: number) => void;
+  handleHistorySliderChange: (value: number) => void;
+  sortArrayWithCurrentAlgorithm: () => void;
+  prevStep: () => void;
+  nextStep: () => void;
+  sortHistoryArray: SortHistoryElement[][];
+  step: number;
+}
 
 const SortOptions = ({
   algorithm,
@@ -21,8 +35,7 @@ const SortOptions = ({
   sortHistoryArray,
   step,
   handleHistorySliderChange,
-}) => {
-  const localUser = JSON.parse(sessionStorage.getItem("user"));
+}: SortOptionsProps) => {
   return (
     <Grid
       container
@@ -44,16 +57,16 @@ const SortOptions = ({
             label="Algorithm"
             onChange={handleAlgoChange}
           >
-            <MenuItem value={0}>
+            <MenuItem value="0">
               <Typography>INSERTION</Typography>
             </MenuItem>
-            <MenuItem value={1}>
+            <MenuItem value="1">
               <Typography>SELECTION</Typography>
             </MenuItem>
-            <MenuItem value={2}>
+            <MenuItem value="2">
               <Typography>MERGE</Typography>
             </MenuItem>
-            <MenuItem value={3}>
+            <MenuItem value="3">
               <Typography>QUICK</Typography>
             </MenuItem>
           </Select>
@@ -73,8 +86,8 @@ const SortOptions = ({
         <Typography>ARRAY SIZE</Typography>
         <Slider
           defaultValue={10}
-          onChangeCommitted={(e, value) => {
-            handleSizeSliderChange(e, value);
+          onChangeCommitted={(_e, value) => {
+            handleSizeSliderChange(value as number);
           }}
           valueLabelDisplay="auto"
           step={1}
@@ -109,8 +122,8 @@ const SortOptions = ({
         </Typography>
         <Slider
           value={step}
-          onChange={(e, value) => {
-            handleHistorySliderChange(e, value);
+          onChange={(_e, value) => {
+            handleHistorySliderChange(value as number);
           }}
           valueLabelDisplay="auto"
           step={1}
