@@ -1,4 +1,4 @@
-const gameQuestionList: GameQuestionListElement[] = [
+const gameQuestionList: GameQuestionInfo[] = [
   {
     qTimer: 10,
     qTopic: "INSERTION",

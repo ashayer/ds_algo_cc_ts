@@ -8,8 +8,9 @@ import GameQuestionText from "../../components/GameQuestionText/GameQuestionText
 
 const Game = () => {
   const randomIndex = Math.floor(Math.random() * gameQuestionList.length);
+  const [tempIndex, setTempIndex] = useState(0);
   const [gameStarted, setGameStarted] = useState(true);
-  const [questionInfo, setQuestionInfo] = useState<GameQuestionListElement>(gameQuestionList[0]);
+  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[6]);
 
   const [questionDisplay, setQuestionDisplay] = useState<any>();
 
@@ -25,7 +26,7 @@ const Game = () => {
   useEffect(() => {
     //! remove when done and call function on game start button
     setQuestionDisplay(gameHandler(questionInfo));
-  }, []);
+  }, [tempIndex]);
 
   return gameStarted && questionDisplay ? (
     <Grid container direction="column">

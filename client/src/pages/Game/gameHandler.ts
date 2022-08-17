@@ -1,6 +1,6 @@
 import insertionSortHandler from "../../utils/GameHandlers/Insertion/insertionSortHandler";
 
-const gameHandler = (gameInfo: GameQuestionListElement) => {
+const gameHandler = (gameInfo: GameQuestionInfo) => {
   switch (gameInfo.qTopic) {
     case "INSERTION":
       return insertionSortHandler(gameInfo);

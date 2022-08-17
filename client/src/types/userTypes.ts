@@ -53,7 +53,7 @@ declare global {
     subsections: ReadingSubSection[];
   }
 
-  interface GameQuestionListElement {
+  interface GameQuestionInfo {
     qTimer: number;
     qTopic: string;
     qType: string;

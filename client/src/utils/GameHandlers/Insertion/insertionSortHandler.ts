@@ -6,7 +6,7 @@ import insertionArrayTimeComplexity from "./insertionArrayTimeComplexity";
 import insertionDragCode from "./insertionDragCode";
 import insertionDragSwap from "./insertionDragSwap";
 
-const insertionSortHandler = (gameInfo: GameQuestionListElement) => {
+const insertionSortHandler = (gameInfo: GameQuestionInfo) => {
   switch (gameInfo.qType) {
     case "STATE-AFTER-SWAPS":
       return insertionStateAfterSwap();
