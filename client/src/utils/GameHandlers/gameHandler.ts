@@ -1,4 +1,4 @@
-import insertionSortHandler from "../../utils/GameHandlers/Insertion/insertionSortHandler";
+import insertionSortHandler from "./Insertion/insertionSortHandler";
 
 const gameHandler = (gameInfo: GameQuestionInfo) => {
   switch (gameInfo.qTopic) {
