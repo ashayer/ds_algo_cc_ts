@@ -1,33 +1,46 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Grid, Button, Container, Paper, Box } from "@mui/material";
 import gameQuestionList from "../../utils/gameQuestionList";
-// import questionHandlerSort from "../../Algorithms/handler";
-// import questionHandlerStructure from "../../StructureGame/handler";
-// import algorithmInfoArray from "../../Algorithms/infoArray";
-// import Answers from "./Answers/Answers";
-// import Content from "./Content/Content";
-// import createQuestionText from "./Question/dataStructureTime";
-// import Question from "./Question/Question";
-// import UserStatsTable from "./UserStatsTable/UserStatsTable";
+import gameHandler from "./gameHandler";
+import GameQuestionAnswerChoice from "../../components/GameQuestionAnswerChoice/GameQuestionAnswerChoice";
+import GameQuestionContent from "../../components/GameQuestionContent/GameQuestionContent";
+import GameQuestionText from "../../components/GameQuestionText/GameQuestionText";
 
 const Game = () => {
   const randomIndex = Math.floor(Math.random() * gameQuestionList.length);
   const [gameStarted, setGameStarted] = useState(true);
-  const [questionInfo, setQuestionInfo] = useState<GameQuestionListElement>(
-    gameQuestionList[randomIndex],
-  );
+  const [questionInfo, setQuestionInfo] = useState<GameQuestionListElement>(gameQuestionList[0]);
+
+  const [questionDisplay, setQuestionDisplay] = useState<any>();
 
   const onGameStart = () => {
     setGameStarted(true);
+    gameHandler(questionInfo);
   };
 
   const onGameEnd = () => {
     setGameStarted(false);
   };
 
-  return gameStarted ? (
-    <Grid container>
-      <Grid item>{questionInfo.qType}</Grid>
+  useEffect(() => {
+    //! remove when done and call function on game start button
+    setQuestionDisplay(gameHandler(questionInfo));
+  }, []);
+
+  return gameStarted && questionDisplay ? (
+    <Grid container direction="column">
+      <Grid item>
+        <GameQuestionText questionText={questionDisplay.question} />
+      </Grid>
+      <Grid item>
+        <GameQuestionContent
+          questionInfo={questionInfo}
+          questionContent={questionDisplay.content}
+        />
+      </Grid>
+      <Grid item>
+        <GameQuestionAnswerChoice answerChoices={questionDisplay.answerChoices} />
+      </Grid>
       <Button variant="outlined" onClick={onGameEnd}>
         END GAME
       </Button>
