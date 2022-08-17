@@ -7,10 +7,15 @@ import GameQuestionContent from "../../components/GameQuestionContent/GameQuesti
 import GameQuestionText from "../../components/GameQuestionText/GameQuestionText";
 
 const Game = () => {
-  const [gameStarted, setGameStarted] = useState(true);
-  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[0]);
-  const [questionDisplay, setQuestionDisplay] = useState<GameDisplayInfo>();
+  const [gameStarted, setGameStarted] = useState(false);
+  const questionInfo = useRef<GameQuestionInfo>(gameQuestionList[0]);
+  const questionDisplay = useRef<GameDisplayInfo>();
+  const [counter, setCounter] = useState<number>(0);
   const onGameStart = () => {
+    const randomIndex = Math.floor(Math.random() * 7);
+
+    questionInfo.current = gameQuestionList[randomIndex];
+    questionDisplay.current = gameHandler(questionInfo.current);
     setGameStarted(true);
   };
 
@@ -18,26 +23,33 @@ const Game = () => {
     setGameStarted(false);
   };
 
-  useEffect(() => {
-    //! remove when done and call function on game start button
-    setQuestionDisplay(gameHandler(questionInfo));
-  }, []);
-
-  return gameStarted && questionDisplay ? (
+  return gameStarted && questionDisplay.current ? (
     <Grid container>
+      {counter}
+      <Button
+        onClick={() => {
+          const randomIndex = Math.floor(Math.random() * 7);
+          questionInfo.current = gameQuestionList[randomIndex];
+          questionDisplay.current = gameHandler(questionInfo.current);
+          setCounter((prevCounter) => prevCounter + 1);
+        }}
+      >
+        ASDASDASD
+      </Button>
       <Grid item>
-        <GameQuestionText questionText={questionDisplay.question} />
+        <GameQuestionText questionDisplay={questionDisplay.current} />
       </Grid>
       <Grid item>
         <GameQuestionContent
-          questionInfo={questionInfo}
-          questionContent={questionDisplay.content}
+          questionInfo={questionInfo.current}
+          questionDisplay={questionDisplay.current}
         />
       </Grid>
+
       <Grid item>
         <GameQuestionAnswerChoice
-          questionInfo={questionInfo}
-          answerChoices={questionDisplay.answerChoices}
+          questionInfo={questionInfo.current}
+          questionDisplay={questionDisplay.current}
         />
       </Grid>
       <Button variant="outlined" onClick={onGameEnd}>

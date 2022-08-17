@@ -2,7 +2,7 @@ import { Grid, Box, Typography } from "@mui/material";
 import CodeBlock from "../CodeBlock/CodeBlock";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
-const DragCode = ({ questionContent }: any) => {
+const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => {
   return (
     <Box
       sx={{
@@ -18,7 +18,7 @@ const DragCode = ({ questionContent }: any) => {
               ref={provided.innerRef}
               style={{ justifyContent: "center", border: "1px solid black" }}
             >
-              {questionContent?.map((value: any, idx: number) => (
+              {questionContent?.map((value: DragArrayType, idx: number) => (
                 <Draggable draggableId={idx.toString()} index={idx} key={idx}>
                   {(provided) => (
                     <Typography
@@ -47,7 +47,7 @@ const DragCode = ({ questionContent }: any) => {
   );
 };
 
-const DragBars = ({ questionContent }: any) => {
+const DragBars = ({ questionContent }: { questionContent: DragArrayType[] }) => {
   return (
     <DragDropContext onDragEnd={() => console.log("asd")}>
       <Droppable droppableId="1" direction="horizontal">
@@ -58,12 +58,12 @@ const DragBars = ({ questionContent }: any) => {
             ref={provided.innerRef}
             sx={{ position: "relative", justifyContent: "center" }}
           >
-            {questionContent?.map((value: any, idx: number) => (
+            {questionContent?.map((value: DragArrayType, idx: number) => (
               <Draggable draggableId={idx.toString()} index={idx} key={idx}>
                 {(provided) => (
                   <Grid
                     item
-                    key={value}
+                    key={value.lineContent}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
@@ -73,7 +73,7 @@ const DragBars = ({ questionContent }: any) => {
                   >
                     <Box
                       sx={{
-                        height: `${value.lineContent * 3}vh`,
+                        height: `${(value.lineContent as number) * 3}vh`,
                         backgroundColor: "#036bfc",
                         color: "white",
                         position: "absolute",
@@ -98,11 +98,11 @@ const DragBars = ({ questionContent }: any) => {
   );
 };
 
-const ArrayBarsContent = ({ questionContent }: any) => {
+const ArrayBarsContent = ({ questionContent }: { questionContent: number[] }) => {
   return (
     <Grid container sx={{ position: "relative", justifyContent: "center" }}>
-      {questionContent.map((value: number) => (
-        <Grid item key={value} sx={{ height: "25vh", width: "8vw" }} md={1} sm={0}>
+      {questionContent?.map((value: number, index: number) => (
+        <Grid item key={index} sx={{ height: "25vh", width: "8vw" }} md={1} sm={0}>
           <Box
             sx={{
               height: `${value * 3}vh`,
@@ -122,7 +122,7 @@ const ArrayBarsContent = ({ questionContent }: any) => {
   );
 };
 
-const TextContent = ({ questionContent }: any) => {
+const TextContent = ({ questionContent }: { questionContent: string }) => {
   return (
     <Typography variant="h1" fontWeight="bold">
       {questionContent}
@@ -130,26 +130,32 @@ const TextContent = ({ questionContent }: any) => {
   );
 };
 
-const PseudoCodeContent = ({ questionContent }: any) => {
+const PseudoCodeContent = ({ questionContent }: { questionContent: string }) => {
   return <CodeBlock hoveredLine={[]} code={questionContent} startingLineNumber={1} />;
 };
 
-const GameQuestionContent = ({ questionInfo, questionContent }: any) => {
+const GameQuestionContent = ({
+  questionInfo,
+  questionDisplay,
+}: {
+  questionInfo: GameQuestionInfo;
+  questionDisplay: GameDisplayInfo;
+}) => {
   switch (questionInfo.qType) {
     case "STATE-AFTER-SWAPS":
-      return <ArrayBarsContent questionContent={questionContent} />;
+      return <ArrayBarsContent questionContent={questionDisplay.content as number[]} />;
     case "TIME-COMPLEXITY-DIRECT":
-      return <TextContent questionContent={questionContent} />;
+      return <TextContent questionContent={questionDisplay.content as string} />;
     case "SPACE-COMPLEXITY":
-      return <TextContent questionContent={questionContent} />;
+      return <TextContent questionContent={questionDisplay.content as string} />;
     case "CHOOSE-PSEUDOCODE":
-      return <PseudoCodeContent questionContent={questionContent} />;
+      return <PseudoCodeContent questionContent={questionDisplay.content as string} />;
     case "TIME-COMPLEXITY-FROM-ARRAY":
-      return <ArrayBarsContent questionContent={questionContent} />;
+      return <ArrayBarsContent questionContent={questionDisplay.content as number[]} />;
     case "DRAG-CODE":
-      return <DragCode questionContent={questionContent} />;
+      return <DragCode questionContent={questionDisplay.content as DragArrayType[]} />;
     case "DRAG-ARRAY-BARS":
-      return <DragBars questionContent={questionContent} />;
+      return <DragBars questionContent={questionDisplay.content as DragArrayType[]} />;
     default:
       return <div>Error</div>;
   }
