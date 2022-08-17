@@ -64,7 +64,7 @@ function insertionChooseCode() {
     answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
   }
 
-  const gameDisplayObject = {
+  const gameDisplayObject: GameDisplayInfo = {
     answerChoices,
     content: insertionPseudo,
     question: "Fill in the missing pseudo-code of Insertion Sort",

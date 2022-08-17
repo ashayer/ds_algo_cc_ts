@@ -65,7 +65,7 @@ function insertionDragSwap() {
     sortedArrayObject.arrayUnsorted,
   );
 
-  const gameDisplayObject = {
+  const gameDisplayObject: GameDisplayInfo = {
     answerChoices: false,
     content: originalObject,
     question: `Using Insertion sort move the array into the state after ${correctSwapNumber} swaps`,

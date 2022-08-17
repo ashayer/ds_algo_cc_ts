@@ -22,7 +22,7 @@ const createBestCase = () => {
     answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
   }
 
-  const gameDisplayObject = {
+  const gameDisplayObject: GameDisplayInfo = {
     answerChoices,
     content: [2, 3, 5, 6, 7, 8],
     question: "What is the time complexity using Insertion Sort to sort the array below?",
@@ -42,7 +42,7 @@ const createWorstCase = () => {
   for (const wrongChoice of wrongAnswers) {
     answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
   }
-  const gameDisplayObject = {
+  const gameDisplayObject: GameDisplayInfo = {
     answerChoices,
     content: shuffledArray,
     question: "What is the time complexity using Insertion Sort to sort the array below?",

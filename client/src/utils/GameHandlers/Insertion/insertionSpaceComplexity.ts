@@ -10,7 +10,7 @@ function insertionSpaceComplexity() {
     answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
   }
 
-  const gameDisplayObject = {
+  const gameDisplayObject: GameDisplayInfo = {
     answerChoices,
     content: "Insertion Sort",
     question: "What is the space complexity of the algorithm below?",

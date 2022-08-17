@@ -23,7 +23,12 @@ const insertionSortHandler = (gameInfo: GameQuestionInfo) => {
     case "DRAG-ARRAY-BARS":
       return insertionDragSwap();
     default:
-      break;
+      const gameDisplayObject: GameDisplayInfo = {
+        answerChoices: false,
+        content: "",
+        question: "Something went wrong",
+      };
+      return gameDisplayObject;
   }
 };
 export default insertionSortHandler;

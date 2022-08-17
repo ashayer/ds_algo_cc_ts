@@ -10,7 +10,7 @@ function insertionDirectTimeComplexity() {
     answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
   }
 
-  const gameDisplayObject = {
+  const gameDisplayObject: GameDisplayInfo = {
     answerChoices,
     content: "Insertion Sort",
     question: "What is the time complexity of the algorithm below?",

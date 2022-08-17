@@ -30,7 +30,7 @@ function insertionDragCode() {
     },
   ]);
 
-  const gameDisplayObject = {
+  const gameDisplayObject: GameDisplayInfo = {
     answerChoices: false,
     content: pseudoCodeStringArray,
     question: "Move pseudo-code into correct order for Insertion Sort",
