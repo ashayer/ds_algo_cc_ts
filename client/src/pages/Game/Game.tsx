@@ -10,7 +10,7 @@ const Game = () => {
   const randomIndex = Math.floor(Math.random() * gameQuestionList.length);
   const [tempIndex, setTempIndex] = useState(0);
   const [gameStarted, setGameStarted] = useState(true);
-  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[6]);
+  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[0]);
 
   const [questionDisplay, setQuestionDisplay] = useState<any>();
 
@@ -29,7 +29,7 @@ const Game = () => {
   }, [tempIndex]);
 
   return gameStarted && questionDisplay ? (
-    <Grid container direction="column">
+    <Grid container>
       <Grid item>
         <GameQuestionText questionText={questionDisplay.question} />
       </Grid>
@@ -40,7 +40,10 @@ const Game = () => {
         />
       </Grid>
       <Grid item>
-        <GameQuestionAnswerChoice answerChoices={questionDisplay.answerChoices} />
+        <GameQuestionAnswerChoice
+          questionInfo={questionInfo}
+          answerChoices={questionDisplay.answerChoices}
+        />
       </Grid>
       <Button variant="outlined" onClick={onGameEnd}>
         END GAME
