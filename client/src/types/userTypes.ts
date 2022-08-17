@@ -65,8 +65,10 @@ declare global {
   interface GameDisplayInfo {
     question: string;
     answerChoices: GameAnswerChoices[] | boolean;
-    content: number[] | DragArrayType[] | string;
+    content: GameContentType;
   }
+
+  type GameContentType = number[] | DragArrayType[] | string[] | string;
 
   interface GameAnswerChoices {
     isCorrect: boolean;
