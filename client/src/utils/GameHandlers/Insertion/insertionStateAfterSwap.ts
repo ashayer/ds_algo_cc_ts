@@ -98,7 +98,7 @@ function insertionStateAfterSwap() {
     answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
   }
 
-  const gameDisplayObject = {
+  const gameDisplayObject: GameDisplayInfo = {
     answerChoices,
     content: sortedArrayObject.arrayUnsorted,
     question: `Using insertion sort, what is the state of the array after ${correctSwapNumber} swaps`,

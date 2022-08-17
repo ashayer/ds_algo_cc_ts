@@ -7,16 +7,11 @@ import GameQuestionContent from "../../components/GameQuestionContent/GameQuesti
 import GameQuestionText from "../../components/GameQuestionText/GameQuestionText";
 
 const Game = () => {
-  const randomIndex = Math.floor(Math.random() * gameQuestionList.length);
-  const [tempIndex, setTempIndex] = useState(0);
   const [gameStarted, setGameStarted] = useState(true);
   const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[0]);
-
-  const [questionDisplay, setQuestionDisplay] = useState<any>();
-
+  const [questionDisplay, setQuestionDisplay] = useState<GameDisplayInfo>();
   const onGameStart = () => {
     setGameStarted(true);
-    gameHandler(questionInfo);
   };
 
   const onGameEnd = () => {
@@ -26,7 +21,7 @@ const Game = () => {
   useEffect(() => {
     //! remove when done and call function on game start button
     setQuestionDisplay(gameHandler(questionInfo));
-  }, [tempIndex]);
+  }, []);
 
   return gameStarted && questionDisplay ? (
     <Grid container>

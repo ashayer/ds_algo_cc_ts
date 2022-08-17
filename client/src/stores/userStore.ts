@@ -6,6 +6,6 @@ const store = (set: any) => ({
   setGameStats: (gameStats: GameStats) => set({ gameStats }),
 });
 
-const useUserStore = create(store);
+const useUserStore = create(devtools(store));
 
 export default useUserStore;

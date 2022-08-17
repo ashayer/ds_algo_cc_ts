@@ -5,13 +5,13 @@ const gameHandler = (gameInfo: GameQuestionInfo) => {
     case "INSERTION":
       return insertionSortHandler(gameInfo);
     case "SELECTION":
-      break;
+      return insertionSortHandler(gameInfo);
     case "MERGE":
-      break;
+      return insertionSortHandler(gameInfo);
     case "QUICK":
-      break;
+      return insertionSortHandler(gameInfo);
     default:
-      break;
+      return insertionSortHandler(gameInfo);
   }
 };
 

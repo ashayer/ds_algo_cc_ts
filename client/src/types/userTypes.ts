@@ -61,6 +61,22 @@ declare global {
     answerType: string;
     hasAnswerOptions: boolean;
   }
+
+  interface GameDisplayInfo {
+    question: string;
+    answerChoices: GameAnswerChoices[] | boolean;
+    content: number[] | DragArrayType[] | string;
+  }
+
+  interface GameAnswerChoices {
+    isCorrect: boolean;
+    answerContent: string | number[];
+  }
+
+  type DragArrayType = {
+    lineContent: string | number;
+    correctIdx: number;
+  };
 }
 
 export {};
