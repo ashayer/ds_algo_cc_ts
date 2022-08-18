@@ -30,7 +30,7 @@ const Game = () => {
   }, [questionInfo]);
 
   return gameStarted && questionDisplay ? (
-    <Grid item container xs={10} sx={{ marginInline: "auto", border: "1px solid red" }}>
+    <Grid item container xs={10} sx={{ marginInline: "auto" }}>
       <GameQuestionText questionDisplay={questionDisplay} />
       <GameQuestionContent questionDisplay={questionDisplay} />
       <Grid item>

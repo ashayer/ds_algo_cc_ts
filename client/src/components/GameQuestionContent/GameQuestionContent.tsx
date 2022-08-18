@@ -99,23 +99,34 @@ const DragBars = ({ questionContent }: { questionContent: DragArrayType[] }) => 
 };
 
 const ArrayBarsContent = ({ questionContent }: { questionContent: number[] }) => {
+  const arrayMax = Math.max(...questionContent);
   return (
     <Grid container sx={{ position: "relative", justifyContent: "center" }}>
       {questionContent?.map((value: number, index: number) => (
-        <Grid item key={index} sx={{ height: "25vh", width: "8vw" }} md={1} sm={0}>
-          <Box
+        <Grid
+          item
+          container
+          key={index}
+          xs={1.25}
+          sm={1.5}
+          md={1}
+          sx={{ height: "30vh", pl: 1, pr: 1, justifyContent: "center" }}
+        >
+          <Grid
+            item
             sx={{
-              height: `${value * 3}vh`,
-              backgroundColor: "#036bfc",
+              height: `${(value * 100) / arrayMax}%`,
+              backgroundColor: "gray",
               color: "white",
               position: "absolute",
               bottom: "0",
               borderRadius: "5px 5px 0px 0px",
               textAlign: "center",
             }}
+            minWidth="5vw"
           >
-            <Typography variant="h4" sx={{ width: "4vw" }}>{`${value}`}</Typography>
-          </Box>
+            <Typography variant="h3">{`${value}`}</Typography>
+          </Grid>
         </Grid>
       ))}
     </Grid>

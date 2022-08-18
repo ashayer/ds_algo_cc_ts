@@ -1,8 +1,6 @@
 import React from "react";
 import { Grid, Typography, Box } from "@mui/material";
 
-
-
 const StepLabels = ({ varLabelArray, idx }: StepLabelsProps) => {
   const indexArray = varLabelArray?.filter((o) => o.index === idx);
   return (
@@ -16,12 +14,7 @@ const StepLabels = ({ varLabelArray, idx }: StepLabelsProps) => {
   );
 };
 
-const ArrayBars = ({
-  sortHistoryArray,
-  step,
-  varLabelArray,
-  arrayMax,
-}: ArrayBarsProps) => {
+const ArrayBars = ({ sortHistoryArray, step, varLabelArray, arrayMax }: ArrayBarsProps) => {
   return (
     <Grid
       container
