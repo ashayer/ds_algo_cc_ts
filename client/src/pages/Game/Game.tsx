@@ -33,12 +33,7 @@ const Game = () => {
     <Grid item container xs={10} sx={{ marginInline: "auto" }}>
       <GameQuestionText questionDisplay={questionDisplay} />
       <GameQuestionContent questionDisplay={questionDisplay} />
-      <Grid item>
-        <GameQuestionAnswerChoice questionDisplay={questionDisplay} />
-      </Grid>
-      <Button variant="outlined" onClick={onGameEnd}>
-        END GAME
-      </Button>
+      <GameQuestionAnswerChoice questionDisplay={questionDisplay} />
     </Grid>
   ) : (
     <>
