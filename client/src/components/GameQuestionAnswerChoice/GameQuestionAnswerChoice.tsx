@@ -23,7 +23,7 @@ const ArrayBarsAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[]
                 transition: "all 0.2s ease",
               }}
             >
-              {answer.answerContent.map((value: number, index: number) => (
+              {answer.answerContent?.map((value: number, index: number) => (
                 <Grid item key={index} sx={{ height: "20vh", width: "4vw" }}>
                   <Box
                     sx={{
@@ -80,55 +80,20 @@ const TextAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[] }) =
   );
 };
 
-const GameQuestionAnswerChoice = ({
-  questionInfo,
-  questionDisplay,
-}: {
-  questionInfo: GameQuestionInfo;
-  questionDisplay: GameDisplayInfo;
-}) => {
-  switch (questionInfo.qType) {
-    case "STATE-AFTER-SWAPS":
+const GameQuestionAnswerChoice = ({ questionDisplay }: { questionDisplay: GameDisplayInfo }) => {
+  switch (questionDisplay.contentType) {
+    case "TEXT":
+      return <TextAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />;
+    case "CODE":
+      return <TextAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />;
+    case "ARRAY-BARS":
       return (
         <ArrayBarsAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />
       );
-    case "TIME-COMPLEXITY-DIRECT":
-      return (
-        <>
-          {questionDisplay.answerChoices && (
-            <TextAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />
-          )}
-        </>
-      );
-
-    case "SPACE-COMPLEXITY":
-      return (
-        <>
-          {questionDisplay.answerChoices && (
-            <TextAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />
-          )}
-        </>
-      );
-    case "CHOOSE-PSEUDOCODE":
-      return (
-        <>
-          {questionDisplay.answerChoices && (
-            <TextAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />
-          )}
-        </>
-      );
-    case "TIME-COMPLEXITY-FROM-ARRAY":
-      return (
-        <>
-          {questionDisplay.answerChoices && (
-            <TextAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />
-          )}
-        </>
-      );
-    case "DRAG-CODE":
-      return <>{!questionDisplay.answerChoices && <Button>Check</Button>}</>;
-    case "DRAG-ARRAY-BARS":
-      return <>{!questionDisplay.answerChoices && <Button>Check</Button>}</>;
+    case "DRAGGABLE-CODE":
+      return <Button>Check</Button>;
+    case "DRAGGABLE-ARRAY-BARS":
+      return <Button>Check</Button>;
     default:
       return <div>Error</div>;
   }

@@ -68,6 +68,7 @@ function insertionChooseCode() {
     answerChoices,
     content: insertionPseudo,
     question: "Fill in the missing pseudo-code of Insertion Sort",
+    contentType: "CODE",
   };
 
   return gameDisplayObject;

@@ -102,6 +102,7 @@ function insertionStateAfterSwap() {
     answerChoices,
     content: sortedArrayObject.arrayUnsorted,
     question: `Using insertion sort, what is the state of the array after ${correctSwapNumber} swaps`,
+    contentType: "ARRAY-BARS",
   };
 
   return gameDisplayObject;

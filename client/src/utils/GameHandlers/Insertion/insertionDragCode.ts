@@ -33,6 +33,7 @@ function insertionDragCode() {
   const gameDisplayObject: GameDisplayInfo = {
     answerChoices: false,
     content: pseudoCodeStringArray,
+    contentType: "DRAGGABLE-CODE",
     question: "Move pseudo-code into correct order for Insertion Sort",
   };
 

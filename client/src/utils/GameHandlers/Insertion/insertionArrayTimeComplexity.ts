@@ -25,6 +25,7 @@ const createBestCase = () => {
   const gameDisplayObject: GameDisplayInfo = {
     answerChoices,
     content: [2, 3, 5, 6, 7, 8],
+    contentType: "ARRAY-BARS",
     question: "What is the time complexity using Insertion Sort to sort the array below?",
   };
 
@@ -45,6 +46,7 @@ const createWorstCase = () => {
   const gameDisplayObject: GameDisplayInfo = {
     answerChoices,
     content: shuffledArray,
+    contentType: "ARRAY-BARS",
     question: "What is the time complexity using Insertion Sort to sort the array below?",
   };
 

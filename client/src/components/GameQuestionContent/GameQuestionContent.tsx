@@ -134,27 +134,17 @@ const PseudoCodeContent = ({ questionContent }: { questionContent: string }) => 
   return <CodeBlock hoveredLine={[]} code={questionContent} startingLineNumber={1} />;
 };
 
-const GameQuestionContent = ({
-  questionInfo,
-  questionDisplay,
-}: {
-  questionInfo: GameQuestionInfo;
-  questionDisplay: GameDisplayInfo;
-}) => {
-  switch (questionInfo.qType) {
-    case "STATE-AFTER-SWAPS":
-      return <ArrayBarsContent questionContent={questionDisplay.content as number[]} />;
-    case "TIME-COMPLEXITY-DIRECT":
+const GameQuestionContent = ({ questionDisplay }: { questionDisplay: GameDisplayInfo }) => {
+  switch (questionDisplay.contentType) {
+    case "TEXT":
       return <TextContent questionContent={questionDisplay.content as string} />;
-    case "SPACE-COMPLEXITY":
-      return <TextContent questionContent={questionDisplay.content as string} />;
-    case "CHOOSE-PSEUDOCODE":
+    case "CODE":
       return <PseudoCodeContent questionContent={questionDisplay.content as string} />;
-    case "TIME-COMPLEXITY-FROM-ARRAY":
+    case "ARRAY-BARS":
       return <ArrayBarsContent questionContent={questionDisplay.content as number[]} />;
-    case "DRAG-CODE":
+    case "DRAGGABLE-CODE":
       return <DragCode questionContent={questionDisplay.content as DragArrayType[]} />;
-    case "DRAG-ARRAY-BARS":
+    case "DRAGGABLE-ARRAY-BARS":
       return <DragBars questionContent={questionDisplay.content as DragArrayType[]} />;
     default:
       return <div>Error</div>;

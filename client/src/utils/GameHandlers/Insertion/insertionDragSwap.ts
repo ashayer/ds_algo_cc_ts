@@ -68,6 +68,7 @@ function insertionDragSwap() {
   const gameDisplayObject: GameDisplayInfo = {
     answerChoices: false,
     content: originalObject,
+    contentType: "DRAGGABLE-ARRAY-BARS",
     question: `Using Insertion sort move the array into the state after ${correctSwapNumber} swaps`,
   };
 

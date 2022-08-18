@@ -14,6 +14,7 @@ function insertionSpaceComplexity() {
     answerChoices,
     content: "Insertion Sort",
     question: "What is the space complexity of the algorithm below?",
+    contentType: "TEXT",
   };
 
   return gameDisplayObject;

@@ -27,6 +27,7 @@ const insertionSortHandler = (gameInfo: GameQuestionInfo) => {
         answerChoices: false,
         content: "",
         question: "Something went wrong",
+        contentType: "",
       };
       return gameDisplayObject;
   }
