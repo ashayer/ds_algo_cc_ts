@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { Grid, Button, Container, Paper, Box } from "@mui/material";
+import { useState, useEffect, useCallback } from "react";
+import { Grid, Button } from "@mui/material";
 import gameQuestionList from "../../utils/gameQuestionList";
 import gameHandler from "../../utils/GameHandlers/gameHandler";
 import GameQuestionAnswerChoice from "../../components/GameQuestionAnswerChoice/GameQuestionAnswerChoice";
@@ -8,41 +8,38 @@ import GameQuestionText from "../../components/GameQuestionText/GameQuestionText
 
 const Game = () => {
   const [gameStarted, setGameStarted] = useState(false);
-  const questionInfo = useRef<GameQuestionInfo>(gameQuestionList[0]);
-  const questionDisplay = useRef<GameDisplayInfo>();
+  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[0]);
+  const [questionDisplay, setQuestionDisplay] = useState<GameDisplayInfo>();
   const [counter, setCounter] = useState<number>(0);
-  const [timer, setTimer] = useState<number>(0);
 
   const onGameStart = () => {
     const randomIndex = Math.floor(Math.random() * 7);
-    questionInfo.current = gameQuestionList[randomIndex];
-    questionDisplay.current = gameHandler(questionInfo.current);
-    setTimer(questionInfo.current.qTimer);
+    setQuestionInfo(gameQuestionList[randomIndex]);
     setGameStarted(true);
   };
   const onGameEnd = () => {
     setGameStarted(false);
   };
 
-  const generateNextQuestion = () => {
+  const generateNextQuestion = useCallback(() => {
     const randomIndex = Math.floor(Math.random() * 7);
-    questionInfo.current = gameQuestionList[randomIndex];
-    questionDisplay.current = gameHandler(questionInfo.current);
+    setQuestionInfo(gameQuestionList[randomIndex]);
     setCounter((prevCounter) => prevCounter + 1);
-    setTimer(questionInfo.current.qTimer);
-  };
-  return gameStarted && questionDisplay.current ? (
+  }, []);
+
+  useEffect(() => {
+    setQuestionDisplay(gameHandler(questionInfo));
+  }, [questionInfo]);
+  return gameStarted && questionDisplay ? (
     <Grid container>
-      {counter}
-      <Button onClick={() => generateNextQuestion()}>ASDASDASD</Button>
       <Grid item>
-        <GameQuestionText questionDisplay={questionDisplay.current} />
+        <GameQuestionText questionDisplay={questionDisplay} />
       </Grid>
       <Grid item>
-        <GameQuestionContent questionDisplay={questionDisplay.current} />
+        <GameQuestionContent questionDisplay={questionDisplay} />
       </Grid>
       <Grid item>
-        <GameQuestionAnswerChoice questionDisplay={questionDisplay.current} />
+        <GameQuestionAnswerChoice questionDisplay={questionDisplay} />
       </Grid>
       <Button variant="outlined" onClick={onGameEnd}>
         END GAME

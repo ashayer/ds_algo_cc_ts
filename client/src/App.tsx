@@ -11,7 +11,6 @@ import AlgoReading from "./pages/AlgoReading/AlgoReading";
 import StructureReading from "./pages/StructureReading/StructureReading";
 import StructureSandbox from "./pages/StructureSandbox/StructureSandbox";
 import Game from "./pages/Game/Game";
-import GameTemp from "./pages/Game/GameTemp";
 
 function App() {
   return (
@@ -28,8 +27,6 @@ function App() {
         <Route path="/structurereading" element={<StructureReading />} />
         <Route path="/structuresandbox" element={<StructureSandbox />} />
         <Route path="/game" element={<Game />} />
-        <Route path="/gametemp" element={<GameTemp />} />
-
         {/* <Route path="/home" element={<Home />} />
         <Route path="*" element={<Error />} /> */}
       </Routes>

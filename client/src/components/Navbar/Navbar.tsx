@@ -25,7 +25,7 @@ const Navbar = () => {
       <Grid item sx={{ flexGrow: 1 }}>
         <Link component="button" underline="none" onClick={() => navigate("/home")}>
           <Typography variant="h2">
-            <strong>text</strong>
+            <strong>DS ALGO</strong>
           </Typography>
         </Link>
       </Grid>
@@ -36,8 +36,7 @@ const Navbar = () => {
             sx={{
               ...styles.navBarIsUserBox,
             }}
-          >
-          </Grid>
+          ></Grid>
           <Grid item>
             <Button variant="contained" onClick={() => logoutUser()}>
               LOG OUT
