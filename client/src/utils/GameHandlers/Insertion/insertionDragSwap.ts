@@ -69,6 +69,7 @@ function insertionDragSwap() {
     answerChoices: false,
     content: originalObject,
     contentType: "DRAGGABLE-ARRAY-BARS",
+    answerType: "CHECK-ANSWER",
     question: `Using Insertion sort move the array into the state after ${correctSwapNumber} swaps`,
   };
 

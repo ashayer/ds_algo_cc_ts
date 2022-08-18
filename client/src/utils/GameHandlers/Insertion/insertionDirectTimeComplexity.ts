@@ -15,6 +15,7 @@ function insertionDirectTimeComplexity() {
     content: "Insertion Sort",
     question: "What is the time complexity of the algorithm below?",
     contentType: "TEXT",
+    answerType: "TEXT",
   };
 
   return gameDisplayObject;

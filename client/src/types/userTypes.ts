@@ -67,6 +67,7 @@ declare global {
     answerChoices: GameAnswerChoices[] | boolean;
     content: GameContentType;
     contentType: string;
+    answerType: string;
   }
 
   type GameContentType = number[] | DragArrayType[] | string[] | string;

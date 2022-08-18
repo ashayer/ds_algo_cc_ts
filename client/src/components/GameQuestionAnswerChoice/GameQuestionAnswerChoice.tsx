@@ -81,18 +81,14 @@ const TextAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[] }) =
 };
 
 const GameQuestionAnswerChoice = ({ questionDisplay }: { questionDisplay: GameDisplayInfo }) => {
-  switch (questionDisplay.contentType) {
+  switch (questionDisplay.answerType) {
     case "TEXT":
-      return <TextAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />;
-    case "CODE":
       return <TextAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />;
     case "ARRAY-BARS":
       return (
         <ArrayBarsAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />
       );
-    case "DRAGGABLE-CODE":
-      return <Button>Check</Button>;
-    case "DRAGGABLE-ARRAY-BARS":
+    case "CHECK-ANSWER":
       return <Button>Check</Button>;
     default:
       return <div>Error</div>;

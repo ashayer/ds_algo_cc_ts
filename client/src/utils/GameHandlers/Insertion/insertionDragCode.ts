@@ -34,6 +34,7 @@ function insertionDragCode() {
     answerChoices: false,
     content: pseudoCodeStringArray,
     contentType: "DRAGGABLE-CODE",
+    answerType: "CHECK-ANSWER",
     question: "Move pseudo-code into correct order for Insertion Sort",
   };
 
