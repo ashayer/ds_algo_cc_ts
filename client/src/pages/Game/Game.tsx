@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Grid, Button } from "@mui/material";
+import { Grid, Button, Container, Box } from "@mui/material";
 import gameQuestionList from "../../utils/gameQuestionList";
 import gameHandler from "../../utils/GameHandlers/gameHandler";
 import GameQuestionAnswerChoice from "../../components/GameQuestionAnswerChoice/GameQuestionAnswerChoice";
@@ -7,10 +7,9 @@ import GameQuestionContent from "../../components/GameQuestionContent/GameQuesti
 import GameQuestionText from "../../components/GameQuestionText/GameQuestionText";
 
 const Game = () => {
-  const [gameStarted, setGameStarted] = useState(false);
+  const [gameStarted, setGameStarted] = useState(true);
   const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[0]);
   const [questionDisplay, setQuestionDisplay] = useState<GameDisplayInfo>();
-  const [counter, setCounter] = useState<number>(0);
 
   const onGameStart = () => {
     const randomIndex = Math.floor(Math.random() * 7);
@@ -24,20 +23,16 @@ const Game = () => {
   const generateNextQuestion = useCallback(() => {
     const randomIndex = Math.floor(Math.random() * 7);
     setQuestionInfo(gameQuestionList[randomIndex]);
-    setCounter((prevCounter) => prevCounter + 1);
   }, []);
 
   useEffect(() => {
     setQuestionDisplay(gameHandler(questionInfo));
   }, [questionInfo]);
+
   return gameStarted && questionDisplay ? (
-    <Grid container>
-      <Grid item>
-        <GameQuestionText questionDisplay={questionDisplay} />
-      </Grid>
-      <Grid item>
-        <GameQuestionContent questionDisplay={questionDisplay} />
-      </Grid>
+    <Grid item container xs={10} sx={{ marginInline: "auto", border: "1px solid red" }}>
+      <GameQuestionText questionDisplay={questionDisplay} />
+      <GameQuestionContent questionDisplay={questionDisplay} />
       <Grid item>
         <GameQuestionAnswerChoice questionDisplay={questionDisplay} />
       </Grid>
@@ -47,9 +42,11 @@ const Game = () => {
     </Grid>
   ) : (
     <>
-      <Button variant="outlined" onClick={onGameStart}>
-        START GAME
-      </Button>
+      <Grid item container xs={10} sx={{ mt: 5, justifyContent: "center", marginInline: "auto" }}>
+        <Button fullWidth variant="outlined" onClick={onGameStart}>
+          START GAME
+        </Button>
+      </Grid>
     </>
   );
 };
