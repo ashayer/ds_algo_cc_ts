@@ -141,8 +141,6 @@ const DragCodeAnswer = ({
     const isOrdered = checkLineOrder();
     if (isOrdered) {
       answeredCorrect();
-    } else {
-      console.log("wrong");
     }
   };
 

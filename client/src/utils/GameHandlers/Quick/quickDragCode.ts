@@ -69,7 +69,7 @@ function generateDragCode() {
     content: Math.random() > 0.5 ? quickSortStringArray : partitionStringArray,
     contentType: "DRAGGABLE-CODE",
     answerType: "CHECK-ANSWER",
-    question: "Move pseudo-code into correct order for Merge Sort",
+    question: "Move pseudo-code into correct order for Quick Sort",
   };
 
   return gameDisplayObject;

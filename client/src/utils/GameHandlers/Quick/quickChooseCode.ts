@@ -165,7 +165,7 @@ function generateCode() {
   const gameDisplayObject: GameDisplayInfo = {
     answerChoices: shuffle(answerChoices),
     content: quickSortPseudo,
-    question: "Fill in the missing pseudo-code of Merge Sort Partition",
+    question: "Fill in the missing pseudo-code of Quick Sort",
     contentType: "CODE",
     answerType: "TEXT",
   };

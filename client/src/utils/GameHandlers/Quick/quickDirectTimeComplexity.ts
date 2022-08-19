@@ -12,7 +12,7 @@ function quickDirectTimeComplexity() {
 
   const gameDisplayObject: GameDisplayInfo = {
     answerChoices: shuffle(answerChoices),
-    content: "Merge Sort",
+    content: "Quick Sort",
     question: "What is the time complexity of the algorithm below?",
     contentType: "TEXT",
     answerType: "TEXT",

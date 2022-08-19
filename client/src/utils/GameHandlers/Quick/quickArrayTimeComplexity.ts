@@ -31,7 +31,7 @@ const createBestCase = () => {
     content: shuffledArray,
     contentType: "ARRAY-BARS",
     answerType: "TEXT",
-    question: "What is the time complexity using Merge Sort to sort the array below?",
+    question: "What is the time complexity using Quick Sort to sort the array below?",
   };
   return gameDisplayObject;
 };
@@ -54,7 +54,7 @@ const createWorstCase = () => {
     content: sortedArray,
     contentType: "ARRAY-BARS",
     answerType: "TEXT",
-    question: "What is the time complexity using Merge Sort to sort the array below?",
+    question: "What is the time complexity using Quick Sort to sort the array below?",
   };
 
   return gameDisplayObject;

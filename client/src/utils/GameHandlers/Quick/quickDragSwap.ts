@@ -135,7 +135,7 @@ function generateDragSwap() {
     content: originalObject,
     contentType: "DRAGGABLE-ARRAY-BARS",
     answerType: "CHECK-ANSWER",
-    question: `Using Merge sort move the array into the state after ${correctSwapNumber} swaps`,
+    question: `Using Quick sort move the array into the state after ${correctSwapNumber} swaps`,
   };
 
   return gameDisplayObject;

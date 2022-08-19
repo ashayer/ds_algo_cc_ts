@@ -1,5 +1,7 @@
 import insertionSortHandler from "./Insertion/insertionSortHandler";
 import selectionSortHandler from "./Selection/selectionSortHandler";
+import mergeSortHandler from "./Merge/mergeSortHandler";
+import quickSortHandler from "./Quick/quickSortHandler";
 
 const gameHandler = (gameInfo: GameQuestionInfo) => {
   switch (gameInfo.qTopic) {
@@ -8,9 +10,9 @@ const gameHandler = (gameInfo: GameQuestionInfo) => {
     case "SELECTION":
       return selectionSortHandler(gameInfo);
     case "MERGE":
-      return insertionSortHandler(gameInfo);
+      return mergeSortHandler(gameInfo);
     case "QUICK":
-      return insertionSortHandler(gameInfo);
+      return quickSortHandler(gameInfo);
     default:
       return insertionSortHandler(gameInfo);
   }

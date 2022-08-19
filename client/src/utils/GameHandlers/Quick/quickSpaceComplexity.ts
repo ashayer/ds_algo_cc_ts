@@ -11,7 +11,7 @@ function generateSpace() {
 
   const gameDisplayObject: GameDisplayInfo = {
     answerChoices: shuffle(answerChoices),
-    content: "Merge Sort",
+    content: "Quick Sort",
     question: "What is the space complexity of the algorithm below?",
     contentType: "TEXT",
     answerType: "TEXT",
