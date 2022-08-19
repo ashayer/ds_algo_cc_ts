@@ -38,7 +38,7 @@ const Game = () => {
   const questionStartTime = new Date();
 
   const onGameStart = () => {
-    const randomIndex = Math.floor(Math.random() * 1);
+    const randomIndex = Math.floor(Math.random() * gameQuestionList.length);
     setQuestionInfo(gameQuestionList[randomIndex]);
     setGameStarted(true);
     setGameHasStarted(true);
@@ -46,20 +46,23 @@ const Game = () => {
 
   const calculateUpdate = () => {
     const totalQuestions = sessionGameStats.numCorrect + sessionGameStats.numWrong;
-    const averageResponseTime = Math.floor(sessionGameStats.responseTime / totalQuestions);
-    const lifeTimeAverage = Math.floor(
-      (gameStats.responseTime + averageResponseTime) / gameStats.gamesPlayed,
-    );
-    const nextState = produce(gameStats, (draftState) => {
-      draftState.gamesPlayed += 1;
-      draftState.points += sessionGameStats.points;
-      draftState.numCorrect += sessionGameStats.numCorrect;
-      draftState.numWrong += sessionGameStats.numWrong;
-      draftState.responseTime = lifeTimeAverage;
-      draftState.streak = highestStreak;
-    });
-    setGameStats(nextState);
-    updateUserPoints(userId, nextState);
+    if (totalQuestions > 0) {
+      let averageResponseTime = Math.floor(sessionGameStats.responseTime / totalQuestions);
+      const lifeTimeAverage = Math.floor(
+        (gameStats.responseTime + averageResponseTime) / gameStats.gamesPlayed,
+      );
+      console.log(averageResponseTime);
+      const nextState = produce(gameStats, (draftState) => {
+        draftState.gamesPlayed += 1;
+        draftState.points += sessionGameStats.points;
+        draftState.numCorrect += sessionGameStats.numCorrect;
+        draftState.numWrong += sessionGameStats.numWrong;
+        draftState.responseTime = lifeTimeAverage;
+        draftState.streak = highestStreak;
+      });
+      setGameStats(nextState);
+      updateUserPoints(userId, nextState);
+    }
   };
 
   const isHighestStreak = () => {
@@ -84,7 +87,7 @@ const Game = () => {
   };
 
   const generateNextQuestion = useCallback(() => {
-    const randomIndex = Math.floor(Math.random() * 1);
+    const randomIndex = Math.floor(Math.random() * gameQuestionList.length);
     setQuestionInfo(gameQuestionList[randomIndex]);
   }, []);
 
