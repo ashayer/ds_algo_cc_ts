@@ -33,4 +33,5 @@ const insertionSortHandler = (gameInfo: GameQuestionInfo) => {
       return gameDisplayObject;
   }
 };
+
 export default insertionSortHandler;

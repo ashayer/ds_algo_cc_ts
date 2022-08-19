@@ -1,6 +1,6 @@
 import { shuffle } from "d3-array";
 
-function generateDragCode() {
+function selectionDragCode() {
   const Line1 = "for(int i = 0; i < arr.len; i += 1)\n";
   const Line2 = "int min = i\n";
   const Line3 = "for(int j = i+1; j < arr.len; j += 1)\n";
@@ -35,13 +35,15 @@ function generateDragCode() {
     },
   ]);
 
-  const answers = {
-    right: "Right",
-    wrong: ["Wrong, Wrong", "Wrong"],
-    original: pseudoCodeStringArray,
+  const gameDisplayObject: GameDisplayInfo = {
+    answerChoices: false,
+    content: pseudoCodeStringArray,
+    contentType: "DRAGGABLE-CODE",
+    answerType: "CHECK-ANSWER",
+    question: "Move pseudo-code into correct order for Selection Sort",
   };
 
-  return answers;
+  return gameDisplayObject;
 }
 
-export default generateDragCode;
+export default selectionDragCode;

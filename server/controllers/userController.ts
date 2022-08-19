@@ -13,7 +13,6 @@ interface GameStats {
 export const updateGameStats = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
   const { gameStats }: { gameStats: GameStats } = req.body;
-  console.log(gameStats);
   try {
     const user = await User.findByIdAndUpdate(id, {
       gameStats,
