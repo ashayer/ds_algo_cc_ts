@@ -39,7 +39,7 @@ const AlgoReading = () => {
   };
 
   return (
-    <Box>
+    <Box maxWidth="xl" sx={{ marginInline: "auto", mt: 2 }}>
       {isSuccess && !isLoading && sectionArray.length > 0 && (
         <>
           <SortingAlgorithmAccordion
