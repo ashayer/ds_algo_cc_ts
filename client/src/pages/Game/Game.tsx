@@ -13,7 +13,6 @@ import useAuthStore from "../../stores/authStore";
 import axios from "axios";
 
 const updateUserPoints = async (id: string, gameStats: GameStats) => {
-  console.log(gameStats);
   if (gameStats) {
     try {
       const response = await axios.patch(`/api/user/updateGameStats/${id}`, { gameStats });
@@ -51,18 +50,22 @@ const Game = () => {
     const lifeTimeAverage = Math.floor(
       (gameStats.responseTime + averageResponseTime) / gameStats.gamesPlayed,
     );
-    console.log(gameStats, sessionGameStats);
     const nextState = produce(gameStats, (draftState) => {
       draftState.gamesPlayed += 1;
       draftState.points += sessionGameStats.points;
       draftState.numCorrect += sessionGameStats.numCorrect;
       draftState.numWrong += sessionGameStats.numWrong;
       draftState.responseTime = lifeTimeAverage;
-      draftState.streak = 12;
+      draftState.streak = highestStreak;
     });
-    console.log(nextState);
     setGameStats(nextState);
     updateUserPoints(userId, nextState);
+  };
+
+  const isHighestStreak = () => {
+    if (sessionGameStats.streak > highestStreak) {
+      highestStreak = sessionGameStats.streak;
+    }
   };
 
   const onGameEnd = () => {
@@ -74,6 +77,7 @@ const Game = () => {
       draftState.responseTime = 0;
       draftState.numWrong = 0;
     });
+    highestStreak = 0;
     setSessionGameStats(nextState);
     setGameHasStarted(false);
     setGameStarted(false);
@@ -104,6 +108,7 @@ const Game = () => {
       draftState.points += updatePointsBy;
       draftState.responseTime += questionEndTime.getTime() - questionStartTime.getTime();
     });
+    isHighestStreak();
     setSessionGameStats(nextState);
     generateNextQuestion();
   };
