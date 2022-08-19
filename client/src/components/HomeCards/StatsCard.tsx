@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-import React from "react";
 import {
   Typography,
   Button,
@@ -29,13 +27,14 @@ const StatsCard = () => {
   const navigate = useNavigate();
   const username = useAuthStore((state) => state.username);
   const id = useAuthStore((state) => state.id);
+  const setGameStats = useUserStore((state) => state.setGameStats);
 
   const {
     data: gameStats,
     isLoading,
     isSuccess,
     isError,
-  } = useQuery(["user-stats"], () => getUserStats(id));
+  } = useQuery(["user-stats"], () => getUserStats(id), { onSuccess: setGameStats });
 
   if (isLoading) {
     return <div>Loading...</div>;

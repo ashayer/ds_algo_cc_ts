@@ -7,6 +7,13 @@ declare global {
     responseTime: number;
     streak: number;
   }
+  interface SessionGameStats {
+    points: number;
+    numCorrect: number;
+    numWrong: number;
+    responseTime: number;
+    streak: number;
+  }
   interface SortHistoryElement {
     value: number;
     color: string;

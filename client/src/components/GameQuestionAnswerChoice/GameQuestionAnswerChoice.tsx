@@ -1,7 +1,16 @@
 import { Grid, Box, Typography, ButtonBase, Button } from "@mui/material";
 
-const ArrayBarsAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[] }) => {
+const ArrayBarsAnswer = ({
+  answerChoices,
+  answeredWrong,
+  answeredCorrect,
+}: {
+  answerChoices: GameAnswerChoices[];
+  answeredWrong: () => void;
+  answeredCorrect: () => void;
+}) => {
   const arrayMax = Math.max(...(answerChoices[0].answerContent as number[]));
+  console.log(answerChoices);
   return (
     <Grid container sx={{ justifyContent: "center" }}>
       {answerChoices?.map((answer: any, index: number) => (
@@ -24,7 +33,9 @@ const ArrayBarsAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[]
                 backgroundColor: "lightgray",
               },
               transition: "all 0.1s ease",
+              cursor: "pointer",
             }}
+            onClick={answer.isCorrect ? answeredCorrect : answeredWrong}
           >
             {answer.answerContent?.map((value: number, index: number) => (
               <Grid
@@ -60,7 +71,15 @@ const ArrayBarsAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[]
   );
 };
 
-const TextAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[] }) => {
+const TextAnswer = ({
+  answerChoices,
+  answeredWrong,
+  answeredCorrect,
+}: {
+  answerChoices: GameAnswerChoices[];
+  answeredWrong: () => void;
+  answeredCorrect: () => void;
+}) => {
   return (
     <Grid container sx={{ justifyContent: "center" }}>
       {answerChoices?.map((answer: any, index: number) => (
@@ -73,13 +92,18 @@ const TextAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[] }) =
           sx={{
             border: "1px solid black",
             borderRadius: "5px",
-            transition: "all 0.1s ease",
             height: "15vh",
             justifyContent: "center",
             textAlign: "center",
             alignItems: "center",
             m: 2,
+            cursor: "pointer",
+            "&:hover": {
+              backgroundColor: "lightgray",
+            },
+            transition: "all 0.1s ease",
           }}
+          onClick={answer.isCorrect ? answeredCorrect : answeredWrong}
         >
           <Grid item>
             <Typography variant="h3" fontWeight="bold">
@@ -92,10 +116,17 @@ const TextAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[] }) =
   );
 };
 
-const DragCodeAnswer = ({ questionContent }: { questionContent: DragArrayType[] }) => {
+const DragCodeAnswer = ({
+  questionContent,
+  answeredWrong,
+  answeredCorrect,
+}: {
+  questionContent: DragArrayType[];
+  answeredWrong: () => void;
+  answeredCorrect: () => void;
+}) => {
   const checkLineOrder = () => {
-    console.log(questionContent);
-    const arr = [];
+    const arr: number[] = [];
     for (let i = 0; i < questionContent.length; i += 1) {
       arr.push(questionContent[i].correctIdx);
     }
@@ -110,7 +141,7 @@ const DragCodeAnswer = ({ questionContent }: { questionContent: DragArrayType[] 
   const isInOrder = () => {
     const isOrdered = checkLineOrder();
     if (isOrdered) {
-      console.log("isOrdered");
+      answeredCorrect();
     } else {
       console.log("wrong");
     }
@@ -127,16 +158,40 @@ const DragCodeAnswer = ({ questionContent }: { questionContent: DragArrayType[] 
   );
 };
 
-const GameQuestionAnswerChoice = ({ questionDisplay }: { questionDisplay: GameDisplayInfo }) => {
+const GameQuestionAnswerChoice = ({
+  questionDisplay,
+  answeredWrong,
+  answeredCorrect,
+}: {
+  questionDisplay: GameDisplayInfo;
+  answeredWrong: () => void;
+  answeredCorrect: () => void;
+}) => {
   switch (questionDisplay.answerType) {
     case "TEXT":
-      return <TextAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />;
+      return (
+        <TextAnswer
+          answeredWrong={answeredWrong}
+          answeredCorrect={answeredCorrect}
+          answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]}
+        />
+      );
     case "ARRAY-BARS":
       return (
-        <ArrayBarsAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />
+        <ArrayBarsAnswer
+          answeredWrong={answeredWrong}
+          answeredCorrect={answeredCorrect}
+          answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]}
+        />
       );
     case "CHECK-ANSWER":
-      return <DragCodeAnswer questionContent={questionDisplay.content as DragArrayType[]} />;
+      return (
+        <DragCodeAnswer
+          answeredWrong={answeredWrong}
+          answeredCorrect={answeredCorrect}
+          questionContent={questionDisplay.content as DragArrayType[]}
+        />
+      );
     default:
       return <div>Error</div>;
   }
