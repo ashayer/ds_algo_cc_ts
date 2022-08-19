@@ -271,7 +271,6 @@ const GameQuestionContent = ({
   questionDisplay: GameDisplayInfo;
   setQuestionDisplay: (displayInfo: GameDisplayInfo) => void;
 }) => {
-  const [originalContent, setOriginalContent] = useState(questionDisplay);
   switch (questionDisplay.contentType) {
     case "TEXT":
       return <TextContent questionContent={questionDisplay.content as string} />;
@@ -281,37 +280,19 @@ const GameQuestionContent = ({
       return <ArrayBarsContent questionContent={questionDisplay.content as number[]} />;
     case "DRAGGABLE-CODE":
       return (
-        <>
-          <DragCode
-            questionContent={questionDisplay.content as DragArrayType[]}
-            questionDisplay={questionDisplay}
-            setQuestionDisplay={setQuestionDisplay}
-          />
-          <Button
-            variant="contained"
-            onClick={() => setQuestionDisplay(originalContent)}
-            sx={{ marginInline: "auto" }}
-          >
-            RESET ARRAY
-          </Button>
-        </>
+        <DragCode
+          questionContent={questionDisplay.content as DragArrayType[]}
+          questionDisplay={questionDisplay}
+          setQuestionDisplay={setQuestionDisplay}
+        />
       );
     case "DRAGGABLE-ARRAY-BARS":
       return (
-        <>
-          <DragBars
-            questionContent={questionDisplay.content as DragArrayType[]}
-            questionDisplay={questionDisplay}
-            setQuestionDisplay={setQuestionDisplay}
-          />
-          <Button
-            variant="contained"
-            onClick={() => setQuestionDisplay(originalContent)}
-            sx={{ marginInline: "auto", mt: 2 }}
-          >
-            RESET ARRAY
-          </Button>
-        </>
+        <DragBars
+          questionContent={questionDisplay.content as DragArrayType[]}
+          questionDisplay={questionDisplay}
+          setQuestionDisplay={setQuestionDisplay}
+        />
       );
     default:
       return <div>Error</div>;

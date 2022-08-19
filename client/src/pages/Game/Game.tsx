@@ -11,7 +11,7 @@ import produce from "immer";
 
 const Game = () => {
   const [gameStarted, setGameStarted] = useState(true);
-  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[6]);
+  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[5]);
   const [questionDisplay, setQuestionDisplay] = useState<GameDisplayInfo>();
   const sessionGameStats = useUserStore((state) => state.sessionGameStats);
   const setSessionGameStats = useUserStore((state) => state.setSessionGameStats);
