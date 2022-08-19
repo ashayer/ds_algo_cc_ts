@@ -14,6 +14,7 @@ const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => 
       container
       sx={{
         justifyContent: "center",
+        mt: 2,
       }}
     >
       <DragDropContext onDragEnd={() => console.log("asd")}>
@@ -22,7 +23,7 @@ const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => 
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              style={{ justifyContent: "center", border: "1px solid black" }}
+              style={{ justifyContent: "center" }}
             >
               {questionContent?.map((value: DragArrayType, idx: number) => (
                 <Draggable draggableId={idx.toString()} index={idx} key={idx}>
@@ -57,23 +58,6 @@ const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => 
     </Grid>
   );
 };
-{
-  /* <Typography
-{...provided.draggableProps}
-{...provided.dragHandleProps}
-ref={provided.innerRef}
-variant="h4"
-sx={{
-  "&:hover": {
-    color: "red",
-  },
-  p: 1,
-}}
->
-{`${value.lineContent}`} 
-</Typography>
-*/
-}
 const DragBars = ({ questionContent }: { questionContent: DragArrayType[] }) => {
   return (
     <DragDropContext onDragEnd={() => console.log("asd")}>

@@ -92,6 +92,18 @@ const TextAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[] }) =
   );
 };
 
+const DragCodeAnswer = () => {
+  return (
+    <Grid item sx={{ justifyContent: "center", marginInline: "auto", mt: 2 }}>
+      <Button variant="contained" color="warning" sx={{ p: 5 }}>
+        <Typography variant="h3" fontWeight="bold">
+          Check Order
+        </Typography>
+      </Button>
+    </Grid>
+  );
+};
+
 const GameQuestionAnswerChoice = ({ questionDisplay }: { questionDisplay: GameDisplayInfo }) => {
   switch (questionDisplay.answerType) {
     case "TEXT":
@@ -101,7 +113,7 @@ const GameQuestionAnswerChoice = ({ questionDisplay }: { questionDisplay: GameDi
         <ArrayBarsAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />
       );
     case "CHECK-ANSWER":
-      return <Button>Check</Button>;
+      return <DragCodeAnswer />;
     default:
       return <div>Error</div>;
   }
