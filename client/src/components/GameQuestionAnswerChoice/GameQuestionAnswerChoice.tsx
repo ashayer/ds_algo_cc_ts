@@ -62,34 +62,33 @@ const ArrayBarsAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[]
 
 const TextAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[] }) => {
   return (
-    <>
+    <Grid container sx={{ justifyContent: "center" }}>
       {answerChoices?.map((answer: any, index: number) => (
         <Grid
           item
+          container
           key={index}
           xs={12}
           md={5}
           sx={{
-            textAlign: "center",
-            margin: "1vw",
             border: "1px solid black",
-            "&:hover": {
-              backgroundColor: "#fa382a",
-            },
-            transition: "all 0.2s ease",
+            borderRadius: "5px",
+            transition: "all 0.1s ease",
+            height: "15vh",
+            justifyContent: "center",
+            textAlign: "center",
+            alignItems: "center",
+            m: 2,
           }}
         >
-          <ButtonBase
-            sx={{
-              width: "40vw",
-              height: "15vh",
-            }}
-          >
-            <Typography>{answer.answerContent}</Typography>
-          </ButtonBase>
+          <Grid item>
+            <Typography variant="h3" fontWeight="bold">
+              {answer.answerContent}
+            </Typography>
+          </Grid>
         </Grid>
       ))}
-    </>
+    </Grid>
   );
 };
 

@@ -101,7 +101,7 @@ const DragBars = ({ questionContent }: { questionContent: DragArrayType[] }) => 
 const ArrayBarsContent = ({ questionContent }: { questionContent: number[] }) => {
   const arrayMax = Math.max(...questionContent);
   return (
-    <Grid container sx={{ position: "relative", justifyContent: "center" }}>
+    <Grid item container sx={{ position: "relative", justifyContent: "center" }}>
       {questionContent?.map((value: number, index: number) => (
         <Grid
           item
@@ -135,9 +135,11 @@ const ArrayBarsContent = ({ questionContent }: { questionContent: number[] }) =>
 
 const TextContent = ({ questionContent }: { questionContent: string }) => {
   return (
-    <Typography variant="h1" fontWeight="bold">
-      {questionContent}
-    </Typography>
+    <Grid item xs={12} sx={{ textAlign: "center", height: "30vh" }}>
+      <Typography variant="h1" fontWeight="bold">
+        {questionContent}
+      </Typography>
+    </Grid>
   );
 };
 
