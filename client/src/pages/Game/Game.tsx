@@ -8,27 +8,65 @@ import GameQuestionText from "../../components/GameQuestionText/GameQuestionText
 import UserStatsTable from "../../components/UserStatsTable/UserStatsTable";
 import useUserStore from "../../stores/userStore";
 import produce from "immer";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import useAuthStore from "../../stores/authStore";
+import axios from "axios";
 
+const updateUserPoints = async (id: string, gameStats: GameStats) => {
+  console.log(gameStats);
+  if (gameStats) {
+    try {
+      const response = await axios.patch(`/api/user/updateGameStats/${id}`, { gameStats });
+      return response.data;
+    } catch (error) {
+      alert("Something went wrong");
+    }
+  }
+};
+
+let highestStreak = 0;
 const Game = () => {
-  const [gameStarted, setGameStarted] = useState(true);
-  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[5]);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[0]);
   const [questionDisplay, setQuestionDisplay] = useState<GameDisplayInfo>();
   const sessionGameStats = useUserStore((state) => state.sessionGameStats);
   const setSessionGameStats = useUserStore((state) => state.setSessionGameStats);
   const setGameHasStarted = useUserStore((state) => state.setGameHasStarted);
+  const userId = useAuthStore((state) => state.id);
+  const gameStats = useUserStore((state) => state.gameStats);
+  const setGameStats = useUserStore((state) => state.setGameStats);
 
   const questionStartTime = new Date();
 
   const onGameStart = () => {
-    const randomIndex = Math.floor(Math.random() * 7);
+    const randomIndex = Math.floor(Math.random() * 1);
     setQuestionInfo(gameQuestionList[randomIndex]);
     setGameStarted(true);
     setGameHasStarted(true);
   };
+
+  const calculateUpdate = () => {
+    const totalQuestions = sessionGameStats.numCorrect + sessionGameStats.numWrong;
+    const averageResponseTime = Math.floor(sessionGameStats.responseTime / totalQuestions);
+    const lifeTimeAverage = Math.floor(
+      (gameStats.responseTime + averageResponseTime) / gameStats.gamesPlayed,
+    );
+    console.log(gameStats, sessionGameStats);
+    const nextState = produce(gameStats, (draftState) => {
+      draftState.gamesPlayed += 1;
+      draftState.points += sessionGameStats.points;
+      draftState.numCorrect += sessionGameStats.numCorrect;
+      draftState.numWrong += sessionGameStats.numWrong;
+      draftState.responseTime = lifeTimeAverage;
+      draftState.streak = 12;
+    });
+    console.log(nextState);
+    setGameStats(nextState);
+    updateUserPoints(userId, nextState);
+  };
+
   const onGameEnd = () => {
-    setGameStarted(false);
-    setGameHasStarted(false);
-    //! update database points here
+    calculateUpdate();
     const nextState = produce(sessionGameStats, (draftState) => {
       draftState.numCorrect = 0;
       draftState.streak = 0;
@@ -37,10 +75,12 @@ const Game = () => {
       draftState.numWrong = 0;
     });
     setSessionGameStats(nextState);
+    setGameHasStarted(false);
+    setGameStarted(false);
   };
 
   const generateNextQuestion = useCallback(() => {
-    const randomIndex = Math.floor(Math.random() * 7);
+    const randomIndex = Math.floor(Math.random() * 1);
     setQuestionInfo(gameQuestionList[randomIndex]);
   }, []);
 

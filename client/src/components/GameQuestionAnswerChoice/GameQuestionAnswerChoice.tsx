@@ -10,7 +10,6 @@ const ArrayBarsAnswer = ({
   answeredCorrect: () => void;
 }) => {
   const arrayMax = Math.max(...(answerChoices[0].answerContent as number[]));
-  console.log(answerChoices);
   return (
     <Grid container sx={{ justifyContent: "center" }}>
       {answerChoices?.map((answer: any, index: number) => (
