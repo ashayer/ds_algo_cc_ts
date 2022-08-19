@@ -1,12 +1,26 @@
 import { Grid, Box, Typography } from "@mui/material";
 import CodeBlock from "../CodeBlock/CodeBlock";
-import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { useState, useEffect } from "react";
 
 const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => {
   const { height, width } = useWindowDimensions();
+
+  const onDragEnd = (result: DropResult) => {
+    const { destination, source } = result;
+    if (!destination) {
+      return;
+    }
+    if (destination.index === source.index) {
+      return;
+    }
+    const newLinesArray = Array.from(questionContent);
+    newLinesArray.splice(source.index, 1);
+    newLinesArray.splice(destination.index, 0, questionContent[source.index]);
+    questionContent = newLinesArray;
+  };
 
   return (
     <Grid
@@ -17,7 +31,7 @@ const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => 
         mt: 2,
       }}
     >
-      <DragDropContext onDragEnd={() => console.log("asd")}>
+      <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="1">
           {(provided) => (
             <div
@@ -59,8 +73,21 @@ const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => 
   );
 };
 const DragBars = ({ questionContent }: { questionContent: DragArrayType[] }) => {
+  const onDragEnd = (result: DropResult) => {
+    const { destination, source } = result;
+    if (!destination) {
+      return;
+    }
+    if (destination.index === source.index) {
+      return;
+    }
+    const newLinesArray = Array.from(questionContent);
+    newLinesArray.splice(source.index, 1);
+    newLinesArray.splice(destination.index, 0, questionContent[source.index]);
+    questionContent = newLinesArray;
+  };
   return (
-    <DragDropContext onDragEnd={() => console.log("asd")}>
+    <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="1" direction="horizontal">
         {(provided) => (
           <Grid
