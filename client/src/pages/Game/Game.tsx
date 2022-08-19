@@ -10,11 +10,12 @@ import useUserStore from "../../stores/userStore";
 import produce from "immer";
 
 const Game = () => {
-  const [gameStarted, setGameStarted] = useState(true);
-  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[1]);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[0]);
   const [questionDisplay, setQuestionDisplay] = useState<GameDisplayInfo>();
   const sessionGameStats = useUserStore((state) => state.sessionGameStats);
   const setSessionGameStats = useUserStore((state) => state.setSessionGameStats);
+  const setGameHasStarted = useUserStore((state) => state.setGameHasStarted);
 
   const questionStartTime = new Date();
 
@@ -22,9 +23,20 @@ const Game = () => {
     const randomIndex = Math.floor(Math.random() * 7);
     setQuestionInfo(gameQuestionList[randomIndex]);
     setGameStarted(true);
+    setGameHasStarted(true);
   };
   const onGameEnd = () => {
     setGameStarted(false);
+    setGameHasStarted(false);
+    //! update database points here
+    const nextState = produce(sessionGameStats, (draftState) => {
+      draftState.numCorrect = 0;
+      draftState.streak = 0;
+      draftState.points = 0;
+      draftState.responseTime = 0;
+      draftState.numWrong = 0;
+    });
+    setSessionGameStats(nextState);
   };
 
   const generateNextQuestion = useCallback(() => {
@@ -70,7 +82,7 @@ const Game = () => {
   };
 
   useEffect(() => {
-    setQuestionDisplay(gameHandler(questionInfo));
+    setQuestionDisplay(gameHandler(questionInfo as GameQuestionInfo));
   }, [questionInfo]);
 
   return gameStarted && questionDisplay ? (
@@ -86,6 +98,11 @@ const Game = () => {
         answeredCorrect={answeredCorrect}
         answeredWrong={answeredWrong}
       />
+      <Grid item container xs={8} sx={{ mt: 5, justifyContent: "center", marginInline: "auto" }}>
+        <Button fullWidth variant="contained" color="error" onClick={onGameEnd}>
+          END GAME
+        </Button>
+      </Grid>
     </Grid>
   ) : (
     <>

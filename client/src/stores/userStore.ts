@@ -12,6 +12,8 @@ const store = (set: any) => ({
     streak: 0,
   } as SessionGameStats,
   setSessionGameStats: (sessionGameStats: SessionGameStats) => set({ sessionGameStats }),
+  gameHasStarted: false,
+  setGameHasStarted: (gameHasStarted: boolean) => set({ gameHasStarted }),
 });
 
 const useUserStore = create(devtools(store));

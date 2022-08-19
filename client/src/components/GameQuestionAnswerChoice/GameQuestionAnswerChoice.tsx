@@ -148,8 +148,13 @@ const DragCodeAnswer = ({
   };
 
   return (
-    <Grid item sx={{ justifyContent: "center", marginInline: "auto", mt: 2 }}>
-      <Button variant="contained" color="warning" sx={{ p: 5 }} onClick={isInOrder}>
+    <Grid item sx={{ justifyContent: "center", mt: 2, textAlign: "center" }} xs={12}>
+      <Button
+        variant="contained"
+        color="warning"
+        sx={{ paddingInline: 5, marginInline: "auto" }}
+        onClick={isInOrder}
+      >
         <Typography variant="h3" fontWeight="bold">
           Check Order
         </Typography>

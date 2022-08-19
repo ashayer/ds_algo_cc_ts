@@ -11,11 +11,14 @@ import AlgoReading from "./pages/AlgoReading/AlgoReading";
 import StructureReading from "./pages/StructureReading/StructureReading";
 import StructureSandbox from "./pages/StructureSandbox/StructureSandbox";
 import Game from "./pages/Game/Game";
+import useUserStore from "./stores/userStore";
 
 function App() {
+  const gameStarted = useUserStore((state) => state.gameHasStarted);
+
   return (
     <BrowserRouter>
-      <Navbar />
+      {!gameStarted && <Navbar />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
