@@ -11,7 +11,7 @@ function insertionSpaceComplexity() {
   }
 
   const gameDisplayObject: GameDisplayInfo = {
-    answerChoices,
+    answerChoices: shuffle(answerChoices),
     content: "Insertion Sort",
     question: "What is the space complexity of the algorithm below?",
     contentType: "TEXT",

@@ -23,7 +23,7 @@ const createBestCase = () => {
   }
 
   const gameDisplayObject: GameDisplayInfo = {
-    answerChoices,
+    answerChoices: shuffle(answerChoices),
     content: [2, 3, 5, 6, 7, 8],
     contentType: "ARRAY-BARS",
     answerType: "TEXT",
@@ -45,7 +45,7 @@ const createWorstCase = () => {
     answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
   }
   const gameDisplayObject: GameDisplayInfo = {
-    answerChoices,
+    answerChoices: shuffle(answerChoices),
     content: shuffledArray,
     contentType: "ARRAY-BARS",
     answerType: "TEXT",

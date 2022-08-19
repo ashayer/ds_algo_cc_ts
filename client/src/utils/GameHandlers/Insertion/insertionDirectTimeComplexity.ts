@@ -11,7 +11,7 @@ function insertionDirectTimeComplexity() {
   }
 
   const gameDisplayObject: GameDisplayInfo = {
-    answerChoices,
+    answerChoices: shuffle(answerChoices),
     content: "Insertion Sort",
     question: "What is the time complexity of the algorithm below?",
     contentType: "TEXT",

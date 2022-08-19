@@ -99,7 +99,7 @@ function insertionStateAfterSwap() {
   }
 
   const gameDisplayObject: GameDisplayInfo = {
-    answerChoices,
+    answerChoices: shuffle(answerChoices),
     content: sortedArrayObject.arrayUnsorted,
     question: `Using insertion sort, what is the state of the array after ${correctSwapNumber} swaps`,
     contentType: "ARRAY-BARS",

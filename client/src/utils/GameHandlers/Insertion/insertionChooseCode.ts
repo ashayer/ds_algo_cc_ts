@@ -9,11 +9,11 @@ function generateEmptyLine(string: string, lineNum: number) {
 }
 
 function insertionChooseCode() {
-  const Line1 = "1 for (int i = 0; i < arr.len; i++)\n";
-  const Line2 = "2   for (int j = i; j > 0; j--)\n";
-  const Line3 = "3     if (arr[j] < arr[j-1])\n";
-  const Line4 = "4       swap (arr[j],arr[j-1])\n";
-  const Line5 = "5     else break;    ";
+  const Line1 = "for (int i = 0; i < arr.len; i++)\n";
+  const Line2 = "  for (int j = i; j > 0; j--)\n";
+  const Line3 = "    if (arr[j] < arr[j-1])\n";
+  const Line4 = "      swap (arr[j],arr[j-1])\n";
+  const Line5 = "    else break;    ";
 
   const pseudoCodeStringArray = [Line1, Line2, Line3, Line4, Line5];
 
@@ -65,7 +65,7 @@ function insertionChooseCode() {
   }
 
   const gameDisplayObject: GameDisplayInfo = {
-    answerChoices,
+    answerChoices: shuffle(answerChoices),
     content: insertionPseudo,
     question: "Fill in the missing pseudo-code of Insertion Sort",
     contentType: "CODE",
