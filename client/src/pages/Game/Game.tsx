@@ -10,8 +10,8 @@ import useUserStore from "../../stores/userStore";
 import produce from "immer";
 
 const Game = () => {
-  const [gameStarted, setGameStarted] = useState(false);
-  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[0]);
+  const [gameStarted, setGameStarted] = useState(true);
+  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[6]);
   const [questionDisplay, setQuestionDisplay] = useState<GameDisplayInfo>();
   const sessionGameStats = useUserStore((state) => state.sessionGameStats);
   const setSessionGameStats = useUserStore((state) => state.setSessionGameStats);

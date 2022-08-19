@@ -1,4 +1,4 @@
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, Button } from "@mui/material";
 import CodeBlock from "../CodeBlock/CodeBlock";
 import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -271,6 +271,7 @@ const GameQuestionContent = ({
   questionDisplay: GameDisplayInfo;
   setQuestionDisplay: (displayInfo: GameDisplayInfo) => void;
 }) => {
+  const [originalContent, setOriginalContent] = useState(questionDisplay);
   switch (questionDisplay.contentType) {
     case "TEXT":
       return <TextContent questionContent={questionDisplay.content as string} />;
@@ -280,19 +281,37 @@ const GameQuestionContent = ({
       return <ArrayBarsContent questionContent={questionDisplay.content as number[]} />;
     case "DRAGGABLE-CODE":
       return (
-        <DragCode
-          questionContent={questionDisplay.content as DragArrayType[]}
-          questionDisplay={questionDisplay}
-          setQuestionDisplay={setQuestionDisplay}
-        />
+        <>
+          <DragCode
+            questionContent={questionDisplay.content as DragArrayType[]}
+            questionDisplay={questionDisplay}
+            setQuestionDisplay={setQuestionDisplay}
+          />
+          <Button
+            variant="contained"
+            onClick={() => setQuestionDisplay(originalContent)}
+            sx={{ marginInline: "auto" }}
+          >
+            RESET ARRAY
+          </Button>
+        </>
       );
     case "DRAGGABLE-ARRAY-BARS":
       return (
-        <DragBars
-          questionContent={questionDisplay.content as DragArrayType[]}
-          questionDisplay={questionDisplay}
-          setQuestionDisplay={setQuestionDisplay}
-        />
+        <>
+          <DragBars
+            questionContent={questionDisplay.content as DragArrayType[]}
+            questionDisplay={questionDisplay}
+            setQuestionDisplay={setQuestionDisplay}
+          />
+          <Button
+            variant="contained"
+            onClick={() => setQuestionDisplay(originalContent)}
+            sx={{ marginInline: "auto", mt: 2 }}
+          >
+            RESET ARRAY
+          </Button>
+        </>
       );
     default:
       return <div>Error</div>;
