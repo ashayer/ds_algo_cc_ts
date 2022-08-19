@@ -1,6 +1,9 @@
 import { Grid, Box, Typography } from "@mui/material";
 import CodeBlock from "../CodeBlock/CodeBlock";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { useState, useEffect } from "react";
 
 const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => {
   return (
@@ -143,8 +146,58 @@ const TextContent = ({ questionContent }: { questionContent: string }) => {
   );
 };
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
+
+function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowDimensions;
+}
+
+const customFontSize = (width: number, height: number) => {
+  if (width <= 500) {
+    return "1.25rem";
+  } else if (width <= 1000 && width > 500) {
+    return "1.5rem";
+  } else if (width > 1000) {
+    return "2.5rem";
+  }
+};
+
 const PseudoCodeContent = ({ questionContent }: { questionContent: string }) => {
-  return <CodeBlock hoveredLine={[]} code={questionContent} startingLineNumber={1} />;
+  const { height, width } = useWindowDimensions();
+  return (
+    <Grid container item sx={{ justifyContent: "center" }} xs={12}>
+      <SyntaxHighlighter
+        language="cpp"
+        style={lightfair}
+        showLineNumbers
+        customStyle={{
+          fontSize: customFontSize(width, height),
+          marginInline: "auto",
+        }}
+        wrapLines
+        startingLineNumber={1}
+      >
+        {questionContent}
+      </SyntaxHighlighter>
+    </Grid>
+  );
 };
 
 const GameQuestionContent = ({ questionDisplay }: { questionDisplay: GameDisplayInfo }) => {

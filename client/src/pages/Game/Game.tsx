@@ -8,7 +8,7 @@ import GameQuestionText from "../../components/GameQuestionText/GameQuestionText
 
 const Game = () => {
   const [gameStarted, setGameStarted] = useState(true);
-  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[1]);
+  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[3]);
   const [questionDisplay, setQuestionDisplay] = useState<GameDisplayInfo>();
 
   const onGameStart = () => {
@@ -30,7 +30,7 @@ const Game = () => {
   }, [questionInfo]);
 
   return gameStarted && questionDisplay ? (
-    <Grid item container xs={10} sx={{ marginInline: "auto" }}>
+    <Grid item container sx={{ marginInline: "auto" }}>
       <GameQuestionText questionDisplay={questionDisplay} />
       <GameQuestionContent questionDisplay={questionDisplay} />
       <GameQuestionAnswerChoice questionDisplay={questionDisplay} />
