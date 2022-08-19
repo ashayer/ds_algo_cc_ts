@@ -1,6 +1,6 @@
 import { shuffle } from "d3-array";
 
-function generateDragCode() {
+function mergeDragCode() {
   const MergeLine1 = "int i = low, j = middle+1\n";
   const MergeLine2 = "for(int k = low; k <= high; k++)\n";
   const MergeLine3 = "if(i > mid) {aux[k] = array[j++]}\n";
@@ -64,13 +64,15 @@ function generateDragCode() {
     },
   ]);
 
-  const answers = {
-    right: "Right",
-    wrong: ["Wrong, Wrong", "Wrong"],
-    original: Math.random() > 0.5 ? mergeSortStringArray : mergeStringArray,
+  const gameDisplayObject: GameDisplayInfo = {
+    answerChoices: false,
+    content: Math.random() > 0.5 ? mergeSortStringArray : mergeStringArray,
+    contentType: "DRAGGABLE-CODE",
+    answerType: "CHECK-ANSWER",
+    question: "Move pseudo-code into correct order for Merge Sort",
   };
 
-  return answers;
+  return gameDisplayObject;
 }
 
-export default generateDragCode;
+export default mergeDragCode;

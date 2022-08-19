@@ -4,7 +4,7 @@ import { shuffle } from "d3-array";
 // if best then show shuffled array
 // otherwise generate a sorted array in ascending or descending order
 
-const checkArraySorted = (array) => {
+const checkArraySorted = (array: number[]) => {
   for (let i = 0; i < array.length - 1; i += 1) {
     if (array[i] > array[i + 1]) {
       return false;
@@ -21,13 +21,19 @@ const createBestCase = () => {
     shuffledArray = shuffle([2, 3, 5, 8, 6, 7]);
   }
 
-  const answers = {
-    right: rightAnswer,
-    wrong: wrongAnswers,
-    original: shuffledArray,
-  };
+  const answerChoices = [{ isCorrect: true, answerContent: rightAnswer }];
+  for (const wrongChoice of wrongAnswers) {
+    answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
+  }
 
-  return answers;
+  const gameDisplayObject: GameDisplayInfo = {
+    answerChoices: shuffle(answerChoices),
+    content: shuffledArray,
+    contentType: "ARRAY-BARS",
+    answerType: "TEXT",
+    question: "What is the time complexity using Merge Sort to sort the array below?",
+  };
+  return gameDisplayObject;
 };
 
 const createWorstCase = () => {
@@ -38,17 +44,23 @@ const createWorstCase = () => {
   if (!isAscendingOrder) {
     sortedArray.reverse();
   }
+  const answerChoices = [{ isCorrect: true, answerContent: rightAnswer }];
+  for (const wrongChoice of wrongAnswers) {
+    answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
+  }
 
-  const answers = {
-    right: rightAnswer,
-    wrong: wrongAnswers,
-    original: sortedArray,
+  const gameDisplayObject: GameDisplayInfo = {
+    answerChoices: shuffle(answerChoices),
+    content: sortedArray,
+    contentType: "ARRAY-BARS",
+    answerType: "TEXT",
+    question: "What is the time complexity using Merge Sort to sort the array below?",
   };
 
-  return answers;
+  return gameDisplayObject;
 };
 
-function generateArrayTime() {
+function quickArrayTimeComplexity() {
   const isBestCase = Math.random() > 0.5;
 
   if (isBestCase) {
@@ -57,4 +69,4 @@ function generateArrayTime() {
   return createWorstCase();
 }
 
-export default generateArrayTime;
+export default quickArrayTimeComplexity;

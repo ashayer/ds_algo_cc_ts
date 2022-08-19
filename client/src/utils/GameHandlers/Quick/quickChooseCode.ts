@@ -5,7 +5,7 @@ import { shuffle } from "d3-array";
 // put correct string into answer.right and three wrong string into answer.wrong
 
 //! may need to create separate function for
-function generateEmptyLine(string, lineNum) {
+function generateEmptyLine(string: string, lineNum: number) {
   let emptyString = lineNum.toString();
   for (let i = 0; i < string.length; i += 1) {
     emptyString = `${emptyString} `;
@@ -14,18 +14,18 @@ function generateEmptyLine(string, lineNum) {
 }
 
 function generateCode() {
-  const partitionLine1 = "1 int pivotValue = arr[low]\n";
-  const partitionLine2 = "2 int pivotIndex = low\n";
-  const partitionLine3 = "3 for(int i = low + 1; i<=high; i++)\n";
-  const partitionLine4 = "4 \tif(arr[i] < pivotValue)\n";
-  const partitionLine5 = "5 \tswap(arr[i], arr[++pivotIndex])\n";
-  const partitionLine6 = "6 \tswap(arr[low], arr[pivotIndex])\n";
-  const partitionLine7 = "7 return pivotIndex\n";
+  const partitionLine1 = "int pivotValue = arr[low]\n";
+  const partitionLine2 = "int pivotIndex = low\n";
+  const partitionLine3 = "for(int i = low + 1; i<=high; i++)\n";
+  const partitionLine4 = "\tif(arr[i] < pivotValue)\n";
+  const partitionLine5 = "\tswap(arr[i], arr[++pivotIndex])\n";
+  const partitionLine6 = "\tswap(arr[low], arr[pivotIndex])\n";
+  const partitionLine7 = "return pivotIndex\n";
 
-  const qSortLine1 = "1 if (low < high)\n";
-  const qSortLine2 = "2 \tint index = partition(arr, low, high)\n";
-  const qSortLine3 = "3 \tquickSort(arr, low, index -1)\n";
-  const qSortLine4 = "4 \tquickSort(arr, index + 1, high)\n";
+  const qSortLine1 = "if (low < high)\n";
+  const qSortLine2 = "\tint index = partition(arr, low, high)\n";
+  const qSortLine3 = "\tquickSort(arr, low, index -1)\n";
+  const qSortLine4 = "\tquickSort(arr, index + 1, high)\n";
 
   const partitionStringArray = [
     partitionLine1,
@@ -126,13 +126,23 @@ function generateCode() {
       }
     }
 
-    const answers = {
-      right: answersOptionsObjectArrayForPartition[randomLineNumber].right.slice(2),
-      wrong: shuffle(answersOptionsObjectArrayForPartition[randomLineNumber].wrong),
-      original: partitionPseudo,
+    const rightAnswer = answersOptionsObjectArrayForPartition[randomLineNumber].right.slice(2);
+    const wrongAnswers = shuffle(answersOptionsObjectArrayForPartition[randomLineNumber].wrong);
+
+    const answerChoices = [{ isCorrect: true, answerContent: rightAnswer }];
+    for (const wrongChoice of wrongAnswers) {
+      answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
+    }
+
+    const gameDisplayObject: GameDisplayInfo = {
+      answerChoices: shuffle(answerChoices),
+      content: partitionPseudo,
+      question: "Fill in the missing pseudo-code of Quick Sort Partition",
+      contentType: "CODE",
+      answerType: "TEXT",
     };
 
-    return answers;
+    return gameDisplayObject;
   }
   // random number 0-3
   const randomLineNumber = Math.floor(Math.random() * answersObjectArrayForQuickSort.length);
@@ -144,13 +154,23 @@ function generateCode() {
     }
   }
 
-  const answers = {
-    right: answersObjectArrayForQuickSort[randomLineNumber].right.slice(2),
-    wrong: shuffle(answersObjectArrayForQuickSort[randomLineNumber].wrong),
-    original: quickSortPseudo,
+  const rightAnswer = answersObjectArrayForQuickSort[randomLineNumber].right.slice(2);
+  const wrongAnswers = shuffle(answersObjectArrayForQuickSort[randomLineNumber].wrong);
+
+  const answerChoices = [{ isCorrect: true, answerContent: rightAnswer }];
+  for (const wrongChoice of wrongAnswers) {
+    answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
+  }
+
+  const gameDisplayObject: GameDisplayInfo = {
+    answerChoices: shuffle(answerChoices),
+    content: quickSortPseudo,
+    question: "Fill in the missing pseudo-code of Merge Sort Partition",
+    contentType: "CODE",
+    answerType: "TEXT",
   };
 
-  return answers;
+  return gameDisplayObject;
 }
 
 export default generateCode;

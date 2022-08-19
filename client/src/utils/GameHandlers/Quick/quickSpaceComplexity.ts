@@ -1,9 +1,8 @@
 import { shuffle } from "d3-array";
 
-function selectionTimeComplexityDirect() {
-  const rightAnswer = "n\u00B2";
-  const wrongAnswers = shuffle(["n", "logn", "nlogn"]);
-
+function generateSpace() {
+  const rightAnswer = "logn";
+  const wrongAnswers = shuffle(["nlogn", "1", "n"]);
   const answerChoices = [{ isCorrect: true, answerContent: rightAnswer }];
 
   for (const wrongChoice of wrongAnswers) {
@@ -12,8 +11,8 @@ function selectionTimeComplexityDirect() {
 
   const gameDisplayObject: GameDisplayInfo = {
     answerChoices: shuffle(answerChoices),
-    content: "Selection Sort",
-    question: "What is the time complexity of the algorithm below?",
+    content: "Merge Sort",
+    question: "What is the space complexity of the algorithm below?",
     contentType: "TEXT",
     answerType: "TEXT",
   };
@@ -21,4 +20,4 @@ function selectionTimeComplexityDirect() {
   return gameDisplayObject;
 }
 
-export default selectionTimeComplexityDirect;
+export default generateSpace;

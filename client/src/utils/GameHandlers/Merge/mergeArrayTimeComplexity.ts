@@ -2,7 +2,7 @@ import { shuffle } from "d3-array";
 // generate an array that satisfies the best or worst time complexity of merge sort
 // since both are nlogn just display a shuffled array or sorted array 30% of the time
 
-const checkArraySorted = (array) => {
+const checkArraySorted = (array: number[]) => {
   for (let i = 0; i < array.length - 1; i += 1) {
     if (array[i] > array[i + 1]) {
       return false;
@@ -11,7 +11,7 @@ const checkArraySorted = (array) => {
   return true;
 };
 
-function generateArrayTime() {
+function mergeArrayTimeComplexity() {
   const isSorted = Math.random() < 0.3;
 
   const rightAnswer = "nlogn";
@@ -25,13 +25,20 @@ function generateArrayTime() {
     shuffledArray.sort();
   }
 
-  const answers = {
-    right: rightAnswer,
-    wrong: wrongAnswers,
-    original: shuffledArray,
+  const answerChoices = [{ isCorrect: true, answerContent: rightAnswer }];
+  for (const wrongChoice of wrongAnswers) {
+    answerChoices.push({ isCorrect: false, answerContent: wrongChoice });
+  }
+
+  const gameDisplayObject: GameDisplayInfo = {
+    answerChoices: shuffle(answerChoices),
+    content: shuffledArray,
+    contentType: "ARRAY-BARS",
+    answerType: "TEXT",
+    question: "What is the time complexity using Merge Sort to sort the array below?",
   };
 
-  return answers;
+  return gameDisplayObject;
 }
 
-export default generateArrayTime;
+export default mergeArrayTimeComplexity;

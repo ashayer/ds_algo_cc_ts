@@ -64,13 +64,15 @@ function generateDragCode() {
     },
   ]);
 
-  const answers = {
-    right: "Right",
-    wrong: ["Wrong, Wrong", "Wrong"],
-    original: Math.random() > 0.5 ? quickSortStringArray : partitionStringArray,
+  const gameDisplayObject: GameDisplayInfo = {
+    answerChoices: false,
+    content: Math.random() > 0.5 ? quickSortStringArray : partitionStringArray,
+    contentType: "DRAGGABLE-CODE",
+    answerType: "CHECK-ANSWER",
+    question: "Move pseudo-code into correct order for Merge Sort",
   };
 
-  return answers;
+  return gameDisplayObject;
 }
 
 export default generateDragCode;

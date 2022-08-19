@@ -50,7 +50,6 @@ const Game = () => {
       const lifeTimeAverage = Math.floor(
         (gameStats.responseTime + averageResponseTime) / gameStats.gamesPlayed,
       );
-      console.log(averageResponseTime);
       const nextState = produce(gameStats, (draftState) => {
         draftState.gamesPlayed += 1;
         draftState.points += sessionGameStats.points;
