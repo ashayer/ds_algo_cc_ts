@@ -8,7 +8,7 @@ import GameQuestionText from "../../components/GameQuestionText/GameQuestionText
 
 const Game = () => {
   const [gameStarted, setGameStarted] = useState(true);
-  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[3]);
+  const [questionInfo, setQuestionInfo] = useState<GameQuestionInfo>(gameQuestionList[5]);
   const [questionDisplay, setQuestionDisplay] = useState<GameDisplayInfo>();
 
   const onGameStart = () => {

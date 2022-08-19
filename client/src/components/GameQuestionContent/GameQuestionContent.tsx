@@ -6,10 +6,13 @@ import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { useState, useEffect } from "react";
 
 const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => {
+  const { height, width } = useWindowDimensions();
+
   return (
-    <Box
+    <Grid
+      item
+      container
       sx={{
-        display: "flex",
         justifyContent: "center",
       }}
     >
@@ -24,20 +27,25 @@ const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => 
               {questionContent?.map((value: DragArrayType, idx: number) => (
                 <Draggable draggableId={idx.toString()} index={idx} key={idx}>
                   {(provided) => (
-                    <Typography
+                    <Box
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
-                      variant="h5"
-                      sx={{
-                        backgroundColor: "white",
-                        "&:hover": {
-                          color: "red",
-                        },
-                      }}
                     >
-                      {`${value.lineContent}`}
-                    </Typography>
+                      <SyntaxHighlighter
+                        language="cpp"
+                        style={lightfair}
+                        customStyle={{
+                          fontSize: customFontSize(width, height),
+                          marginInline: "auto",
+                          marginTop: 0,
+                          marginBottom: 0,
+                        }}
+                        wrapLines
+                      >
+                        {`${value.lineContent}`}
+                      </SyntaxHighlighter>
+                    </Box>
                   )}
                 </Draggable>
               ))}
@@ -46,10 +54,26 @@ const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => 
           )}
         </Droppable>
       </DragDropContext>
-    </Box>
+    </Grid>
   );
 };
-
+{
+  /* <Typography
+{...provided.draggableProps}
+{...provided.dragHandleProps}
+ref={provided.innerRef}
+variant="h4"
+sx={{
+  "&:hover": {
+    color: "red",
+  },
+  p: 1,
+}}
+>
+{`${value.lineContent}`} 
+</Typography>
+*/
+}
 const DragBars = ({ questionContent }: { questionContent: DragArrayType[] }) => {
   return (
     <DragDropContext onDragEnd={() => console.log("asd")}>
