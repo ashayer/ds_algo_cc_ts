@@ -8,7 +8,6 @@ import GameQuestionText from "../../components/GameQuestionText/GameQuestionText
 import UserStatsTable from "../../components/UserStatsTable/UserStatsTable";
 import useUserStore from "../../stores/userStore";
 import produce from "immer";
-import { useQuery, useMutation } from "@tanstack/react-query";
 import useAuthStore from "../../stores/authStore";
 import axios from "axios";
 
