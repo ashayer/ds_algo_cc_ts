@@ -32,7 +32,10 @@ const Game = () => {
   return gameStarted && questionDisplay ? (
     <Grid item container sx={{ marginInline: "auto" }}>
       <GameQuestionText questionDisplay={questionDisplay} />
-      <GameQuestionContent questionDisplay={questionDisplay} />
+      <GameQuestionContent
+        questionDisplay={questionDisplay}
+        setQuestionDisplay={setQuestionDisplay}
+      />
       <GameQuestionAnswerChoice questionDisplay={questionDisplay} />
     </Grid>
   ) : (

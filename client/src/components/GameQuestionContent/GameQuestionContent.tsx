@@ -4,8 +4,17 @@ import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { useState, useEffect } from "react";
+import produce from "immer";
 
-const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => {
+const DragCode = ({
+  questionContent,
+  questionDisplay,
+  setQuestionDisplay,
+}: {
+  questionContent: DragArrayType[];
+  questionDisplay: GameDisplayInfo;
+  setQuestionDisplay: (displayInfo: GameDisplayInfo) => void;
+}) => {
   const { height, width } = useWindowDimensions();
 
   const onDragEnd = (result: DropResult) => {
@@ -20,6 +29,12 @@ const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => 
     newLinesArray.splice(source.index, 1);
     newLinesArray.splice(destination.index, 0, questionContent[source.index]);
     questionContent = newLinesArray;
+
+    const nextState = produce(questionDisplay, (draftState) => {
+      draftState.content = newLinesArray;
+    });
+
+    setQuestionDisplay(nextState);
   };
 
   return (
@@ -72,7 +87,15 @@ const DragCode = ({ questionContent }: { questionContent: DragArrayType[] }) => 
     </Grid>
   );
 };
-const DragBars = ({ questionContent }: { questionContent: DragArrayType[] }) => {
+const DragBars = ({
+  questionContent,
+  questionDisplay,
+  setQuestionDisplay,
+}: {
+  questionContent: DragArrayType[];
+  questionDisplay: GameDisplayInfo;
+  setQuestionDisplay: (displayInfo: GameDisplayInfo) => void;
+}) => {
   const onDragEnd = (result: DropResult) => {
     const { destination, source } = result;
     if (!destination) {
@@ -85,6 +108,12 @@ const DragBars = ({ questionContent }: { questionContent: DragArrayType[] }) => 
     newLinesArray.splice(source.index, 1);
     newLinesArray.splice(destination.index, 0, questionContent[source.index]);
     questionContent = newLinesArray;
+
+    const nextState = produce(questionDisplay, (draftState) => {
+      draftState.content = newLinesArray;
+    });
+
+    setQuestionDisplay(nextState);
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -235,7 +264,13 @@ const PseudoCodeContent = ({ questionContent }: { questionContent: string }) => 
   );
 };
 
-const GameQuestionContent = ({ questionDisplay }: { questionDisplay: GameDisplayInfo }) => {
+const GameQuestionContent = ({
+  questionDisplay,
+  setQuestionDisplay,
+}: {
+  questionDisplay: GameDisplayInfo;
+  setQuestionDisplay: (displayInfo: GameDisplayInfo) => void;
+}) => {
   switch (questionDisplay.contentType) {
     case "TEXT":
       return <TextContent questionContent={questionDisplay.content as string} />;
@@ -244,9 +279,21 @@ const GameQuestionContent = ({ questionDisplay }: { questionDisplay: GameDisplay
     case "ARRAY-BARS":
       return <ArrayBarsContent questionContent={questionDisplay.content as number[]} />;
     case "DRAGGABLE-CODE":
-      return <DragCode questionContent={questionDisplay.content as DragArrayType[]} />;
+      return (
+        <DragCode
+          questionContent={questionDisplay.content as DragArrayType[]}
+          questionDisplay={questionDisplay}
+          setQuestionDisplay={setQuestionDisplay}
+        />
+      );
     case "DRAGGABLE-ARRAY-BARS":
-      return <DragBars questionContent={questionDisplay.content as DragArrayType[]} />;
+      return (
+        <DragBars
+          questionContent={questionDisplay.content as DragArrayType[]}
+          questionDisplay={questionDisplay}
+          setQuestionDisplay={setQuestionDisplay}
+        />
+      );
     default:
       return <div>Error</div>;
   }

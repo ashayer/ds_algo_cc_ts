@@ -92,10 +92,33 @@ const TextAnswer = ({ answerChoices }: { answerChoices: GameAnswerChoices[] }) =
   );
 };
 
-const DragCodeAnswer = () => {
+const DragCodeAnswer = ({ questionContent }: { questionContent: DragArrayType[] }) => {
+  const checkLineOrder = () => {
+    console.log(questionContent);
+    const arr = [];
+    for (let i = 0; i < questionContent.length; i += 1) {
+      arr.push(questionContent[i].correctIdx);
+    }
+    for (let i = 0; i < arr.length - 1; i += 1) {
+      if (arr[i] > arr[i + 1]) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const isInOrder = () => {
+    const isOrdered = checkLineOrder();
+    if (isOrdered) {
+      console.log("isOrdered");
+    } else {
+      console.log("wrong");
+    }
+  };
+
   return (
     <Grid item sx={{ justifyContent: "center", marginInline: "auto", mt: 2 }}>
-      <Button variant="contained" color="warning" sx={{ p: 5 }}>
+      <Button variant="contained" color="warning" sx={{ p: 5 }} onClick={isInOrder}>
         <Typography variant="h3" fontWeight="bold">
           Check Order
         </Typography>
@@ -113,7 +136,7 @@ const GameQuestionAnswerChoice = ({ questionDisplay }: { questionDisplay: GameDi
         <ArrayBarsAnswer answerChoices={questionDisplay.answerChoices as GameAnswerChoices[]} />
       );
     case "CHECK-ANSWER":
-      return <DragCodeAnswer />;
+      return <DragCodeAnswer questionContent={questionDisplay.content as DragArrayType[]} />;
     default:
       return <div>Error</div>;
   }
