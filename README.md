@@ -1,2 +1,2 @@
-# ds_algo_cc_ts
+# Data Structure and Sorting Algorithms Crash Course
  
